@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="xhsColor">#E12830</color>
     <color name="tab_textColor">#C1C1C1</color>
+    <color name="toolbar_search">#CC242A</color>
 </resources>

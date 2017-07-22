@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/XHS.iml" filepath="$PROJECT_DIR$/XHS.iml" />
       <module fileurl="file://E:\AndroidWORK\xiaohongshu\XHS.iml" filepath="E:\AndroidWORK\xiaohongshu\XHS.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://E:\AndroidWORK\xiaohongshu\app\app.iml" filepath="E:\AndroidWORK\xiaohongshu\app\app.iml" />
