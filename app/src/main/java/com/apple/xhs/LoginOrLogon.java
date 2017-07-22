@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import com.apple.xhs.lol_fragment.OneFragment;
 import com.apple.xhs.lol_fragment.ThreeFragment;
 import com.apple.xhs.lol_fragment.TwoFragment;
+import com.collecter.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ import java.util.List;
  * Created by limeng on 2017/7/21.
  */
 
-public class LoginOrLogon extends AppCompatActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
+public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private ViewPager viewPager;
     private Fragment pager1,pager2,pager3;
     private FragmentManager fm;

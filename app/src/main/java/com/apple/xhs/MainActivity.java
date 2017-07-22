@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.apple.xhs.five_fragment.HomeFragment;
+import com.collecter.ActivityCollecter;
+import com.collecter.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,7 @@ import java.util.List;
  * Created by limeng on 2017/7/21.
  */
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     TextView tab_home,tab_search,tab_store,tab_msg,tab_me;
     View fragment_home,fragment_search,fragment_store,fragment_msg,fragment_me;
     FragmentManager fm;
@@ -98,5 +100,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragment_search.setVisibility(View.INVISIBLE);
         fragment_msg.setVisibility(View.INVISIBLE);
         fragment_me.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollecter.finishAll();
     }
 }

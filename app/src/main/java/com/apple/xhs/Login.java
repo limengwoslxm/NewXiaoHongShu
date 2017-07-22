@@ -6,11 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bean.MyUser;
+import com.collecter.BaseActivity;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -19,7 +21,7 @@ import cn.bmob.v3.listener.SaveListener;
  * Created by limeng on 2017/7/21.
  */
 
-public class Login extends AppCompatActivity implements View.OnClickListener {
+public class Login extends BaseActivity implements View.OnClickListener {
     TextView userName,userPass;
     TextView logon,reset;
     Button login;
