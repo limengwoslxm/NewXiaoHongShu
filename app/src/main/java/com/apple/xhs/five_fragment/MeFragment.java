@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.apple.xhs.Login;
 import com.apple.xhs.R;
 
+import cn.bmob.v3.BmobUser;
+
 /**
  * Created by limeng on 2017/7/22.
  */
@@ -43,6 +45,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //确定退出
+                        BmobUser.logOut();   //清除缓存用户对象
                         startActivity(new Intent(getActivity(), Login.class));
                         Toast.makeText(getContext(),"退出",Toast.LENGTH_SHORT).show();
                     }
