@@ -4,23 +4,164 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <LinearLayout
+        android:id="@+id/popUpDismiss1"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:orientation="horizontal"
+        android:background="#fff">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="全部选项"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:padding="17dp"
+            android:src="@mipmap/icon_expand_up"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <include layout="@layout/home_line_inscrollview"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:text="全部选项"
-            android:paddingLeft="20dp"/>
-        <ImageView
+            android:layout_weight="1"
+            android:text="推荐"
+            android:gravity="center"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#d7d6d6"/>
+        <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="17dp"
-            android:layout_gravity="right"
-            android:src="@mipmap/icon_expand_up"/>
+            android:text="关注"
+            android:gravity="center"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#d7d6d6"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="武汉"
+            android:gravity="center"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#d7d6d6"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="男人"
+            android:gravity="center"/>
     </LinearLayout>
-    <include layout="@layout/home_line_inscrollview"/>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d7d6d6"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="护肤"
+            android:gravity="center"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#d7d6d6"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="居家"
+            android:gravity="center"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#d7d6d6"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="时尚"
+            android:gravity="center"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#d7d6d6"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="美食"
+            android:gravity="center"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d7d6d6"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="运动"
+            android:gravity="center"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#d7d6d6"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="旅行"
+            android:gravity="center"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#d7d6d6"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="彩妆"
+            android:gravity="center"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#d7d6d6"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="母婴"
+            android:gravity="center"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/popUpDismiss2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#77030303"/>
 </LinearLayout>

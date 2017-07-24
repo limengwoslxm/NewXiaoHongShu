@@ -16,10 +16,20 @@
         <!--修改AlertDialog按钮的颜色-->
         <item name="colorAccent">#E12830</item>
     </style>
-    <style name="XHSToolBar" parent="Theme.AppCompat.Light">
+    <style name="XHSstatusbar" parent="Theme.AppCompat.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:alertDialogTheme">@style/Mine_Dialog.Alert</item>
+    </style>
+    <style name="MyDialogStyleInHomeScrollView">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
     <style name="mine_setting_textview">
         <item name="android:layout_width">wrap_content</item>

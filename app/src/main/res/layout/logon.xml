@@ -139,7 +139,8 @@
         android:textColor="#fff"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/login_button_shape"/>
+        android:background="@drawable/login_button_shape"
+        style="?android:borderlessButtonStyle"/>
     <TextView
         android:id="@+id/logon_login"
         android:layout_width="wrap_content"

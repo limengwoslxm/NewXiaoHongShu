@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:scrollbars="none">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -115,10 +116,12 @@
         </LinearLayout>
         <View style="@style/mine_setting_showline"/>
         <LinearLayout
+            android:id="@+id/ge"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal">
             <TextView
+
                 android:text="个人资料"
                 style="@style/mine_setting_textview"/>
             <include layout="@layout/mine_setting_tv_merge"/>

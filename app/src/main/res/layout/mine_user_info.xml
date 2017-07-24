@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.apple.xhs.CustomView.InfoSettingTitle
+        android:id="@+id/infosetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:setText="个人设置" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#f2f2f2"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="个人资料"
+                android:textColor="@color/textGrayColor"
+                android:textSize="15sp" />
+            <include layout="@layout/setting_line_merge" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginLeft="17dp"
+                    android:src="@drawable/xy_walkthroughs_account" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="修改头像"
+                    android:textColor="@color/textGrayColor"
+                    android:textSize="15sp" />
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:layout_marginLeft="155dp"
+                    android:src="@mipmap/arrow_icon_right" />
+            </LinearLayout>
+            <include layout="@layout/setting_line_merge" />
+            <com.apple.xhs.CustomView.UserInfoRow
+                android:id="@+id/override_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:setItemTitle="昵称"
+                app:setNameText="小红书" />
+            <include layout="@layout/setting_line_merge" />
+            <com.apple.xhs.CustomView.UserInfoRow
+                android:id="@+id/override_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:setItemTitle="小红书ID"
+                app:setNameText="18813141902" />
+            <include layout="@layout/setting_line_merge" />
+            <com.apple.xhs.CustomView.UserInfoRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:setItemTitle="性别"
+                app:setNameText="男" />
+            <include layout="@layout/setting_line_merge" />
+            <com.apple.xhs.CustomView.UserInfoRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:setItemTitle="常住地"
+                app:setNameText="地球的某一片红薯地" />
+            <include layout="@layout/setting_line_merge" />
+            <com.apple.xhs.CustomView.UserInfoRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:setHintText="未选择"
+                app:setItemTitle="生日" />
+            <include layout="@layout/setting_line_merge" />
+            <com.apple.xhs.CustomView.UserInfoRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:setHintText="还没有信息耶～"
+                app:setItemTitle="个性签名" />
+            <include layout="@layout/setting_line_merge" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/backgroundcolor"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="更多信息（仅自己可见，用于优化你的推荐结果）"
+                android:textColor="@color/textGrayColor"
+                android:textSize="13sp" />
+            <include layout="@layout/setting_line_merge" />
+            <com.apple.xhs.CustomView.UserInfoRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:setHintText="补充信息"
+                app:setItemTitle="肤质" />
+            <include layout="@layout/setting_line_merge" />
+            <com.apple.xhs.CustomView.UserInfoRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:setHintText="补充信息"
+                app:setItemTitle="母婴" />
+            <include layout="@layout/setting_line_merge" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#f2f2f2" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

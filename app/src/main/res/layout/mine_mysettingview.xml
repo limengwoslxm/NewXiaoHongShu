@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="68dp"
+    android:background="@drawable/setting_toolbar">
+        <ImageView
+            android:id="@+id/my_setting_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/common_head_btn_back_white"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/my_setting_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:layout_marginTop="35dp"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/my_setting_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:layout_marginTop="37dp"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"/>
+</RelativeLayout>

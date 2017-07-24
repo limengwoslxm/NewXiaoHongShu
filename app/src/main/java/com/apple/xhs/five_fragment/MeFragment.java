@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.apple.xhs.Login;
 import com.apple.xhs.R;
+import com.apple.xhs.five_fragment.mine_activity.MineUserInfoSetting;
 
 import cn.bmob.v3.BmobUser;
 
@@ -26,6 +27,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_me_layout,container,false);
         view.findViewById(R.id.mine_exit_account).setOnClickListener(this);
+        view.findViewById(R.id.ge).setOnClickListener(this);
         return view;
     }
 
@@ -35,6 +37,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             case R.id.mine_exit_account:
                 popExitAialog();
                 break;
+            case R.id.ge:
+                startActivity(new Intent(getActivity(), MineUserInfoSetting.class));
         }
     }
     //退出账户的方法

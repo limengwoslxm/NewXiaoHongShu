@@ -7,5 +7,7 @@
     <color name="tab_textColor">#C1C1C1</color>
     <color name="toolbar_search">#c42529</color>
     <color name="blackColor">#2e2e2e</color>
+    <color name="textGrayColor">#868585</color>
     <color name="msg_tab">#f00</color>
+    <color name="backgroundcolor">#f2f2f2</color>
 </resources>

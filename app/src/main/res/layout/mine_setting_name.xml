@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.apple.xhs.CustomView.InfoSettingTitle
+        android:id="@+id/reset_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:setText="修改昵称"
+        app:setDoneText="完成"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="13sp"
+        android:paddingLeft="20dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/textGrayColor"
+        android:background="@color/backgroundcolor"
+        android:text="使用中英文、数字和下划线，昵称一个月只能修改一次"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:text="小红豆"
+        android:textSize="16sp"
+        android:background="@null"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundcolor"/>
+</LinearLayout>
