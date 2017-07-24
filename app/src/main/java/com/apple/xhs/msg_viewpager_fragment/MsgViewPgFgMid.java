@@ -1,4 +1,4 @@
-package com.apple.xhs.lol_fragment;
+package com.apple.xhs.msg_viewpager_fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,14 +10,14 @@ import android.view.ViewGroup;
 import com.apple.xhs.R;
 
 /**
- * Created by limeng on 2017/7/21.
+ * Created by limeng on 2017/7/23.
  */
 
-public class ThreeFragment extends Fragment {
+public class MsgViewPgFgMid extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.lol_viewpager3, container, false);
+        View view = inflater.inflate(R.layout.msg_viewpager_mid,null);
         return view;
     }
 }

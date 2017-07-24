@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal">
+<TextView
+    android:id="@+id/home_tuijian"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="推荐"
+    android:gravity="center"/>
+<TextView
+    android:id="@+id/home_guanzhu"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="关注"
+    android:gravity="center"/>
+<TextView
+    android:id="@+id/home_wuhan"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="武汉"
+    android:gravity="center"/>
+<TextView
+    android:id="@+id/home_nanren"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="男人"
+    android:gravity="center"/>
+<TextView
+    android:id="@+id/home_hufu"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="护肤"
+    android:gravity="center"/>
+<TextView
+    android:id="@+id/home_jujia"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="居家"
+    android:gravity="center"/>
+<TextView
+    android:id="@+id/home_shishang"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="时尚"
+    android:gravity="center"/>
+<TextView
+    android:id="@+id/home_meishi"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="美食"
+    android:gravity="center"/>
+<TextView
+    android:id="@+id/home_yundong"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="运动"
+    android:gravity="center"/>
+<TextView
+    android:id="@+id/home_lvxing"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="旅行"
+    android:gravity="center"/>
+<TextView
+    android:id="@+id/home_caizhuang"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="彩妆"
+    android:gravity="center"/>
+<TextView
+    android:id="@+id/home_muying"
+    android:layout_width="61dp"
+    android:layout_height="43dp"
+    android:text="母婴"
+    android:gravity="center"/>
+</LinearLayout>
+</merge>

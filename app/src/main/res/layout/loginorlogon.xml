@@ -2,16 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/xy_walkthroughs_bg1">
+    android:orientation="vertical">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="470dp">
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager1"
             android:layout_width="match_parent"
-            android:layout_height="470dp"
-            android:gravity="center"/>
+            android:layout_height="wrap_content" />
         <ImageView
             android:id="@+id/account"
             android:layout_width="60dp"

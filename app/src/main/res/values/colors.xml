@@ -3,7 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="xhsColor">#E12830</color>
+    <color name="xhsColor">#E1282D</color>
     <color name="tab_textColor">#C1C1C1</color>
-    <color name="toolbar_search">#CC242A</color>
+    <color name="toolbar_search">#c42529</color>
+    <color name="blackColor">#2e2e2e</color>
+    <color name="msg_tab">#f00</color>
 </resources>

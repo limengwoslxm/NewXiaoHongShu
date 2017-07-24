@@ -3,14 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center_horizontal">
     <ImageView
         android:layout_width="220dp"
         android:layout_height="30dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/xy_walkthroughs_slogan3"/>
     <ImageView
         android:layout_width="225dp"
-        android:layout_height="wrap_content"
+        android:layout_height="380dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/xy_walkthroughs_card3"/>
 </LinearLayout>

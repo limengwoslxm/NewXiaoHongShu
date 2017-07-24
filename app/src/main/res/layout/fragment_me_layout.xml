@@ -1,8 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#d70dd0">
-
-</LinearLayout>
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:background="@mipmap/mine_zone_bg"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:src="@drawable/xy_walkthroughs_account" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="用户名"
+                    android:textColor="#fff"
+                    android:textSize="17sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/mine_focusstate_titleNum"
+                    android:text="1" />
+                <TextView
+                    style="@style/mine_focusstate_titleNum"
+                    android:text="1" />
+                <TextView
+                    style="@style/mine_focusstate_titleNum"
+                    android:text="1" />
+                <TextView
+                    style="@style/mine_focusstate_titleNum"
+                    android:text="1" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/mine_focusstate_titleNum"
+                    android:text="关注" />
+                <TextView
+                    style="@style/mine_focusstate_titleNum"
+                    android:text="粉丝" />
+                <TextView
+                    style="@style/mine_focusstate_titleNum"
+                    android:text="发布" />
+                <TextView
+                    style="@style/mine_focusstate_titleNum"
+                    android:text="收藏" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal">
+            <TextView
+                android:drawableTop="@mipmap/mine_cart"
+                android:text="购物车"
+                style="@style/mine_pt_style"/>
+            <TextView
+                android:drawableTop="@mipmap/mine_order"
+                android:text="订单"
+                style="@style/mine_pt_style" />
+            <TextView
+                android:drawableTop="@mipmap/mine_coupon"
+                android:text="薯券"
+                style="@style/mine_pt_style" />
+            <TextView
+                android:drawableTop="@mipmap/mine_wish_list"
+                android:text="心愿单"
+                style="@style/mine_pt_style" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:background="#f2f2f2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="账号设置"
+                android:textColor="#000"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="我的笔记"
+                style="@style/mine_setting_textview"/>
+            <include layout="@layout/mine_setting_tv_merge"/>
+        </LinearLayout>
+        <View style="@style/mine_setting_showline"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="个人资料"
+                style="@style/mine_setting_textview"/>
+            <include layout="@layout/mine_setting_tv_merge"/>
+        </LinearLayout>
+        <View style="@style/mine_setting_showline"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="账号绑定"
+                style="@style/mine_setting_textview"/>
+            <include layout="@layout/mine_setting_tv_merge"/>
+        </LinearLayout>
+        <View style="@style/mine_setting_showline"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="修改密码"
+                style="@style/mine_setting_textview"/>
+            <include layout="@layout/mine_setting_tv_merge"/>
+        </LinearLayout>
+        <View style="@style/mine_setting_showline"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:background="#f2f2f2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="其他设置"
+                android:textColor="#000"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="隐私设置"
+                style="@style/mine_setting_textview"/>
+            <include layout="@layout/mine_setting_tv_merge"/>
+        </LinearLayout>
+        <View style="@style/mine_setting_showline"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="消息通知"
+                style="@style/mine_setting_textview"/>
+            <include layout="@layout/mine_setting_tv_merge"/>
+        </LinearLayout>
+        <View style="@style/mine_setting_showline"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="清除缓存"
+                style="@style/mine_setting_textview"/>
+            <include layout="@layout/mine_setting_tv_merge"/>
+        </LinearLayout>
+        <View style="@style/mine_setting_showline"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:background="#f2f2f2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="支持"
+                android:textColor="#000"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="关于我们"
+                style="@style/mine_setting_textview"/>
+            <include layout="@layout/mine_setting_tv_merge"/>
+        </LinearLayout>
+        <View style="@style/mine_setting_showline"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="意见反馈"
+                style="@style/mine_setting_textview"/>
+            <include layout="@layout/mine_setting_tv_merge"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#f2f2f2"/>
+        <LinearLayout
+            android:id="@+id/mine_exit_account"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="登出账户"
+                style="@style/mine_setting_textview"/>
+            <include layout="@layout/mine_setting_tv_merge"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#f2f2f2"/>
+    </LinearLayout>
+</ScrollView>

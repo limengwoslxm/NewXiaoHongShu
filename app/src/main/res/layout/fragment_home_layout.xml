@@ -2,7 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#fff">
-
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:orientation="horizontal"
+        android:background="@color/xhsColor"
+        android:gravity="center">
+        <include layout="@layout/main_toolbar_search_merge"/>
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:src="@mipmap/index_icon_camera"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:scrollbars="none">
+            <include layout="@layout/home_scrollview"/>
+        </HorizontalScrollView>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:layout_weight="1"
+            android:padding="17dp"
+            android:layout_marginRight="0dp"
+            android:src="@mipmap/icon_expand_down"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5px"
+        android:background="#d7d6d6"/>
 </LinearLayout>
