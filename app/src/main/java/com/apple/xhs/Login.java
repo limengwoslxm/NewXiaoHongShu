@@ -73,7 +73,7 @@ public class Login extends BaseActivity implements View.OnClickListener {
                 startActivity(new Intent(Login.this,Logon.class));
                 break;
             case R.id.go_reset:
-                startActivity(new Intent(Login.this,MainActivity.class));
+                startActivity(new Intent(Login.this,ForgetPass.class));
                 break;
         }
     }
