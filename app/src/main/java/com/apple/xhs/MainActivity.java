@@ -1,47 +1,54 @@
 package com.apple.xhs;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.apple.xhs.five_fragment.HomeFragment;
 import com.collecter.ActivityCollecter;
-import com.collecter.BaseActivity;
+import com.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * Created by limeng on 2017/7/21.
  */
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
-    TextView tab_home,tab_search,tab_store,tab_msg,tab_me;
-    View fragment_home,fragment_search,fragment_store,fragment_msg,fragment_me;
+    @BindView(R.id.tab_home) TextView tab_home;
+    @BindView(R.id.tab_search) TextView tab_search;
+    @BindView(R.id.tab_store) TextView tab_store;
+    @BindView(R.id.tab_msg) TextView tab_msg;
+    @BindView(R.id.tab_me) TextView tab_me;
+
+    @BindView(R.id.fragment_home) View fragment_home;
+    @BindView(R.id.fragment_search) View fragment_search;
+    @BindView(R.id.fragment_store) View fragment_store;
+    @BindView(R.id.fragment_msg) View fragment_msg;
+    @BindView(R.id.fragment_me) View fragment_me;
     FragmentManager fm;
     List<Fragment> data = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
         initView();
+    }
+
+    @Override
+    public int getContentViewId() {
+        return R.layout.main_activity;
     }
 
     @SuppressLint("ResourceAsColor")
     private void initView() {
-        tab_home = findViewById(R.id.tab_home);
         tab_home.setSelected(true);
-        tab_search = findViewById(R.id.tab_search);
-        tab_store = findViewById(R.id.tab_store);
-        tab_msg = findViewById(R.id.tab_msg);
-        tab_me = findViewById(R.id.tab_me);
 
         tab_home.setOnClickListener(this);
         tab_search.setOnClickListener(this);
@@ -49,11 +56,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         tab_msg.setOnClickListener(this);
         tab_me.setOnClickListener(this);
 
-        fragment_home = findViewById(R.id.fragment_home);
-        fragment_search = findViewById(R.id.fragment_search);
-        fragment_store = findViewById(R.id.fragment_store);
-        fragment_msg = findViewById(R.id.fragment_msg);
-        fragment_me = findViewById(R.id.fragment_me);
         fragment_home.setVisibility(View.VISIBLE);
 
     }

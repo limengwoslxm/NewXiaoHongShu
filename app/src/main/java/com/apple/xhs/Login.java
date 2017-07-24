@@ -3,17 +3,17 @@ package com.apple.xhs;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bean.MyUser;
-import com.collecter.BaseActivity;
+import com.base.BaseActivity;
 
+import butterknife.BindView;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -22,26 +22,26 @@ import cn.bmob.v3.listener.SaveListener;
  */
 
 public class Login extends BaseActivity implements View.OnClickListener {
-    TextView userName,userPass;
-    TextView logon,reset;
-    Button login;
+    @BindView(R.id.user_name) TextView userName;
+    @BindView(R.id.user_pass) TextView userPass;
+    @BindView(R.id.go_logon) TextView logon;
+    @BindView(R.id.go_reset) TextView reset;
+    @BindView(R.id.bt_login) TextView login;
 
     String name,pass;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.login);
         initView();
     }
 
-    private void initView() {
-        userName = findViewById(R.id.user_name);
-        userPass = findViewById(R.id.user_pass);
-        login = findViewById(R.id.bt_login);
-        logon = findViewById(R.id.go_logon);
-        reset = findViewById(R.id.go_reset);
+    @Override
+    public int getContentViewId() {
+        return R.layout.login;
+    }
 
+    private void initView() {
         login.setOnClickListener(this);
         logon.setOnClickListener(this);
         reset.setOnClickListener(this);
@@ -63,7 +63,8 @@ public class Login extends BaseActivity implements View.OnClickListener {
                             Toast.makeText(getApplicationContext(),"登陆成功",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Login.this,MainActivity.class));
                         }else {
-                            Toast.makeText(getApplicationContext(),"登陆失败" + e,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"登陆失败" ,Toast.LENGTH_SHORT).show();
+                            Log.e(Login.ACTIVITY_SERVICE, e + "");
                         }
                     }
                 });

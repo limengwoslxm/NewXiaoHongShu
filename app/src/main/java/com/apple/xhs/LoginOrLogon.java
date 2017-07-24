@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import android.widget.ImageView;
 import com.apple.xhs.lol_fragment.OneFragment;
 import com.apple.xhs.lol_fragment.ThreeFragment;
 import com.apple.xhs.lol_fragment.TwoFragment;
-import com.collecter.BaseActivity;
+import com.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +40,12 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.loginorlogon);
         initView();
+    }
+
+    @Override
+    public int getContentViewId() {
+        return R.layout.loginorlogon;
     }
 
     private void initView() {
