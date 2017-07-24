@@ -52,7 +52,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
-        Toast.makeText(this,"lll",Toast.LENGTH_SHORT).show();
     }
     @Override
     public int getContentViewId() {

@@ -1,6 +1,7 @@
 package com.bean;
 
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 
 /**
  * Created by xiong on 2017/7/22.
@@ -8,7 +9,7 @@ import cn.bmob.v3.BmobUser;
 
 public class MyUser extends BmobUser {
     private String nickname;
-    private String head;
+    private BmobFile head;
     private Boolean sex;
     private String birthday;
     private String signature;
@@ -24,11 +25,11 @@ public class MyUser extends BmobUser {
         this.nickname = nickname;
     }
 
-    public String getHead() {
+    public BmobFile getHead() {
         return head;
     }
 
-    public void setHead(String head) {
+    public void setHead(BmobFile head) {
         this.head = head;
     }
 
