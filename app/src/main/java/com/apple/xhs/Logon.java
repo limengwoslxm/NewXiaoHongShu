@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.bean.MyUser;
 import com.base.BaseActivity;
+import com.collecter.ErrorCollecter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -68,8 +69,7 @@ public class Logon extends BaseActivity {
                     startActivity(new Intent(Logon.this,Login.class));
                     finish();
                 }else {
-                    Toast.makeText(getApplicationContext(),"注册失败" ,Toast.LENGTH_SHORT).show();
-                    Log.e(Logon.ACTIVITY_SERVICE, e + "");
+                    Toast.makeText(getApplicationContext(), ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
                 }
             }
         });
