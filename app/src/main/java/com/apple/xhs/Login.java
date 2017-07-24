@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.bean.MyUser;
 import com.base.BaseActivity;
+import com.collecter.ErrorCollecter;
 
 import butterknife.BindView;
 import cn.bmob.v3.exception.BmobException;
@@ -63,8 +64,7 @@ public class Login extends BaseActivity implements View.OnClickListener {
                             Toast.makeText(getApplicationContext(),"登陆成功",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Login.this,MainActivity.class));
                         }else {
-                            Toast.makeText(getApplicationContext(),"登陆失败" ,Toast.LENGTH_SHORT).show();
-                            Log.e(Login.ACTIVITY_SERVICE, e + "");
+                            Toast.makeText(getApplicationContext(), ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

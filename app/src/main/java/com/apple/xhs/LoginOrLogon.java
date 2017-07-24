@@ -23,16 +23,22 @@ import com.base.BaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by limeng on 2017/7/21.
  */
 
 public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
-    private ViewPager viewPager;
+    @BindView(R.id.viewpager1) private ViewPager viewPager;
+    @BindView(R.id.welcome_to_login) private Button login;
+    @BindView(R.id.welcome_to_logon) private Button logon;
+    @BindView(R.id.viewpager1_point1) private ImageView img1;
+    @BindView(R.id.viewpager1_point2) private ImageView img2;
+    @BindView(R.id.viewpager1_point3) private ImageView img3;
+    @BindView(R.id.account) private ImageView account;
     private View pager1,pager2,pager3;
     private List<View> pagerList;
-    private ImageView img1,img2,img3,account;
-    private Button login,logon;
     private int x=125,y=215;
 
     @Override
@@ -48,10 +54,6 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
     }
 
     private void initView() {
-        viewPager = findViewById(R.id.viewpager1);
-
-        login = findViewById(R.id.welcome_to_login);
-        logon = findViewById(R.id.welcome_to_logon);
         login.setOnClickListener(this);
         logon.setOnClickListener(this);
 
@@ -59,9 +61,6 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
         pager2 = LayoutInflater.from(this).inflate(R.layout.lol_viewpager2,null);
         pager3 = LayoutInflater.from(this).inflate(R.layout.lol_viewpager3,null);
 
-        img1 = findViewById(R.id.viewpager1_point1);
-        img2 = findViewById(R.id.viewpager1_point2);
-        img3 = findViewById(R.id.viewpager1_point3);
         img1.setImageResource(R.drawable.ic_walkthroughs_indicator_h);
 
         pagerList = new ArrayList<>();
@@ -73,7 +72,6 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
         viewPager.setOffscreenPageLimit(2);
         viewPager.setOnPageChangeListener(this);
 
-        account = findViewById(R.id.account);
         account.setX(x);
         account.setY(y);
     }
