@@ -2,7 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#111ede">
-
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:orientation="horizontal"
+        android:background="@color/xhsColor">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="消息"
+            android:textColor="#fff"
+            android:textSize="19sp"
+            android:layout_marginTop="35dp"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="客服中心"
+            android:textColor="#fff"
+            android:textSize="12sp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="39dp"/>
+    </RelativeLayout>
+    <include layout="@layout/msg_viewpager_tab_layout"/>
+    <ImageView
+        android:id="@+id/msg_tab_line"
+        android:layout_width="100dp"
+        android:layout_height="2dp"
+        android:background="@color/xhsColor"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ddd" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/msg_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

@@ -2,15 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/xy_walkthroughs_bg1">
+    android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="注册"
+        android:text="@string/str_login"
         android:textSize="20sp"
         android:layout_gravity="center"
         android:layout_marginTop="35dp"/>
+    <include layout="@layout/loginlogon_merge"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <View
+            android:layout_width="70dp"
+            android:layout_height="2px"
+            android:background="#c7c7c7"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="填写注册信息"
+            android:textSize="15sp"
+            android:textColor="#b9b8b8"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"/>
+        <View
+            android:layout_width="70dp"
+            android:layout_height="2px"
+            android:background="#c7c7c7"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +54,7 @@
             android:textSize="16sp"/>
         <EditText
             android:id="@+id/logon_user_name"
-            android:layout_width="200dp"
+            android:layout_width="180dp"
             android:layout_height="40dp"
             android:background="@null"
             android:textSize="16sp"
@@ -49,7 +76,7 @@
             android:textSize="16sp"/>
         <EditText
             android:id="@+id/logon_user_pass"
-            android:layout_width="200dp"
+            android:layout_width="180dp"
             android:layout_height="40dp"
             android:background="@null"
             android:textSize="16sp"
@@ -72,12 +99,12 @@
             android:textSize="16sp"/>
         <EditText
             android:id="@+id/logon_user_pass_aga"
-            android:layout_width="200dp"
+            android:layout_width="180dp"
             android:layout_height="40dp"
             android:background="@null"
             android:textSize="16sp"
             android:inputType="textPassword"
-            android:hint="请您再次输入密码"/>
+            android:hint="请再次输入密码"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -95,15 +122,16 @@
             android:textSize="16sp"/>
         <EditText
             android:id="@+id/logon_user_email"
-            android:layout_width="200dp"
+            android:layout_width="180dp"
             android:layout_height="40dp"
             android:background="@null"
             android:textSize="16sp"
             android:hint="请输入您的邮箱"/>
     </LinearLayout>
+
     <Button
         android:id="@+id/bt_logon"
-        android:layout_width="250dp"
+        android:layout_width="230dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:text="注册"
@@ -112,72 +140,18 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:background="@drawable/login_button_shape"/>
-    <LinearLayout
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
-        <View
-            android:layout_width="70dp"
-            android:layout_height="2px"
-            android:background="#c7c7c7"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="center_vertical"/>
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="社交账号登录"
-            android:textSize="15sp"
-            android:textColor="#c7c7c7"
-            android:layout_gravity="center_vertical"/>
-        <View
-            android:layout_width="70dp"
-            android:layout_height="2px"
-            android:background="#c7c7c7"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center_vertical"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/intercept_register_line_weixin"
-            android:drawablePadding="5dp"
-            android:text="@string/login_weixin"
-            android:textSize="12sp"
-            android:layout_marginRight="40dp"
-            android:gravity="center" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/intercept_register_line_qq"
-            android:drawablePadding="5dp"
-            android:text="@string/login_qq"
-            android:textSize="12sp"
-            android:gravity="center"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/intercept_register_line_weibo"
-            android:drawablePadding="5dp"
-            android:text="@string/login_weibo"
-            android:layout_marginLeft="40dp"
-            android:textSize="12sp"
-            android:gravity="center"/>
-    </LinearLayout>
+        android:layout_marginTop="20dp"
+        android:text="已有账号？点击返回登录"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="110dp">
+        android:layout_marginTop="75dp">
         <CheckBox
             android:layout_width="20dp"
             android:layout_height="20dp"

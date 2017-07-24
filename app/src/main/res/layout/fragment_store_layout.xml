@@ -2,7 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#83f40b">
-
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:orientation="horizontal"
+        android:background="@color/xhsColor"
+        android:gravity="center">
+        <include layout="@layout/main_toolbar_search_merge3"/>
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@mipmap/icon_store_category"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="5dp"/>
+    </LinearLayout>
 </LinearLayout>

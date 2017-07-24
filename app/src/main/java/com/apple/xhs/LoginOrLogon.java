@@ -1,25 +1,22 @@
 package com.apple.xhs;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
-
-import com.apple.xhs.lol_fragment.OneFragment;
-import com.apple.xhs.lol_fragment.ThreeFragment;
-import com.apple.xhs.lol_fragment.TwoFragment;
-import com.collecter.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +25,10 @@ import java.util.List;
  * Created by limeng on 2017/7/21.
  */
 
-public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
+public class LoginOrLogon extends AppCompatActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private ViewPager viewPager;
-    private Fragment pager1,pager2,pager3;
-    private FragmentManager fm;
-    private List<Fragment> pagerList;
+    private View pager1,pager2,pager3;
+    private List<View> pagerList;
     private ImageView img1,img2,img3,account;
     private Button login,logon;
     private int x=125,y=215;
@@ -47,17 +43,15 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
 
     private void initView() {
         viewPager = findViewById(R.id.viewpager1);
-        viewPager.setOnPageChangeListener(this);
 
         login = findViewById(R.id.welcome_to_login);
         logon = findViewById(R.id.welcome_to_logon);
         login.setOnClickListener(this);
         logon.setOnClickListener(this);
 
-        pager1 = new OneFragment();
-        pager2 = new TwoFragment();
-        pager3 = new ThreeFragment();
-        fm = getSupportFragmentManager();
+        pager1 = LayoutInflater.from(this).inflate(R.layout.lol_viewpager1,null);
+        pager2 = LayoutInflater.from(this).inflate(R.layout.lol_viewpager2,null);
+        pager3 = LayoutInflater.from(this).inflate(R.layout.lol_viewpager3,null);
 
         img1 = findViewById(R.id.viewpager1_point1);
         img2 = findViewById(R.id.viewpager1_point2);
@@ -68,9 +62,10 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
         pagerList.add(pager1);
         pagerList.add(pager2);
         pagerList.add(pager3);
-        viewPager.setOffscreenPageLimit(3);
-        MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(fm,pagerList);
+        PagerAdapter adapter = new MyPagerAdapter(pagerList);
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOnPageChangeListener(this);
 
         account = findViewById(R.id.account);
         account.setX(x);
@@ -105,7 +100,7 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
 
     @Override
     public void onPageScrollStateChanged(int state) {
-        Log.d("tag", "onPageScrollStateChanged: "+state);
+        //Log.d("tag", "onPageScrollStateChanged: "+state);
     }
     public void resetPoint(){
         img1.setImageResource(R.drawable.ic_walkthroughs_indicator_normal);
@@ -123,26 +118,33 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
         }
     }
 
-    class MyFragmentPagerAdapter extends FragmentPagerAdapter{
-        List<Fragment> data = new ArrayList<>();
-        public MyFragmentPagerAdapter(FragmentManager fm,List<Fragment> data) {
-            super(fm);
+    class MyPagerAdapter extends PagerAdapter {
+        List<View> data = new ArrayList<>();
+        public MyPagerAdapter(List<View> data){
             this.data = data;
         }
 
         @Override
-        public Fragment getItem(int position) {
-            return data.get(position);
-        }
-
-        @Override
         public int getCount() {
-            return data.size();
+            //return data.size();等于3
+            return 3;
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            //super.destroyItem(container, position, object);
+//            super.destroyItem(container, position, object);
+//            container.removeView(data.get(position));
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            container.addView(data.get(position));
+            return data.get(position);
         }
     }
 }
