@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import com.apple.xhs.R;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by limeng on 2017/7/22.
  */
