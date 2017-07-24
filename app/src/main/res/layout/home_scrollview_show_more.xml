@@ -22,4 +22,5 @@
             android:src="@mipmap/icon_expand_up"/>
     </LinearLayout>
     <include layout="@layout/home_line_inscrollview"/>
+
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,14 +46,15 @@ public class ForgetPass extends BaseActivity {
 
     @OnClick(R.id.bt_toResetP)
     public void ResetOnClick(){
+        toReset.setEnabled(false);
         new Thread(){
             int i = 60;
             @Override
             public void run() {
                 super.run();
-                while (true){
+                while (i >= 0){
                     Message message = Message.obtain();
-                    message.obj = "重置密码（" + i + "）秒";
+                    message.obj = "重置密码(" + i + "s)";
                     handler.sendMessage(message);
                     try {
                         Thread.sleep(1000);
@@ -61,6 +63,13 @@ public class ForgetPass extends BaseActivity {
                     }
                     i--;
                 }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        toReset.setEnabled(true);
+                        toReset.setText("重置密码");
+                    }
+                });
             }
         }.start();
         final String email = reset.getText().toString().trim();
@@ -74,5 +83,9 @@ public class ForgetPass extends BaseActivity {
                 }
             }
         });
+    }
+
+    public void backToLogin(View view) {
+        finish();
     }
 }
