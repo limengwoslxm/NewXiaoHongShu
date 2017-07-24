@@ -22,10 +22,7 @@
         android:theme="@style/AppTheme"
         >
         <activity android:name=".WelcomeActivity" android:theme="@style/Welcome">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity android:name=".MainActivity" android:theme="@style/XHSToolBar">
 
@@ -36,6 +33,12 @@
         </activity>
         <activity android:name=".Logon" android:theme="@style/Welcome">
 
+        </activity>
+        <activity android:name=".ForgetPass" android:theme="@style/Welcome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 </manifest>

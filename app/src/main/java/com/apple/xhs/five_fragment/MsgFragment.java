@@ -79,34 +79,35 @@ public class MsgFragment extends Fragment implements View.OnClickListener, ViewP
         tabLeft = view.findViewById(R.id.tab_one);
         tabMid = view.findViewById(R.id.tab_two);
         tabRight = view.findViewById(R.id.tab_three);
-        tabLeft.setTextColor(R.color.xhsColor);
+        tabLeft.setTextColor(Color.parseColor("#E1282D"));
 
         tabLeft.setOnClickListener(this);
         tabMid.setOnClickListener(this);
         tabRight.setOnClickListener(this);
     }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View view) {
-        //setTabTextColor();
+        setTabTextColor();
         switch (view.getId()){
             case R.id.tab_one:
+                tabLeft.setTextColor(Color.parseColor("#E1282D"));
                 viewPager.setCurrentItem(0);
                 break;
             case R.id.tab_two:
+                tabMid.setTextColor(Color.parseColor("#E1282D"));
                 viewPager.setCurrentItem(1);
                 break;
             case R.id.tab_three:
+                tabRight.setTextColor(Color.parseColor("#E1282D"));
                 viewPager.setCurrentItem(2);
                 break;
         }
     }
-    @SuppressLint("ResourceAsColor")
     private void setTabTextColor(){
-        tabLeft.setTextColor(R.color.blackColor);
-        tabMid.setTextColor(R.color.blackColor);
-        tabRight.setTextColor(R.color.blackColor);
+        tabLeft.setTextColor(Color.parseColor("#000000"));
+        tabMid.setTextColor(Color.parseColor("#000000"));
+        tabRight.setTextColor(Color.parseColor("#000000"));
     }
 
     @Override
@@ -134,15 +135,19 @@ public class MsgFragment extends Fragment implements View.OnClickListener, ViewP
 
     @Override
     public void onPageSelected(int position) {
+        setTabTextColor();
         switch (position){
             case 0:
                 movePosition(0);
+                tabLeft.setTextColor(Color.parseColor("#E1282D"));
                 break;
             case 1:
                 movePosition(1);
+                tabMid.setTextColor(Color.parseColor("#E1282D"));
                 break;
             case 2:
                 movePosition(2);
+                tabRight.setTextColor(Color.parseColor("#E1282D"));
                 break;
         }
     }

@@ -1,24 +1,21 @@
 package com.apple.xhs;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
-
-import com.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +24,7 @@ import java.util.List;
  * Created by limeng on 2017/7/21.
  */
 
-public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
+public class LoginOrLogon extends AppCompatActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private ViewPager viewPager;
     private View pager1,pager2,pager3;
     private List<View> pagerList;
@@ -38,13 +35,9 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.loginorlogon);
         initView();
-    }
-
-    @Override
-    public int getContentViewId() {
-        return R.layout.loginorlogon;
     }
 
     private void initView() {
@@ -154,4 +147,3 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
         }
     }
 }
-

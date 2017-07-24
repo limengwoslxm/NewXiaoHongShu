@@ -26,9 +26,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:scrollbars="none">
-            <include layout="@layout/home_scrollview"/>
+            <include layout="@layout/home_scrollview_item"/>
         </HorizontalScrollView>
         <ImageView
+            android:id="@+id/home_scrollview_showMore"
             android:layout_width="0dp"
             android:layout_height="43dp"
             android:layout_weight="1"
