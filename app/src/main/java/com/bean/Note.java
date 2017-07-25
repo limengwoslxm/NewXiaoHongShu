@@ -15,7 +15,6 @@ public class Note extends BmobObject{
     private String content;
     private MyUser author;
     private BmobRelation likes;
-    private BmobRelation style;
 
     public Note() {
     }
@@ -60,11 +59,4 @@ public class Note extends BmobObject{
         this.likes = likes;
     }
 
-    public BmobRelation getStyle() {
-        return style;
-    }
-
-    public void setStyle(BmobRelation style) {
-        this.style = style;
-    }
 }

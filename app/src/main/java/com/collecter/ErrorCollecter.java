@@ -1,5 +1,7 @@
 package com.collecter;
 
+import android.util.Log;
+
 import cn.bmob.v3.exception.BmobException;
 
 /**
@@ -16,7 +18,9 @@ public class ErrorCollecter {
             case 202: return "用户名已存在";
             case 203: return "邮箱已存在";
             case 205: return "该用户不存在";
-            default:return "未知错误";
+            default:
+                Log.i("bmob",e.getMessage());
+                return "未知错误" + code;
         }
     }
 }

@@ -121,4 +121,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onBackPressed() {
         ActivityCollecter.finishAll();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollecter.finishAll();
+    }
 }

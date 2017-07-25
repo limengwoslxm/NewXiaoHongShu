@@ -28,15 +28,26 @@
                 android:textSize="15sp" />
             <include layout="@layout/setting_line_merge" />
             <LinearLayout
+                android:id="@+id/override_head"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-                <ImageView
+                <FrameLayout
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:layout_marginLeft="17dp"
-                    android:src="@drawable/xy_walkthroughs_account" />
+                    android:layout_marginLeft="17dp">
+                    <com.apple.xhs.CustomView.RoundImageView
+                        android:id="@+id/img_user_head"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/xy_walkthroughs_account"/>
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:background="@drawable/user_head_icon"/>
+                </FrameLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

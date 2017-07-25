@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.apple.xhs.CustomView.InfoSettingTitle;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
+import com.data.UpdateDataBmob;
 
 import butterknife.BindView;
 
@@ -55,6 +56,7 @@ public class MineSettingName extends BaseActivity implements View.OnClickListene
                     Toast.makeText(this,"名字不能为空",Toast.LENGTH_SHORT).show();
                     return;
                 }
+                UpdateDataBmob.UpdataNickname(string);
                 Intent intent1 = new Intent(MineSettingName.this,MineUserInfoSetting.class);
                 intent1.putExtra("name",string);
                 setResult(1,intent1);

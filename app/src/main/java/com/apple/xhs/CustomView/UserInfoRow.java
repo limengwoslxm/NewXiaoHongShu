@@ -27,8 +27,8 @@ public class UserInfoRow extends RelativeLayout {
         String hint_text = array.getString(R.styleable.UserInfoRow_setHintText);
 
         LayoutInflater.from(context).inflate(R.layout.mine_mysettingview_userinfo,this);
-        item = findViewById(R.id.item_title);
-        name = findViewById(R.id.name_text);
+        item = (TextView) findViewById(R.id.item_title);
+        name = (TextView) findViewById(R.id.name_text);
         item.setText(item_title);
         name.setText(name_text);
         name.setHint(hint_text);

@@ -25,7 +25,7 @@ public class InfoSettingRow extends RelativeLayout {
         String str = array.getString(R.styleable.InfoSettingRow_setRowTitle);
 
         LayoutInflater.from(context).inflate(R.layout.info_setting_row,this);
-        TextView view = findViewById(R.id.setting_rows);
+        TextView view = (TextView) findViewById(R.id.setting_rows);
         view.setText(str);
     }
 }

@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         gridView = (StaggeredGridView) inflater.inflate(R.layout.home_grid_view,null);
 
 
-        viewPager = view.findViewById(R.id.home_viewpager);
+        viewPager = (ViewPager) view.findViewById(R.id.home_viewpager);
         List<View> data = new ArrayList<>();
         data.add(gridView);
         HomePagerViewAdapter adapter = new HomePagerViewAdapter(data);

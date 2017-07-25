@@ -31,8 +31,8 @@ public class InfoSettingTitle extends RelativeLayout {
 
         LayoutInflater.from(context).inflate(R.layout.mine_mysettingview,this);
         img = findViewById(R.id.my_setting_back);
-        textView = findViewById(R.id.my_setting_title);
-        textViewDone = findViewById(R.id.my_setting_done);
+        textView = (TextView) findViewById(R.id.my_setting_title);
+        textViewDone = (TextView) findViewById(R.id.my_setting_done);
         textView.setText(text);
         textViewDone.setText(textdone);
     }

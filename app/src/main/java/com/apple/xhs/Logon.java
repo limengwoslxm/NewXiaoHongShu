@@ -60,7 +60,9 @@ public class Logon extends BaseActivity {
         MyUser user = new MyUser();
         user.setUsername(name);
         user.setPassword(pass);
-        user.setEmail(email);
+        if (email != null){
+            user.setEmail(email);
+        }
         user.signUp(new SaveListener<MyUser>() {
             @Override
             public void done(MyUser myUser, BmobException e) {
