@@ -20,6 +20,8 @@ import com.grid.StaggeredGridView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by limeng on 2017/7/22.
  */
@@ -31,6 +33,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     WindowManager windowManager;
     StaggeredGridView gridView;
     SamplerAdapter adapter;
+    View hideLine;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,6 +73,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private void initViewOthers(View view) {
         popUpDismiss1 = view.findViewById(R.id.popUpDismiss1);
         popUpDismiss2 = view.findViewById(R.id.popUpDismiss2);
+        hideLine = view.findViewById(R.id.home_line_hide);
         popUpDismiss1.setOnClickListener(this);
         popUpDismiss2.setOnClickListener(this);
     }
@@ -77,10 +81,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.home_scrollview_showMore:
+                hideLine.setVisibility(View.INVISIBLE);
                 popupWindow.showAsDropDown(homeTop);
                 break;
             case R.id.popUpDismiss1:
             case R.id.popUpDismiss2:
+                hideLine.setVisibility(View.VISIBLE);
                 popupWindow.dismiss();
                 break;
         }

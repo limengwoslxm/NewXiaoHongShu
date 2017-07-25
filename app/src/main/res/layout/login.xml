@@ -136,12 +136,13 @@
         <TextView
             android:id="@+id/go_logon"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="4dp"
             android:text="注册账号"/>
         <TextView
             android:id="@+id/go_reset"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:text="忘记密码？"/>
     </RelativeLayout>

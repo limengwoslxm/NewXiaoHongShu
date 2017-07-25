@@ -43,15 +43,15 @@
 
         </activity>
         <activity android:name=".five_fragment.mine_activity.MineUserInfoSetting" android:theme="@style/XHSstatusbar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity android:name=".five_fragment.mine_activity.MineSettingName" android:theme="@style/XHSstatusbar">
 
         </activity>
         <activity android:name=".five_fragment.mine_activity.MineSettingID" android:theme="@style/XHSstatusbar">
+
+        </activity>
+        <activity android:name=".TestView">
 
         </activity>
     </application>

@@ -22,10 +22,6 @@
             android:layout_height="match_parent"
             android:padding="17dp"
             android:src="@mipmap/icon_expand_up"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_weight="0.1"
-            android:layout_height="match_parent"/>
     </LinearLayout>
     <include layout="@layout/home_line_inscrollview"/>
     <LinearLayout

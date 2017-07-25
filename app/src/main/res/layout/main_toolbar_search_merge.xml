@@ -14,7 +14,7 @@
             android:src="@mipmap/ic_home_search"
             android:layout_gravity="center_vertical"/>
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:hint="搜索笔记、商品和用户"

@@ -3,13 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="68dp"
     android:background="@drawable/setting_toolbar">
-        <ImageView
+        <LinearLayout
             android:id="@+id/my_setting_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/common_head_btn_back_white"
-            android:layout_marginTop="35dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="23dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="11dp">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@mipmap/common_head_btn_back_white" />
+        </LinearLayout>
         <TextView
             android:id="@+id/my_setting_title"
             android:layout_width="wrap_content"

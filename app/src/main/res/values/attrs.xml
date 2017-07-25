@@ -20,4 +20,7 @@
         <attr name="setNameText" format="string"/>
         <attr name="setHintText" format="string"/>
     </declare-styleable>
+    <declare-styleable name="InfoSettingRow">
+        <attr name="setRowTitle" format="string"/>
+    </declare-styleable>
 </resources>

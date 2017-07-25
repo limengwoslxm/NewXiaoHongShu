@@ -20,6 +20,7 @@
         android:background="@color/backgroundcolor"
         android:text="使用中英文、数字和下划线，昵称一个月只能修改一次"/>
     <EditText
+        android:id="@+id/my_new_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical"

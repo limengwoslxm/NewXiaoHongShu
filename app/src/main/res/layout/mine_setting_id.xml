@@ -20,6 +20,7 @@
         android:background="@color/backgroundcolor"
         android:text="小红书id是账号的唯一凭证，只能修改一次"/>
     <EditText
+        android:id="@+id/id_reset"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical"
@@ -28,6 +29,7 @@
         android:textSize="16sp"
         android:background="@null"/>
     <TextView
+        android:id="@+id/id_tips"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textSize="12sp"

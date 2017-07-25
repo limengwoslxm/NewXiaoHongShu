@@ -66,6 +66,7 @@
                 app:setNameText="18813141902" />
             <include layout="@layout/setting_line_merge" />
             <com.apple.xhs.CustomView.UserInfoRow
+                android:id="@+id/sex_choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setItemTitle="性别"
@@ -78,12 +79,14 @@
                 app:setNameText="地球的某一片红薯地" />
             <include layout="@layout/setting_line_merge" />
             <com.apple.xhs.CustomView.UserInfoRow
+                android:id="@+id/birthday_choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setHintText="未选择"
                 app:setItemTitle="生日" />
             <include layout="@layout/setting_line_merge" />
             <com.apple.xhs.CustomView.UserInfoRow
+                android:id="@+id/signatures"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setHintText="还没有信息耶～"
