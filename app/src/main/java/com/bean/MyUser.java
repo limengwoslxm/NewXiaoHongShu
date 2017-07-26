@@ -1,5 +1,8 @@
 package com.bean;
 
+import java.util.List;
+import java.util.Map;
+
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 
@@ -13,6 +16,10 @@ public class MyUser extends BmobUser {
     private Boolean sex;
     private String birthday;
     private String signature;
+    private String CopyId;
+    private Boolean Change;
+    private List<Map> skin;
+    private String pregnant;
 
     public MyUser() {
     }
@@ -53,7 +60,39 @@ public class MyUser extends BmobUser {
         return signature;
     }
 
+    public String getCopyId() {
+        return CopyId;
+    }
+
+    public void setCopyId(String copyId) {
+        CopyId = copyId;
+    }
+
+    public Boolean getChange() {
+        return Change;
+    }
+
+    public void setChange(Boolean change) {
+        Change = change;
+    }
+
     public void setSignature(String signature) {
         this.signature = signature;
+    }
+
+    public List<Map> getSkin() {
+        return skin;
+    }
+
+    public void setSkin(List<Map> skin) {
+        this.skin = skin;
+    }
+
+    public String getPregnant() {
+        return pregnant;
+    }
+
+    public void setPregnant(String pregnant) {
+        this.pregnant = pregnant;
     }
 }

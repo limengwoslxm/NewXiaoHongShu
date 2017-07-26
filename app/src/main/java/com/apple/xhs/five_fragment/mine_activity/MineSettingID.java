@@ -12,8 +12,10 @@ import android.widget.Toast;
 import com.apple.xhs.CustomView.InfoSettingTitle;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
+import com.bean.MyUser;
 
 import butterknife.BindView;
+import cn.bmob.v3.BmobUser;
 
 /**
  * Created by limeng on 2017/7/24.
@@ -26,10 +28,14 @@ public class MineSettingID extends BaseActivity implements View.OnClickListener 
     EditText idReset;
     @BindView(R.id.id_tips)
     TextView idTips;
+
+    MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setViewLisener();
+
         Intent intent = getIntent();
         String getId = intent.getStringExtra("currentid");
         idReset.setText(getId);
@@ -55,7 +61,10 @@ public class MineSettingID extends BaseActivity implements View.OnClickListener 
                 break;
             case R.id.my_setting_done:
                 String string = idReset.getText().toString();
-                if(string.equals("")){
+                if (!myUser.getCopyId().equals(string) && myUser.getChange()){
+                    Toast.makeText(this,"ID只能修改一次",Toast.LENGTH_SHORT).show();
+                    return;
+                }else if(string.equals("")){
                     Toast.makeText(this,"名字不能为空",Toast.LENGTH_SHORT).show();
                     return;
                 }

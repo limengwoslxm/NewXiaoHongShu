@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.bean.MyUser;
 import com.base.BaseActivity;
 import com.collecter.ErrorCollecter;
+import com.data.UpdateDataBmob;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -67,6 +68,7 @@ public class Logon extends BaseActivity {
             @Override
             public void done(MyUser myUser, BmobException e) {
                 if (e==null){
+                    UpdateDataBmob.UpdataIDNew(myUser.getObjectId());
                     startActivity(new Intent(Logon.this,Login.class));
                     finish();
                 }else {

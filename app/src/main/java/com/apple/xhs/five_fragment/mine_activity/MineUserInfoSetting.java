@@ -4,6 +4,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -58,16 +62,12 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     String currentId;
     String currentArea;
     String currentSignatures;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setViewListener();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         refreshUserInfo();
+        setViewListener();
     }
 
     @Override
@@ -91,6 +91,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                     return;
                 }
                 id.getName().setText(newid);
+                UpdateDataBmob.UpdataID(newid);
                 break;
             case 4:
                 String newsign = data.getStringExtra("sign");
@@ -98,6 +99,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                     return;
                 }
                 signatures.getName().setText(newsign);
+                UpdateDataBmob.UpdataSignature(newsign);
             default:
                 Uri originalUri=data.getData();
                 String []imgs1={MediaStore.Images.Media.DATA};//将图片URI转换成存储路径
@@ -105,6 +107,11 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 int index=cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 cursor.moveToFirst();
                 String img_url=cursor.getString(index);
+
+                InitBmob.setLocal_head_url(img_url);
+                Bitmap photo = BitmapFactory.decodeFile(img_url);
+                head_icon.setImageBitmap(photo);
+
                 BmobFile icon = new BmobFile(new File(img_url));
                 UpdateDataBmob.UpdataHead(icon);
                 break;
