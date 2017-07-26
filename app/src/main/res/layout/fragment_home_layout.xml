@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <HorizontalScrollView
+            android:id="@+id/home_scrollview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"

@@ -27,7 +27,6 @@ import com.apple.xhs.five_fragment.home_fragment.HomeFragment_7;
 import com.apple.xhs.five_fragment.home_fragment.HomeFragment_8;
 import com.apple.xhs.five_fragment.home_fragment.HomeFragment_9;
 import com.apple.xhs.five_fragment.home_util.MyFragmentPagerAdapter;
-import com.apple.xhs.five_fragment.home_util.SamplerAdapter;
 import com.grid.StaggeredGridView;
 
 import java.util.ArrayList;
@@ -44,7 +43,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     ViewPager viewPager;
     PopupWindow popupWindow;
     WindowManager windowManager;
-    StaggeredGridView gridView;
     MyFragmentPagerAdapter adapter;
     View hideLine;
     List<Fragment> data = new ArrayList<>();

@@ -215,12 +215,6 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     private void refreshUserInfo(){
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
         //加载头像
-        if(myUser.getHead()!=null){
-            String url = myUser.getHead().getUrl();
-            ImageLoader loader = new ImageLoader(InitBmob.getRequestQueue(), new BaseCache());
-            ImageLoader.ImageListener listener = ImageLoader.getImageListener(head_icon,R.drawable.xy_walkthroughs_account,R.drawable.xy_walkthroughs_account);
-            loader.get(url,listener);
-        }
 
         //昵称
         String nickname_Bmob = myUser.getNickname();
