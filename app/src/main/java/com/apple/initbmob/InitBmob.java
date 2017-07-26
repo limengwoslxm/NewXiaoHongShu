@@ -2,9 +2,6 @@ package com.apple.initbmob;
 
 import android.app.Application;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-
 import cn.bmob.v3.Bmob;
 
 
@@ -13,15 +10,9 @@ import cn.bmob.v3.Bmob;
  */
 
 public class InitBmob extends Application {
-    private static RequestQueue requestQueue;
     @Override
     public void onCreate() {
         super.onCreate();
         Bmob.initialize(getApplicationContext(),"fee0209c74bf24304798d10e746fd280");
-        requestQueue = Volley.newRequestQueue(this.getApplicationContext());
     }
-    public static RequestQueue getRequestQueue(){
-        return requestQueue;
-    }
-
 }

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.apple.initbmob.InitBmob;
 import com.bean.MyUser;
 import com.base.BaseActivity;
 import com.collecter.ErrorCollecter;

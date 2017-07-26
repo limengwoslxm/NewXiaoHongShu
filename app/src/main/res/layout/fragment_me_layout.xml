@@ -23,11 +23,10 @@
                     android:layout_height="75dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="30dp">
-                    <com.apple.xhs.CustomView.RoundImageView
+                    <me.xiaopan.sketch.SketchImageView
                         android:id="@+id/img_me_user_head"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
-                        android:scaleType="centerCrop"
                         android:src="@drawable/xy_walkthroughs_account"/>
                     <ImageView
                         android:layout_width="75dp"

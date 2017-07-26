@@ -8,18 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.apple.initbmob.InitBmob;
 import com.apple.xhs.CustomView.InfoSettingTitle;
 import com.apple.xhs.CustomView.UserInfoRow;
-import com.apple.xhs.MainActivity;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
-import com.base.BaseCache;
 import com.bean.MyUser;
 import com.data.UpdateDataBmob;
 
@@ -29,6 +24,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
+import me.xiaopan.sketch.SketchImageView;
+import me.xiaopan.sketch.process.CircleImageProcessor;
+import me.xiaopan.sketch.request.DisplayOptions;
 
 /**
  * Created by limeng on 2017/7/24.
@@ -50,7 +48,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     @BindView(R.id.override_head)
     View head;
     @BindView(R.id.img_user_head)
-    ImageView head_icon;
+    SketchImageView head_icon;
     @BindView(R.id.area_choice)
     UserInfoRow area;
     String sex_dialog;
@@ -58,16 +56,12 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     String currentId;
     String currentArea;
     String currentSignatures;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setViewListener();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         refreshUserInfo();
+        setViewListener();
     }
 
     @Override
@@ -91,6 +85,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                     return;
                 }
                 id.getName().setText(newid);
+                UpdateDataBmob.UpdataID(newid);
                 break;
             case 4:
                 String newsign = data.getStringExtra("sign");
@@ -98,6 +93,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                     return;
                 }
                 signatures.getName().setText(newsign);
+                UpdateDataBmob.UpdataSignature(newsign);
             default:
                 Uri originalUri=data.getData();
                 String []imgs1={MediaStore.Images.Media.DATA};//将图片URI转换成存储路径
@@ -105,6 +101,10 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 int index=cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 cursor.moveToFirst();
                 String img_url=cursor.getString(index);
+                Log.i("url",img_url + "''''''''''''''''");
+
+                newSketch(img_url);
+
                 BmobFile icon = new BmobFile(new File(img_url));
                 UpdateDataBmob.UpdataHead(icon);
                 break;
@@ -215,11 +215,18 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     private void refreshUserInfo(){
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
         //加载头像
+        newSketch(myUser.getHead().getUrl());
 
         //昵称
         String nickname_Bmob = myUser.getNickname();
         if (nickname_Bmob!=null){
             name.getName().setText(nickname_Bmob);
+        }
+
+        //ID
+        String id_Bmob = myUser.getCopyId();
+        if (nickname_Bmob!=null){
+            id.getName().setText(nickname_Bmob);
         }
 
         //性别
@@ -239,5 +246,14 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         if (sign_Bmob != null){
             signatures.getName().setText(sign_Bmob);
         }
+    }
+
+    public void newSketch(String url){
+        DisplayOptions displayOptions = new DisplayOptions();
+        displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
+
+        head_icon.setOptions(displayOptions);
+        head_icon.displayImage(url);
+//        head_icon.setShowImageFromEnabled(true);
     }
 }

@@ -3,34 +3,33 @@ package com.apple.xhs.five_fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.apple.initbmob.InitBmob;
 import com.apple.xhs.Login;
 import com.apple.xhs.R;
 import com.apple.xhs.five_fragment.mine_activity.MineShowGuanzhu;
 import com.apple.xhs.five_fragment.mine_activity.MineUserInfoSetting;
-import com.base.BaseCache;
 import com.bean.MyUser;
 
 import cn.bmob.v3.BmobUser;
+import me.xiaopan.sketch.SketchImageView;
+import me.xiaopan.sketch.process.CircleImageProcessor;
+import me.xiaopan.sketch.request.DisplayOptions;
 
 /**
  * Created by limeng on 2017/7/22.
  */
 
 public class MeFragment extends Fragment implements View.OnClickListener {
+
+    SketchImageView head_icon;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,7 +38,20 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.ge).setOnClickListener(this);
         view.findViewById(R.id.me_guanzhu).setOnClickListener(this);
         view.findViewById(R.id.me_guanzhu1).setOnClickListener(this);
+        head_icon = view.findViewById(R.id.img_me_user_head);
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+        DisplayOptions displayOptions = new DisplayOptions();
+        displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
+
+        head_icon.setOptions(displayOptions);
+        head_icon.displayImage(myUser.getHead().getUrl());
+//        head_icon.setShowImageFromEnabled(true);
     }
 
     @Override
