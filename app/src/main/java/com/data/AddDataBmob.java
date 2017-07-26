@@ -2,11 +2,13 @@ package com.data;
 
 import android.util.Log;
 
+import com.bean.MyUser;
 import com.bean.Note;
 import com.bean.Style;
 
 import java.util.List;
 
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobRelation;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -17,8 +19,10 @@ import cn.bmob.v3.listener.UpdateListener;
  */
 
 public class AddDataBmob {
+    private static MyUser user = BmobUser.getCurrentUser(MyUser.class);
     //添加一个笔记
     public static void addDataToNote(Note note, final List<String> styles){
+        note.setAuthor(user);
         note.save(new SaveListener<String>() {
             @Override
             public void done(String objectId, BmobException e) {
