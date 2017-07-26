@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,21 +40,29 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.mine_exit_account).setOnClickListener(this);
         view.findViewById(R.id.ge).setOnClickListener(this);
         head_icon = view.findViewById(R.id.img_me_user_head);
-        refreshHead();
+
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        refreshHead();
     }
 
     private void refreshHead() {
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
-        if(InitBmob.getLocal_head_url()==null){
-            String url = myUser.getHead().getUrl();
-            ImageLoader loader = new ImageLoader(InitBmob.getRequestQueue(), new BaseCache());
-            ImageLoader.ImageListener listener = ImageLoader.getImageListener(head_icon,R.drawable.xy_walkthroughs_account,R.drawable.xy_walkthroughs_account);
-            loader.get(url,listener);
-        }else {
-            String url = InitBmob.getLocal_head_url();
-            Bitmap photo = BitmapFactory.decodeFile(url);
-            head_icon.setImageBitmap(photo);
+        if(myUser.getHead()!=null){
+            if (InitBmob.getLocal_head_url()==null){
+                String url = myUser.getHead().getUrl();
+                ImageLoader loader = new ImageLoader(InitBmob.getRequestQueue(), new BaseCache());
+                ImageLoader.ImageListener listener = ImageLoader.getImageListener(head_icon,R.drawable.xy_walkthroughs_account,R.drawable.xy_walkthroughs_account);
+                loader.get(url,listener);
+            }else {
+                String url = InitBmob.getLocal_head_url();
+                Bitmap photo = BitmapFactory.decodeFile(url);
+                head_icon.setImageBitmap(photo);
+            }
         }
     }
 

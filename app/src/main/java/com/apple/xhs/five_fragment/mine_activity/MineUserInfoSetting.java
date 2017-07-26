@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -109,6 +110,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 String img_url=cursor.getString(index);
 
                 InitBmob.setLocal_head_url(img_url);
+                Log.i("test",InitBmob.getLocal_head_url() + "------");
                 Bitmap photo = BitmapFactory.decodeFile(img_url);
                 head_icon.setImageBitmap(photo);
 
@@ -221,18 +223,17 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     //从数据库获取个人信息（创建和刷新时调用）
     private void refreshUserInfo(){
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
-        //加载头像
-        if(myUser.getHead()!=null){
-            String url = myUser.getHead().getUrl();
-            ImageLoader loader = new ImageLoader(InitBmob.getRequestQueue(), new BaseCache());
-            ImageLoader.ImageListener listener = ImageLoader.getImageListener(head_icon,R.drawable.xy_walkthroughs_account,R.drawable.xy_walkthroughs_account);
-            loader.get(url,listener);
-        }
 
         //昵称
         String nickname_Bmob = myUser.getNickname();
         if (nickname_Bmob!=null){
             name.getName().setText(nickname_Bmob);
+        }
+
+        //ID
+        String id_Bmob = myUser.getCopyId();
+        if (nickname_Bmob!=null){
+            id.getName().setText(nickname_Bmob);
         }
 
         //性别
@@ -251,6 +252,20 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         String sign_Bmob = myUser.getSignature();
         if (sign_Bmob != null){
             signatures.getName().setText(sign_Bmob);
+        }
+
+
+        if(myUser.getHead()!=null){
+            if (InitBmob.getLocal_head_url()==null){
+                String url = myUser.getHead().getUrl();
+                ImageLoader loader = new ImageLoader(InitBmob.getRequestQueue(), new BaseCache());
+                ImageLoader.ImageListener listener = ImageLoader.getImageListener(head_icon,R.drawable.xy_walkthroughs_account,R.drawable.xy_walkthroughs_account);
+                loader.get(url,listener);
+            }else {
+                String url = InitBmob.getLocal_head_url();
+                Bitmap photo = BitmapFactory.decodeFile(url);
+                head_icon.setImageBitmap(photo);
+            }
         }
     }
 }
