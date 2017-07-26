@@ -53,5 +53,7 @@
         </activity>
         <activity android:name=".five_fragment.mine_activity.MineSettingArea" android:theme="@style/XHSstatusbar"></activity>
         <activity android:name=".five_fragment.mine_activity.MineSettingSign" android:theme="@style/XHSstatusbar"></activity>
+        <activity android:name=".five_fragment.mine_activity.MineSettingMombaby" android:theme="@style/XHSstatusbar"></activity>
+        <activity android:name=".five_fragment.mine_activity.MineShowGuanzhu" android:theme="@style/XHSstatusbar"></activity>
     </application>
 </manifest>

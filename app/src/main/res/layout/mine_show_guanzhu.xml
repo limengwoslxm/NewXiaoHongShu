@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.apple.xhs.CustomView.InfoSettingTitle
+        android:id="@+id/show_guanzhu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:setText="我的关注"/>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/guan_tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        style="@style/MyCustomTabLayout">
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </android.support.design.widget.TabLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/backgroundcolor"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/guan_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

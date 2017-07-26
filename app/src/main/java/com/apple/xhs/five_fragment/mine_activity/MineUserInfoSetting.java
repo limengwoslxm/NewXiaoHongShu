@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -24,6 +25,10 @@ import com.bean.MyUser;
 import com.data.UpdateDataBmob;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -53,11 +58,20 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     ImageView head_icon;
     @BindView(R.id.area_choice)
     UserInfoRow area;
+    @BindView(R.id.choose_skin)
+    UserInfoRow skin;
+    @BindView(R.id.choose_fransnana)
+    UserInfoRow mom;
+
     String sex_dialog;
     String currentName;
     String currentId;
     String currentArea;
     String currentSignatures;
+    String currentMombaby;
+
+    List<Map<Integer, String>> data = new ArrayList<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,13 +87,13 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (resultCode){
+        switch (resultCode) {
             case 0:
 
                 break;
             case 1:
                 String newname = data.getStringExtra("name");
-                if(newname.equals("")){
+                if (newname.equals("")) {
                     return;
                 }
                 name.getName().setText(newname);
@@ -87,30 +101,34 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 break;
             case 2:
                 String newid = data.getStringExtra("id");
-                if(newid.equals("")){
+                if (newid.equals("")) {
                     return;
                 }
                 id.getName().setText(newid);
                 break;
             case 4:
                 String newsign = data.getStringExtra("sign");
-                if(newsign.equals("")){
+                if (newsign.equals("")) {
                     return;
                 }
                 signatures.getName().setText(newsign);
+                break;
+            case 5:
+                String newmom = data.getStringExtra("momback");
+                mom.getName().setText(newmom);
+                break;
             default:
-                Uri originalUri=data.getData();
-                String []imgs1={MediaStore.Images.Media.DATA};//将图片URI转换成存储路径
-                Cursor cursor=this.managedQuery(originalUri, imgs1, null, null, null);
-                int index=cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                Uri originalUri = data.getData();
+                String[] imgs1 = {MediaStore.Images.Media.DATA};//将图片URI转换成存储路径
+                Cursor cursor = this.managedQuery(originalUri, imgs1, null, null, null);
+                int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 cursor.moveToFirst();
-                String img_url=cursor.getString(index);
+                String img_url = cursor.getString(index);
                 BmobFile icon = new BmobFile(new File(img_url));
                 UpdateDataBmob.UpdataHead(icon);
                 break;
         }
     }
-
 
     @Override
     protected void onDestroy() {
@@ -130,11 +148,14 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         head.setOnClickListener(this);
         area.setOnClickListener(this);
         signatures.setOnClickListener(this);
+        skin.setOnClickListener(this);
+        mom.setOnClickListener(this);
     }
+
     @OnClick(R.id.birthday_choice)
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.my_setting_back:
                 finish();
                 break;
@@ -146,15 +167,15 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.override_name:
                 currentName = name.getName().getText().toString();
-                Intent intentName = new Intent(this,MineSettingName.class);
-                intentName.putExtra("currentname",currentName);
-                startActivityForResult(intentName,1);
+                Intent intentName = new Intent(this, MineSettingName.class);
+                intentName.putExtra("currentname", currentName);
+                startActivityForResult(intentName, 1);
                 break;
             case R.id.override_id:
                 currentId = id.getName().getText().toString();
-                Intent intentId = new Intent(this,MineSettingID.class);
-                intentId.putExtra("currentid",currentId);
-                startActivityForResult(intentId,2);
+                Intent intentId = new Intent(this, MineSettingID.class);
+                intentId.putExtra("currentid", currentId);
+                startActivityForResult(intentId, 2);
                 break;
             case R.id.sex_choice:
                 sexChoiceDialog();
@@ -164,23 +185,113 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.area_choice:
                 currentArea = area.getName().getText().toString();
-                Intent intentArea = new Intent(this,MineSettingArea.class);
-                intentArea.putExtra("area",currentArea);
-                startActivityForResult(intentArea,3);
+                Intent intentArea = new Intent(this, MineSettingArea.class);
+                intentArea.putExtra("area", currentArea);
+                startActivityForResult(intentArea, 3);
                 break;
             //个性签名
             case R.id.signatures_edit:
                 currentSignatures = signatures.getName().getText().toString();
-                Intent intentSign = new Intent(this,MineSettingSign.class);
-                intentSign.putExtra("sign",currentSignatures);
-                startActivityForResult(intentSign,4);
+                Intent intentSign = new Intent(this, MineSettingSign.class);
+                intentSign.putExtra("sign", currentSignatures);
+                startActivityForResult(intentSign, 4);
                 break;
+            case R.id.choose_skin:
+                chooseSkin();
+                break;
+            case R.id.choose_fransnana:
+                currentMombaby = mom.getName().getText().toString();
+                Intent intentMom = new Intent(this, MineSettingMombaby.class);
+                intentMom.putExtra("momto", currentMombaby);
+                startActivityForResult(intentMom, 5);
+                break;
+        }
+    }
+
+    private void chooseSkin() {
+        new AlertDialog.Builder(this)
+                .setTitle("选择肤质信息")
+                .setMultiChoiceItems(new String[]{"敏感肌", "痘痘肌", "干皮", "油皮", "混干皮", "混油皮", "中性皮肤"}, null, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                        listenerSkinChoose(i, b);
+                    }
+                })
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.d("tag", "onClick2: " + i);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
+    }
+
+    private void listenerSkinChoose(int i, boolean b) {
+        Map<Integer, String> map = new HashMap<>();
+        switch (i) {
+            case 0:
+                if (b) {
+                    map.put(0, "敏感肌");
+                } else {
+                    map.remove(0);
+                }
+                break;
+            case 1:
+                if (b) {
+                    map.put(1, "痘痘肌");
+                }else{
+                    map.remove(1);
+                }
+                break;
+            case 2:
+                if (b) {
+                    map.put(2, "干皮");
+                }else{
+                    map.remove(2);
+                }
+                break;
+            case 3:
+                if (b) {
+                    map.put(3, "油皮");
+                }else{
+                    map.remove(3);
+                }
+                break;
+            case 4:
+                if (b) {
+                    map.put(4, "混干皮");
+                }else{
+                    map.remove(4);
+                }
+                break;
+            case 5:
+                if (b) {
+                    map.put(5, "混油皮");
+                }else{
+                    map.remove(5);
+                }
+                break;
+            case 6:
+                if (b) {
+                    map.put(6, "中性皮肤");
+                }else{
+                    map.remove(6);
+                }
+                break;
+
         }
     }
 
     private void setBirthday() {
 
     }
+
     //性别选择
     private void sexChoiceDialog() {
         new AlertDialog.Builder(this)
@@ -188,10 +299,10 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 .setSingleChoiceItems(new String[]{"男", "女"}, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if(i == 0){
+                        if (i == 0) {
                             sex_dialog = "男";
                             UpdateDataBmob.UpdataSex(false);
-                        }else if(i == 1){
+                        } else if (i == 1) {
                             sex_dialog = "女";
                             UpdateDataBmob.UpdataSex(true);
                         }
@@ -212,37 +323,37 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     }
 
     //从数据库获取个人信息（创建和刷新时调用）
-    private void refreshUserInfo(){
+    private void refreshUserInfo() {
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
         //加载头像
-        if(myUser.getHead()!=null){
+        if (myUser.getHead() != null) {
             String url = myUser.getHead().getUrl();
             ImageLoader loader = new ImageLoader(InitBmob.getRequestQueue(), new BaseCache());
-            ImageLoader.ImageListener listener = ImageLoader.getImageListener(head_icon,R.drawable.xy_walkthroughs_account,R.drawable.xy_walkthroughs_account);
-            loader.get(url,listener);
+            ImageLoader.ImageListener listener = ImageLoader.getImageListener(head_icon, R.drawable.xy_walkthroughs_account, R.drawable.xy_walkthroughs_account);
+            loader.get(url, listener);
         }
 
         //昵称
         String nickname_Bmob = myUser.getNickname();
-        if (nickname_Bmob!=null){
+        if (nickname_Bmob != null) {
             name.getName().setText(nickname_Bmob);
         }
 
         //性别
         Boolean sex_Bmob = myUser.getSex();
-        if(sex_Bmob != null){
+        if (sex_Bmob != null) {
             sex.getName().setText(sex_Bmob ? "女" : "男");
         }
 
         //生日
         String birth_Bmob = myUser.getBirthday();
-        if (birth_Bmob != null){
+        if (birth_Bmob != null) {
             birthday.getName().setText(birth_Bmob);
         }
 
         //个性签名
         String sign_Bmob = myUser.getSignature();
-        if (sign_Bmob != null){
+        if (sign_Bmob != null) {
             signatures.getName().setText(sign_Bmob);
         }
     }

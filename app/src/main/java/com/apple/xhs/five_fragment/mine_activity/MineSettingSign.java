@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -21,16 +22,13 @@ import butterknife.BindView;
  * Created by limeng on 2017/7/25.
  */
 
-public class MineSettingSign extends BaseActivity implements View.OnClickListener{
+public class MineSettingSign extends BaseActivity implements View.OnClickListener, TextWatcher {
     @BindView(R.id.reset_signatures)
     InfoSettingTitle signatures;
     @BindView(R.id.sign_edit)
     EditText signEdit;
     @BindView(R.id.num_limit)
     TextView numLimit;
-    String temp;
-    int editNum;
-    int editStart;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +45,7 @@ public class MineSettingSign extends BaseActivity implements View.OnClickListene
     private void initViewClickListener() {
         signatures.setImgListener(this);
         signatures.setDoneListener(this);
-
+        signEdit.addTextChangedListener(this);
     }
 
     @Override
@@ -69,10 +67,16 @@ public class MineSettingSign extends BaseActivity implements View.OnClickListene
                 setResult(4, intent);
                 finish();
                 break;
-            case R.id.sign_edit:
-
-                break;
         }
     }
-
+    //监听字数变化
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+    @Override
+    public void afterTextChanged(Editable editable) {
+        int num = signEdit.getText().toString().length();
+        numLimit.setHint((100-num)+"");
+    }
 }

@@ -115,12 +115,14 @@
                 android:textSize="13sp" />
             <include layout="@layout/setting_line_merge" />
             <com.apple.xhs.CustomView.UserInfoRow
+                android:id="@+id/choose_skin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setHintText="补充信息"
                 app:setItemTitle="肤质" />
             <include layout="@layout/setting_line_merge" />
             <com.apple.xhs.CustomView.UserInfoRow
+                android:id="@+id/choose_fransnana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setHintText="补充信息"
