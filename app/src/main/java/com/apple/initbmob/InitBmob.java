@@ -14,6 +14,7 @@ import cn.bmob.v3.Bmob;
 
 public class InitBmob extends Application {
     private static RequestQueue requestQueue;
+    private static String local_head_url;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -22,5 +23,13 @@ public class InitBmob extends Application {
     }
     public static RequestQueue getRequestQueue(){
         return requestQueue;
+    }
+
+    public static String getLocal_head_url() {
+        return local_head_url;
+    }
+
+    public static void setLocal_head_url(String local_head_url) {
+        InitBmob.local_head_url = local_head_url;
     }
 }

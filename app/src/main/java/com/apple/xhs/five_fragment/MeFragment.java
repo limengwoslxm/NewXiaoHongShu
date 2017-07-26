@@ -3,18 +3,26 @@ package com.apple.xhs.five_fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.apple.initbmob.InitBmob;
 import com.apple.xhs.Login;
 import com.apple.xhs.R;
 import com.apple.xhs.five_fragment.mine_activity.MineShowGuanzhu;
 import com.apple.xhs.five_fragment.mine_activity.MineUserInfoSetting;
+import com.base.BaseCache;
+import com.bean.MyUser;
 
 import cn.bmob.v3.BmobUser;
 
@@ -29,8 +37,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_me_layout,container,false);
         view.findViewById(R.id.mine_exit_account).setOnClickListener(this);
         view.findViewById(R.id.ge).setOnClickListener(this);
-        view.findViewById(R.id.me_guanzhu).setOnClickListener(this);
-        view.findViewById(R.id.me_guanzhu1).setOnClickListener(this);
         return view;
     }
 
@@ -42,11 +48,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.ge:
                 startActivity(new Intent(getActivity(), MineUserInfoSetting.class));
-                break;
-            case R.id.me_guanzhu:
-            case R.id.me_guanzhu1:
-                startActivity(new Intent(getActivity(), MineShowGuanzhu.class));
-                break;
         }
     }
     //退出账户的方法

@@ -1,8 +1,14 @@
 package com.data;
 
+
+import android.os.Handler;
 import android.util.Log;
 
 import com.bean.MyUser;
+
+
+import java.util.List;
+import java.util.Map;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
@@ -15,6 +21,9 @@ import cn.bmob.v3.listener.UploadFileListener;
  */
 
 public class UpdateDataBmob {
+
+    public static Handler handler;
+
     //更新头像
     public static void UpdataHead(final BmobFile bmobFile){
         final MyUser user = BmobUser.getCurrentUser(MyUser.class);
@@ -55,6 +64,42 @@ public class UpdateDataBmob {
                     Log.i("bmob","昵称更新成功");
                 }else{
                     Log.i("bmob","昵称更新失败："+e.getMessage()+","+e.getErrorCode());
+                }
+            }
+        });
+    }
+
+    //初始化ID
+    public static void UpdataIDNew(String id){
+        final MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+        MyUser user = new MyUser();
+        user.setValue("CopyId",id);
+        user.setValue("Change",false);
+        user.update(myUser.getObjectId(), new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    Log.i("bmob","ID初始化成功");
+                }else{
+                    Log.i("bmob","ID初始化失败："+e.getMessage()+","+e.getErrorCode());
+                }
+            }
+        });
+    }
+
+    //更改ID
+    public static void UpdataID(String id){
+        final MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+        MyUser user = new MyUser();
+        user.setValue("CopyId",id);
+        user.setValue("Change",true);
+        user.update(myUser.getObjectId(), new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    Log.i("bmob","ID更新成功");
+                }else{
+                    Log.i("bmob","ID更新失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
         });
@@ -106,6 +151,40 @@ public class UpdateDataBmob {
                     Log.i("bmob","签名更新成功");
                 }else{
                     Log.i("bmob","签名更新失败："+e.getMessage()+","+e.getErrorCode());
+                }
+            }
+        });
+    }
+
+    //更改肤质
+    public static void UpdataSkin(List<Map> skin){
+        final MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+        MyUser user = new MyUser();
+        user.setValue("skin",skin);
+        user.update(myUser.getObjectId(), new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    Log.i("bmob","肤质更新成功");
+                }else{
+                    Log.i("bmob","肤质更新失败："+e.getMessage()+","+e.getErrorCode());
+                }
+            }
+        });
+    }
+
+    //更改母婴
+    public static void UpdataPregnant(String pregnant){
+        final MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+        MyUser user = new MyUser();
+        user.setValue("pregnant",pregnant);
+        user.update(myUser.getObjectId(), new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    Log.i("bmob","母婴更新成功");
+                }else{
+                    Log.i("bmob","母婴更新失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
         });

@@ -9,7 +9,7 @@ import com.android.volley.toolbox.ImageLoader;
  * Created by xiong on 2017/7/25.
  */
 
-public class BaseCache implements ImageLoader.ImageCache{
+public class BaseCache implements ImageLoader.ImageCache {
     public LruCache<String, Bitmap> cache;
     public int max = 10*1024*1024;
     public BaseCache(){
