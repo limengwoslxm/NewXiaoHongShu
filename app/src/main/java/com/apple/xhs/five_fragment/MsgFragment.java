@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -40,6 +41,7 @@ public class MsgFragment extends Fragment implements View.OnClickListener, ViewP
     long startTime = 0;
     long currentTime = 0;
     ViewPager viewPager;
+    TabLayout tabLayout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,13 +62,18 @@ public class MsgFragment extends Fragment implements View.OnClickListener, ViewP
         moveOne = lp.width;
     }
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint({"ResourceAsColor", "WrongViewCast"})
     private void initView(View view) {
+        //tabLayout = view.findViewById(R.id.tabLayout);
+
         viewPager = view.findViewById(R.id.msg_viewpager);
         viewPager.setOnPageChangeListener(this);
         MsgViewPgFgLeft pgFgLeft = new MsgViewPgFgLeft();
         MsgViewPgFgMid pgFgMid = new MsgViewPgFgMid();
         MsgViewPgFgRight pgFgRight = new MsgViewPgFgRight();
+
+//        tabLayout.setupWithViewPager(viewPager);
+//        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.xhsColor));
 
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(pgFgLeft);

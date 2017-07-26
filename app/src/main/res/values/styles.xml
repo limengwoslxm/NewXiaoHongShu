@@ -10,6 +10,7 @@
     <style name="Welcome" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:textCursorDrawable">@drawable/textcursordrawablenull</item>
     </style>
     <style name="Mine_Dialog.Alert"
         parent="@style/Theme.AppCompat.Light.Dialog.Alert">
@@ -19,6 +20,7 @@
     <style name="XHSstatusbar" parent="Theme.AppCompat.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:textCursorDrawable">@drawable/textcursordrawable</item>
         <item name="android:windowAnimationStyle">@style/noAnimation</item>
         <item name="android:alertDialogTheme">@style/Mine_Dialog.Alert</item>
     </style>
@@ -65,5 +67,21 @@
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">#fff</item>
+    </style>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
     </style>
 </resources>

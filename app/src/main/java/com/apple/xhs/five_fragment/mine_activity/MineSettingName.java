@@ -39,7 +39,7 @@ public class MineSettingName extends BaseActivity implements View.OnClickListene
         resetname.setDoneListener(this);
         Intent intent = getIntent();
         String getname = intent.getStringExtra("currentname");
-        Toast.makeText(this,getname,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,getname,Toast.LENGTH_SHORT).show();
         myNewName.setText(getname);
     }
 

@@ -16,6 +16,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.apple.initbmob.InitBmob;
 import com.apple.xhs.CustomView.InfoSettingTitle;
 import com.apple.xhs.CustomView.UserInfoRow;
+import com.apple.xhs.MainActivity;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
 import com.base.BaseCache;
@@ -44,20 +45,29 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     UserInfoRow birthday;
     @BindView(R.id.sex_choice)
     UserInfoRow sex;
-    @BindView(R.id.signatures)
+    @BindView(R.id.signatures_edit)
     UserInfoRow signatures;
     @BindView(R.id.override_head)
     View head;
     @BindView(R.id.img_user_head)
     ImageView head_icon;
+    @BindView(R.id.area_choice)
+    UserInfoRow area;
     String sex_dialog;
     String currentName;
     String currentId;
+    String currentArea;
+    String currentSignatures;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        refreshUserInfo();
         setViewListener();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        refreshUserInfo();
     }
 
     @Override
@@ -65,6 +75,30 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode){
             case 0:
+
+                break;
+            case 1:
+                String newname = data.getStringExtra("name");
+                if(newname.equals("")){
+                    return;
+                }
+                name.getName().setText(newname);
+                UpdateDataBmob.UpdataNickname(newname);
+                break;
+            case 2:
+                String newid = data.getStringExtra("id");
+                if(newid.equals("")){
+                    return;
+                }
+                id.getName().setText(newid);
+                break;
+            case 4:
+                String newsign = data.getStringExtra("sign");
+                if(newsign.equals("")){
+                    return;
+                }
+                signatures.getName().setText(newsign);
+            default:
                 Uri originalUri=data.getData();
                 String []imgs1={MediaStore.Images.Media.DATA};//将图片URI转换成存储路径
                 Cursor cursor=this.managedQuery(originalUri, imgs1, null, null, null);
@@ -74,22 +108,9 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 BmobFile icon = new BmobFile(new File(img_url));
                 UpdateDataBmob.UpdataHead(icon);
                 break;
-            case 1:
-                String newname = data.getStringExtra("name");
-                if(newname.equals("")){
-                    return;
-                }
-                name.getName().setText(newname);
-                break;
-            case 2:
-                String newid = data.getStringExtra("id");
-                if(newid.equals("")){
-                    return;
-                }
-                id.getName().setText(newid);
-                break;
         }
     }
+
 
     @Override
     protected void onDestroy() {
@@ -100,12 +121,15 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     public int getContentViewId() {
         return R.layout.mine_user_info;
     }
+
     private void setViewListener() {
         back.setImgListener(this);
         name.setOnClickListener(this);
         id.setOnClickListener(this);
         sex.setOnClickListener(this);
         head.setOnClickListener(this);
+        area.setOnClickListener(this);
+        signatures.setOnClickListener(this);
     }
     @OnClick(R.id.birthday_choice)
     @Override
@@ -118,7 +142,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
                 galleryIntent.setType("image/*");//图片
-                startActivityForResult(galleryIntent, 0);
+                startActivityForResult(galleryIntent, 100);
                 break;
             case R.id.override_name:
                 currentName = name.getName().getText().toString();
@@ -138,7 +162,18 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
             case R.id.birthday_choice:
                 setBirthday();
                 break;
-            case R.id.signatures:
+            case R.id.area_choice:
+                currentArea = area.getName().getText().toString();
+                Intent intentArea = new Intent(this,MineSettingArea.class);
+                intentArea.putExtra("area",currentArea);
+                startActivityForResult(intentArea,3);
+                break;
+            //个性签名
+            case R.id.signatures_edit:
+                currentSignatures = signatures.getName().getText().toString();
+                Intent intentSign = new Intent(this,MineSettingSign.class);
+                intentSign.putExtra("sign",currentSignatures);
+                startActivityForResult(intentSign,4);
                 break;
         }
     }

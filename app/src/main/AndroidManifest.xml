@@ -51,8 +51,7 @@
         <activity android:name=".five_fragment.mine_activity.MineSettingID" android:theme="@style/XHSstatusbar">
 
         </activity>
-        <activity android:name=".TestView">
-
-        </activity>
+        <activity android:name=".five_fragment.mine_activity.MineSettingArea" android:theme="@style/XHSstatusbar"></activity>
+        <activity android:name=".five_fragment.mine_activity.MineSettingSign" android:theme="@style/XHSstatusbar"></activity>
     </application>
 </manifest>

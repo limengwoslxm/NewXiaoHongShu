@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setFullScreen();
+        //setFullScreen();
         initView();
     }
     private void setFullScreen() {

@@ -84,6 +84,7 @@
                 app:setNameText="男" />
             <include layout="@layout/setting_line_merge" />
             <com.apple.xhs.CustomView.UserInfoRow
+                android:id="@+id/area_choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setItemTitle="常住地"
@@ -97,7 +98,7 @@
                 app:setItemTitle="生日" />
             <include layout="@layout/setting_line_merge" />
             <com.apple.xhs.CustomView.UserInfoRow
-                android:id="@+id/signatures"
+                android:id="@+id/signatures_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setHintText="还没有信息耶～"

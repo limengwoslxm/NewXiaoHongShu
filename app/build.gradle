@@ -33,4 +33,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.7.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
     implementation files('libs/Volley.jar')
+    implementation 'com.android.support:design:26.0.0-beta2'
 }
