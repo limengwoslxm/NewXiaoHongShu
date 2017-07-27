@@ -15,6 +15,10 @@
         <attr name="setText" format="string"/>
         <attr name="setDoneText" format="string"/>
     </declare-styleable>
+    <declare-styleable name="InfoSettingTitleRed">
+        <attr name="setTextRed" format="string"/>
+        <attr name="setDoneTextRed" format="string"/>
+    </declare-styleable>
     <declare-styleable name="UserInfoRow">
         <attr name="setItemTitle" format="string"/>
         <attr name="setNameText" format="string"/>

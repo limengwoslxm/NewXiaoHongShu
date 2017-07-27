@@ -42,7 +42,7 @@ public class MineSettingMombaby extends BaseActivity implements View.OnClickList
         youbb.setOnClickListener(this);
 
         Intent intentM = getIntent();
-        String m = intentM.getStringExtra("momto");
+        String m = intentM.getStringExtra("mom");
         setOtherNormal();
         switch (m){
             case "备孕中":
@@ -73,11 +73,11 @@ public class MineSettingMombaby extends BaseActivity implements View.OnClickList
             case R.id.my_setting_done:
                 Intent intent = new Intent(this,MineUserInfoSetting.class);
                 if(beiyun.isSelected())
-                    intent.putExtra("momback",beiyun.getText().toString());
+                    intent.putExtra("momback","备孕中");
                 if(huaiyun.isSelected())
-                    intent.putExtra("momback",huaiyun.getText().toString());
+                    intent.putExtra("momback","怀孕中");
                 if(youbb.isSelected())
-                    intent.putExtra("momback",youbb.getText().toString());
+                    intent.putExtra("momback","有宝宝");
                 setResult(5,intent);
                 finish();
                 break;

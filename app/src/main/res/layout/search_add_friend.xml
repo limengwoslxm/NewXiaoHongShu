@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+   <com.apple.xhs.CustomView.InfoSettingTitleRed
+       android:id="@+id/search_find_friend"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:setTextRed="发现好友"
+       app:setDoneTextRed="查找"/>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/search_add_tab"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        style="@style/MyCustomTabLayoutMsg"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/search_add_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

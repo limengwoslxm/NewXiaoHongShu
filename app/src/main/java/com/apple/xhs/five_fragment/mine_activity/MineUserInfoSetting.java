@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.apple.xhs.CustomView.InfoSettingTitle;
 import com.apple.xhs.CustomView.UserInfoRow;
@@ -19,6 +20,10 @@ import com.bean.MyUser;
 import com.data.UpdateDataBmob;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -51,12 +56,17 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     SketchImageView head_icon;
     @BindView(R.id.area_choice)
     UserInfoRow area;
+    @BindView(R.id.choose_skin)
+    UserInfoRow skin;
+    @BindView(R.id.choose_fransnana)
+    UserInfoRow mombaby;
     String sex_dialog;
     String currentName;
     String currentId;
     String currentArea;
     String currentSignatures;
-
+    List<Map<Integer,String>> skinData = new ArrayList<>();
+    Map<Integer,String> map = new HashMap<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +104,14 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 }
                 signatures.getName().setText(newsign);
                 UpdateDataBmob.UpdataSignature(newsign);
+                break;
+            case 5:
+                String newMom = data.getStringExtra("momback");
+                if(newMom.equals("")){
+                    return;
+                }
+                mombaby.getName().setText(newMom);
+                break;
             default:
                 Uri originalUri=data.getData();
                 String []imgs1={MediaStore.Images.Media.DATA};//将图片URI转换成存储路径
@@ -130,6 +148,8 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         head.setOnClickListener(this);
         area.setOnClickListener(this);
         signatures.setOnClickListener(this);
+        skin.setOnClickListener(this);
+        mombaby.setOnClickListener(this);
     }
     @OnClick(R.id.birthday_choice)
     @Override
@@ -175,7 +195,83 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 intentSign.putExtra("sign",currentSignatures);
                 startActivityForResult(intentSign,4);
                 break;
+            case R.id.choose_skin:
+                chooseSkin();
+                break;
+            case R.id.choose_fransnana:
+                String currentMom = mombaby.getName().getText().toString();
+                Intent intentMom = new Intent(this,MineSettingMombaby.class);
+                intentMom.putExtra("mom",currentMom);
+                startActivityForResult(intentMom,5);
+                break;
+
         }
+    }
+
+    private void chooseSkin() {
+        new AlertDialog.Builder(this)
+                .setTitle("选择肤质信息")
+                .setMultiChoiceItems(new String[]{"敏感肌","痘痘肌","干皮","油皮","混干皮","混油皮","中性皮肤"}, null,
+                        new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                        getChooseItem(i,b);
+                    }
+                })
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String str = "";
+                        for(Map.Entry<Integer,String> entry: map.entrySet()){
+                            str = str+entry.getValue()+"  ";
+                        }
+                        skin.getName().setText(str);
+                        map.clear();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
+    }
+
+    private void getChooseItem(int i, boolean b) {
+        switch (i){
+            case 0:
+                if(b){map.put(0,"敏感肌");}
+                else {map.remove(0);}
+                break;
+            case 1:
+                if(b){map.put(1,"痘痘肌");}
+                else {map.remove(1);}
+                break;
+            case 2:
+                if(b){map.put(2,"干皮");}
+                else {map.remove(2);}
+                break;
+            case 3:
+                if(b){map.put(3,"油皮");}
+                else {map.remove(3);}
+                break;
+            case 4:
+                if(b){map.put(4,"混干皮");}
+                else {map.remove(4);}
+                break;
+            case 5:
+                if(b){map.put(5,"混油皮");}
+                else {map.remove(5);}
+                break;
+            case 6:
+                if(b){map.put(6,"中性皮肤");}
+                else {map.remove(6);}
+                break;
+        }
+        if(map.isEmpty()){
+            return;
+        }
+        skinData.add(map);
     }
 
     private void setBirthday() {

@@ -11,6 +11,7 @@
         android:gravity="center">
         <include layout="@layout/main_toolbar_search_merge"/>
         <ImageView
+            android:id="@+id/search_add_friend"
             android:layout_width="29dp"
             android:layout_height="29dp"
             android:src="@mipmap/search_addfriend"

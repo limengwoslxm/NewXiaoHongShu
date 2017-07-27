@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <LinearLayout
         android:id="@+id/home_top"
@@ -12,6 +13,7 @@
         android:gravity="center">
         <include layout="@layout/main_toolbar_search_merge"/>
         <ImageView
+            android:id="@+id/home_open_camera"
             android:layout_width="27dp"
             android:layout_height="27dp"
             android:src="@mipmap/index_icon_camera"
@@ -22,51 +24,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <HorizontalScrollView
-            android:id="@+id/home_scrollview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:scrollbars="none">
             <android.support.design.widget.TabLayout
                 android:id="@+id/home_tablayout"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="46dp"
-                style="@style/MyCustomTabLayoutMsg">
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-            </android.support.design.widget.TabLayout>
-        </HorizontalScrollView>
+                android:layout_weight="5"
+                app:tabGravity="center"
+                app:tabMode="scrollable"
+                style="@style/MyCustomTabLayoutHome"/>
         <ImageView
             android:id="@+id/home_scrollview_showMore"
             android:layout_width="0dp"
-            android:layout_height="43dp"
+            android:layout_height="46dp"
             android:layout_weight="1"
             android:padding="17dp"
-            android:layout_marginRight="0dp"
+            android:background="@color/white"
             android:src="@mipmap/icon_expand_down"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1.5px"
-        android:background="#d7d6d6"/>
+        android:background="#e9e7e7"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/home_viewpager"
         android:layout_width="match_parent"

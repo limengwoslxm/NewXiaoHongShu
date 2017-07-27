@@ -90,6 +90,19 @@
         <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
         <item name="tabSelectedTextColor">@color/toolbar</item>
     </style>
+    <!-- home页面的viewpager-->
+    <style name="MyCustomTabTextAppearanceHome" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black_gray</item>
+    </style>
+    <style name="MyCustomTabLayoutHome" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/xhsColor</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabMaxWidth">60dp</item>
+        <item name="tabBackground">@color/white</item>
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearanceMsg</item>
+        <item name="tabSelectedTextColor">@color/xhsColor</item>
+    </style>
     <!-- msg页面的viewpager-->
     <style name="MyCustomTabTextAppearanceMsg" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">16sp</item>
@@ -98,8 +111,6 @@
     <style name="MyCustomTabLayoutMsg" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/xhsColor</item>
         <item name="tabIndicatorHeight">2dp</item>
-        <item name="tabPaddingStart">12dp</item>
-        <item name="tabPaddingEnd">12dp</item>
         <item name="tabBackground">@color/white</item>
         <item name="tabTextAppearance">@style/MyCustomTabTextAppearanceMsg</item>
         <item name="tabSelectedTextColor">@color/xhsColor</item>
@@ -110,5 +121,26 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+    <style name="NoteCheckBiaoqian" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/note_check_biaoqian</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <style name="NoteCheckShareQQ" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/note_share_qq</item>
+    </style>
+    <style name="NoteCheckShareWeibo" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/note_share_weibo</item>
+    </style>
+    <style name="NoteCheckShareWeixin" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/note_share_weixin</item>
+    </style>
+    <style name="AddView" parent="AppTheme">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
     </style>
 </resources>
