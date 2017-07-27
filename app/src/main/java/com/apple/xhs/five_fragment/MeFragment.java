@@ -3,12 +3,16 @@ package com.apple.xhs.five_fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.apple.xhs.Login;
@@ -29,6 +33,7 @@ import me.xiaopan.sketch.request.DisplayOptions;
 public class MeFragment extends Fragment implements View.OnClickListener {
 
     SketchImageView head_icon;
+    TextView nickname;
 
     @Nullable
     @Override
@@ -38,6 +43,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.ge).setOnClickListener(this);
         view.findViewById(R.id.me_guanzhu).setOnClickListener(this);
         view.findViewById(R.id.me_guanzhu1).setOnClickListener(this);
+        view.findViewById(R.id.me_head).setOnClickListener(this);
         head_icon = view.findViewById(R.id.img_me_user_head);
         return view;
     }
@@ -48,10 +54,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
         DisplayOptions displayOptions = new DisplayOptions();
         displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
-
         head_icon.setOptions(displayOptions);
+
         head_icon.displayImage(myUser.getHead().getUrl());
 //        head_icon.setShowImageFromEnabled(true);
+
+
     }
 
     @Override
@@ -67,8 +75,33 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             case R.id.me_guanzhu1:
                 startActivity(new Intent(getActivity(),MineShowGuanzhu.class));
                 break;
+            case R.id.me_head:
+                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                galleryIntent.setType("image/*");//图片
+                startActivityForResult(galleryIntent, 1);
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode){
+            case 0:
+                break;
+            case 1:
+                Uri originalUri=data.getData();
+                String []imgs1={MediaStore.Images.Media.DATA};//将图片URI转换成存储路径
+                Cursor cursor=getActivity().managedQuery(originalUri, imgs1, null, null, null);
+                int index=cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                cursor.moveToFirst();
+                String img_url=cursor.getString(index);
+
+                head_icon.displayImage(img_url);
+                break;
+        }
+    }
+
     //退出账户的方法
     private void popExitAialog() {
         new AlertDialog.Builder(getActivity()).setTitle("登出")

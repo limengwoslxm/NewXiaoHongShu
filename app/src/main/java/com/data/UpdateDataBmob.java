@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.bean.MyUser;
+import com.bean.Note;
 
 
 import java.util.List;
@@ -186,6 +187,28 @@ public class UpdateDataBmob {
                 }else{
                     Log.i("bmob","母婴更新失败："+e.getMessage()+","+e.getErrorCode());
                 }
+            }
+        });
+    }
+
+    //点赞
+    public static void clickUp(Note note){
+        note.increment("up",1);
+        note.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+
+            }
+        });
+    }
+
+    //取消点赞
+    public static void delUp(Note note){
+        note.increment("up",-1);
+        note.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+
             }
         });
     }

@@ -19,6 +19,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <FrameLayout
+                    android:id="@+id/me_head"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:layout_gravity="center_horizontal"

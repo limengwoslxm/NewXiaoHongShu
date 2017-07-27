@@ -1,5 +1,7 @@
 package com.bean;
 
+import java.util.List;
+
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobRelation;
@@ -10,20 +12,21 @@ import cn.bmob.v3.datatype.BmobRelation;
 
 public class Note extends BmobObject{
 
-    private BmobFile image;
+    private List<BmobFile> image;
     private String title;
     private String content;
     private MyUser author;
     private BmobRelation likes;
+    private Integer up;
 
     public Note() {
     }
 
-    public BmobFile getImage() {
+    public List<BmobFile> getImage() {
         return image;
     }
 
-    public void setImage(BmobFile image) {
+    public void setImage(List<BmobFile> image) {
         this.image = image;
     }
 
@@ -59,4 +62,11 @@ public class Note extends BmobObject{
         this.likes = likes;
     }
 
+    public Integer getUp() {
+        return up;
+    }
+
+    public void setUp(Integer up) {
+        this.up = up;
+    }
 }
