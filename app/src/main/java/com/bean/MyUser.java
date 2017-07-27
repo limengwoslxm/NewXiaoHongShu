@@ -5,6 +5,7 @@ import java.util.Map;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.datatype.BmobRelation;
 
 /**
  * Created by xiong on 2017/7/22.
@@ -20,6 +21,8 @@ public class MyUser extends BmobUser {
     private Boolean Change;
     private List<Map> skin;
     private String pregnant;
+    private BmobRelation attention;
+    private BmobRelation fans;
 
     public MyUser() {
     }
@@ -94,5 +97,21 @@ public class MyUser extends BmobUser {
 
     public void setPregnant(String pregnant) {
         this.pregnant = pregnant;
+    }
+
+    public BmobRelation getAttention() {
+        return attention;
+    }
+
+    public void setAttention(BmobRelation attention) {
+        this.attention = attention;
+    }
+
+    public BmobRelation getFans() {
+        return fans;
+    }
+
+    public void setFans(BmobRelation fans) {
+        this.fans = fans;
     }
 }

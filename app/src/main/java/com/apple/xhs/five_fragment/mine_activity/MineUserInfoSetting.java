@@ -62,6 +62,10 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         refreshUserInfo();
         setViewListener();
+
+        DisplayOptions displayOptions = new DisplayOptions();
+        displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
+        head_icon.setOptions(displayOptions);
     }
 
     @Override
@@ -95,20 +99,23 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 signatures.getName().setText(newsign);
                 UpdateDataBmob.UpdataSignature(newsign);
             default:
-                Uri originalUri=data.getData();
-                String []imgs1={MediaStore.Images.Media.DATA};//将图片URI转换成存储路径
-                Cursor cursor=this.managedQuery(originalUri, imgs1, null, null, null);
-                int index=cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                cursor.moveToFirst();
-                String img_url=cursor.getString(index);
-                Log.i("url",img_url + "''''''''''''''''");
-
-                newSketch(img_url);
+                String img_url=uriChange(data);
+                head_icon.displayImage(img_url);
 
                 BmobFile icon = new BmobFile(new File(img_url));
                 UpdateDataBmob.UpdataHead(icon);
                 break;
         }
+    }
+
+    //将图片URI转换成存储路径
+    public String uriChange(Intent data){
+        Uri originalUri=data.getData();
+        String []imgs1={MediaStore.Images.Media.DATA};
+        Cursor cursor=this.managedQuery(originalUri, imgs1, null, null, null);
+        int index=cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(index);
     }
 
 
@@ -215,7 +222,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     private void refreshUserInfo(){
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
         //加载头像
-        newSketch(myUser.getHead().getUrl());
+        head_icon.displayImage(myUser.getHead().getUrl());
 
         //昵称
         String nickname_Bmob = myUser.getNickname();
@@ -246,14 +253,5 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         if (sign_Bmob != null){
             signatures.getName().setText(sign_Bmob);
         }
-    }
-
-    public void newSketch(String url){
-        DisplayOptions displayOptions = new DisplayOptions();
-        displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
-
-        head_icon.setOptions(displayOptions);
-        head_icon.displayImage(url);
-//        head_icon.setShowImageFromEnabled(true);
     }
 }
