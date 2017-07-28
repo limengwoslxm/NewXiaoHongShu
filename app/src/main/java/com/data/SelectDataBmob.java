@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.bean.MyUser;
 import com.bean.Note;
 import com.bean.Style;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
@@ -40,6 +42,27 @@ public class SelectDataBmob {
                     handler.sendMessage(message);
                 }else{
                     Log.i("bmob",e + "");
+                }
+            }
+        });
+    }
+
+    //获取本人的笔记
+    public static void getMineNote(){
+        MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+        BmobQuery<Note> query = new BmobQuery<Note>();
+        query.addWhereEqualTo("author",myUser);
+        query.findObjects(new FindListener<Note>() {
+            @Override
+            public void done(List<Note> list, BmobException e) {
+                if(e==null){
+                    Message message = handler.obtainMessage();
+                    message.what = 0;
+                    message.obj = list;
+                    handler.sendMessage(message);
+                    Log.i("bmob","成功");
+                }else{
+                    Log.i("bmob","获取失败："+e.getMessage());
                 }
             }
         });

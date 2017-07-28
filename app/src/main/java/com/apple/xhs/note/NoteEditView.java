@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.apple.xhs.CustomView.InfoSettingTitleRed;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
+import com.data.AddDataBmob;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,6 +132,7 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
                 title = noteTitle.getText().toString();
                 context = noteContext.getText().toString();
                 addCheckData();//返回数据到 getCheckData；
+                AddDataBmob.addDataToNote(title,context,picData,getCheckData);
                 break;
             case R.id.note_add_pic:
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);

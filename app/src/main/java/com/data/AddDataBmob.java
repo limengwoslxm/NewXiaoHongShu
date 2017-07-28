@@ -1,6 +1,7 @@
 package com.data;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.bean.MyUser;
 import com.bean.Note;
@@ -25,22 +26,25 @@ import cn.bmob.v3.listener.UploadBatchListener;
 public class AddDataBmob {
     private static MyUser user = BmobUser.getCurrentUser(MyUser.class);
     //添加一个笔记
-    public static void addDataToNote(String title,String content,final String[] image,final List<String> styles){
+    public static void addDataToNote(String title,String content,final List<String> image,final List<String> styles){
         final Note note = new Note();
         note.setTitle(title);
         note.setContent(content);
         note.setAuthor(user);
         note.setUp(0);
+        String[] imglist = new String[image.size()];
         List<BmobFile> imageList = new ArrayList<>();
-        for (String img:image) {
+        for (int i = 0;i < image.size();i++) {
+            String img = image.get(i);
             BmobFile bmobFile = new BmobFile(new File(img));
             imageList.add(bmobFile);
+            imglist[i] = img;
         }
         note.setImage(imageList);
-        BmobFile.uploadBatch(image, new UploadBatchListener() {
+        BmobFile.uploadBatch(imglist, new UploadBatchListener() {
             @Override
             public void onSuccess(List<BmobFile> list, List<String> urls) {
-                if(urls.size()==image.length){
+                if(urls.size()==image.size()){
                     note.save(new SaveListener<String>() {
                         @Override
                         public void done(String objectId, BmobException e) {
