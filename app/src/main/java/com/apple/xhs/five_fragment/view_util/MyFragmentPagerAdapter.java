@@ -1,13 +1,9 @@
-package com.apple.xhs.five_fragment.home_util;
+package com.apple.xhs.five_fragment.view_util;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.view.View;
-import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

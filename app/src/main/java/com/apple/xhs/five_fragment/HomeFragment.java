@@ -30,7 +30,7 @@ import com.apple.xhs.five_fragment.home_fragment.HomeFragment_6;
 import com.apple.xhs.five_fragment.home_fragment.HomeFragment_7;
 import com.apple.xhs.five_fragment.home_fragment.HomeFragment_8;
 import com.apple.xhs.five_fragment.home_fragment.HomeFragment_9;
-import com.apple.xhs.five_fragment.home_util.MyFragmentPagerAdapter;
+import com.apple.xhs.five_fragment.view_util.MyFragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
