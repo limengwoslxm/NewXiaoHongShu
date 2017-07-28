@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.Window;
 
 import com.bean.MyUser;
+import com.data.SelectDataBmob;
 
 import cn.bmob.v3.BmobUser;
 

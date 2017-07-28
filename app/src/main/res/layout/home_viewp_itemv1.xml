@@ -3,10 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/homeFragment1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="1"
-        android:textSize="30sp"
-        android:gravity="center"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>

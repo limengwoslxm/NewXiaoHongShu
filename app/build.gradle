@@ -35,4 +35,5 @@ dependencies {
     implementation 'com.android.support:design:26.0.0-beta2'
     compile 'me.xiaopan:sketch:2.4.1'
     compile 'me.xiaopan:sketch-gif:2.4.1'
+    compile 'com.youth.banner:banner:1.4.9'
 }

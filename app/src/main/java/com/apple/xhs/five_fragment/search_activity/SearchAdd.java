@@ -6,12 +6,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.apple.xhs.CustomView.InfoSettingTitleRed;
 import com.apple.xhs.R;
-import com.apple.xhs.five_fragment.home_util.MyFragmentPagerAdapter;
+import com.apple.xhs.five_fragment.view_util.MyFragmentPagerAdapter;
 import com.apple.xhs.five_fragment.search_fragment.SearchAddF_1;
 import com.apple.xhs.five_fragment.search_fragment.SearchAddF_2;
 import com.apple.xhs.five_fragment.search_fragment.SearchAddF_3;

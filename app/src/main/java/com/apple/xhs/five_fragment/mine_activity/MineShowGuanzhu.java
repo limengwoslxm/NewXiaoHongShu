@@ -4,14 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.apple.xhs.CustomView.InfoSettingTitle;
 import com.apple.xhs.R;
-import com.apple.xhs.five_fragment.home_util.MyFragmentPagerAdapter;
+import com.apple.xhs.five_fragment.view_util.MyFragmentPagerAdapter;
 import com.apple.xhs.five_fragment.mine_activity.biaoqian_fragment.FragmentFour;
 import com.apple.xhs.five_fragment.mine_activity.biaoqian_fragment.FragmentOne;
 import com.apple.xhs.five_fragment.mine_activity.biaoqian_fragment.FragmentThree;

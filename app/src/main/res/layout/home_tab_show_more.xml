@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:padding="17dp"
+            android:padding="18dp"
             android:src="@mipmap/icon_expand_up"/>
     </LinearLayout>
     <include layout="@layout/home_line_inscrollview"/>

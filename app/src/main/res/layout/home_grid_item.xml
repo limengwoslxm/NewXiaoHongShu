@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="270dp"
     android:orientation="vertical"
     android:descendantFocusability="blocksDescendants">
     <LinearLayout
@@ -9,25 +9,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <ImageView
+        <me.xiaopan.sketch.SketchImageView
             android:id="@+id/grid_item_pic"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:src="@drawable/yeah"
+            android:scaleType="centerCrop"/>
         <TextView
-            android:id="@+id/grid_item_text"
+            android:id="@+id/grid_item_textTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="你好，夏天，我今年17岁了"/>
+        <TextView
+            android:id="@+id/grid_item_textContext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="你好，夏天，我今年17岁了,你好，夏天，我今年17岁了"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <me.xiaopan.sketch.SketchImageView
+            android:id="@+id/grid_item_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/grid_item_user"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/xy_walkthroughs_account"
             android:text="茶小翁"/>
         <TextView
             android:id="@+id/grid_item_heart"

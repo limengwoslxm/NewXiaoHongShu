@@ -35,7 +35,7 @@ public class SelectDataBmob {
             public void done(List<Note> list, BmobException e) {
                 if(e==null){
                     Message message = handler.obtainMessage();
-                    message.what = 0;
+                    message.what = 1;
                     message.obj = list;
                     handler.sendMessage(message);
                 }else{
