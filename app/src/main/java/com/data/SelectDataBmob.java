@@ -68,6 +68,21 @@ public class SelectDataBmob {
         });
     }
 
+    //获取MyUser对象通过ID
+    public void getUserByID(String id){
+        BmobQuery<MyUser> query = new BmobQuery<MyUser>();
+        query.getObject(id, new QueryListener<MyUser>() {
+            @Override
+            public void done(MyUser myUser, BmobException e) {
+                if (e==null){
+
+                }else {
+
+                }
+            }
+        });
+    }
+
     public static String getStyleId(String name){
         switch (name){
             case "武汉": return "Nbze4449";

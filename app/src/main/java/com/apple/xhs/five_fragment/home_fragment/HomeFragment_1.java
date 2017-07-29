@@ -20,12 +20,15 @@ import android.widget.Toast;
 import com.apple.xhs.R;
 import com.apple.xhs.five_fragment.home_activity.MyRecyclerAdapter;
 import com.apple.xhs.five_fragment.home_activity.NoteInfo;
+import com.bean.MyUser;
 import com.bean.Note;
 import com.bean.Style;
 import com.data.SelectDataBmob;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -44,13 +47,14 @@ public class HomeFragment_1 extends Fragment {
     View view;
     RecyclerView recyclerView;
     MyRecyclerAdapter adapter;
-    List<Note> data = new ArrayList<>();
+    List<Map<Note,MyUser>> data = new ArrayList<>();
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if(msg.what==1){
-                data= (List<Note>) msg.obj;
+                data = (List<Map<Note, MyUser>>) msg.obj;
+                Log.i("data1",data.size() + "data");
                 initPagerView();
                 //adapter.notifyDataSetChanged();
             }
@@ -120,14 +124,45 @@ public class HomeFragment_1 extends Fragment {
         query.addWhereRelatedTo("note",new BmobPointer(style));
         query.findObjects(new FindListener<Note>() {
             @Override
-            public void done(List<Note> list, BmobException e) {
+            public void done(final List<Note> notelist, BmobException e) {
                 if(e==null){
-                    Message message = handler.obtainMessage();
-                    message.what = 1;
-                    message.obj = list;
-                    handler.sendMessage(message);
+                    Log.i("bmob","查询笔记成功" + notelist.size());
+                    List<BmobQuery<MyUser>> userQuery = new ArrayList<>();
+                    for (Note note:notelist){
+                        userQuery.add(new BmobQuery<MyUser>().addWhereEqualTo("objectId",note.getAuthor().getObjectId()));
+                    }
+                    final BmobQuery<MyUser> mainQuery = new BmobQuery<MyUser>();
+                    mainQuery.or(userQuery);
+                    mainQuery.findObjects(new FindListener<MyUser>() {
+                        @Override
+                        public void done(List<MyUser> userlist, BmobException e) {
+                            if(e==null){
+                                Log.i("bmob","查询作者成功" + userlist.size());
+                                List<Map<Note,MyUser>> maps = new ArrayList<>();
+                                for (int i = 0;i < notelist.size();i++){
+                                    Log.i("bmob","note = " + notelist.get(i).getAuthor().getObjectId());
+                                    for (int j = 0;j < userlist.size();j++){
+                                        Log.i("bmob","user = " + userlist.get(j).getObjectId());
+                                        if (notelist.get(i).getAuthor().getObjectId().equals(userlist.get(j).getObjectId())){
+                                            Log.i("data1",notelist.size() + "||" + userlist.size());
+                                            Map<Note,MyUser> map = new HashMap<>();
+                                            map.put(notelist.get(i),userlist.get(j));
+                                            maps.add(map);
+                                        }
+                                    }
+                                }
+                                Log.i("data1",maps.size() + "");
+                                Message message = handler.obtainMessage();
+                                message.what = 1;
+                                message.obj = maps;
+                                handler.sendMessage(message);
+                            }else{
+                                Log.i("bmob","查询作者失败："+e.getMessage()+","+e.getErrorCode());
+                            }
+                        }
+                    });
                 }else{
-                    Log.i("bmob",e + "");
+                    Log.i("bmob",e + "查询笔记失败");
                 }
             }
         });

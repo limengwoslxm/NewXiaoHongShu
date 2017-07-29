@@ -1,6 +1,7 @@
 package com.apple.xhs.five_fragment.home_activity;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.bean.MyUser;
 import com.bean.Note;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
@@ -25,10 +27,10 @@ import me.xiaopan.sketch.request.DisplayOptions;
  */
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>{
-    List<Note> data;
+    List<Map<Note,MyUser>> data;
     View view;
     MyUser myUser;
-    public MyRecyclerAdapter(List<Note> data){
+    public MyRecyclerAdapter(List<Map<Note,MyUser>> data){
         this.data = data;
     }
     @Override
@@ -39,20 +41,17 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        //holder.imgPic.displayImage(data.get(position).getImage().get(0).getUrl());
-        holder.textTitle.setText(data.get(position).getTitle());
-
-        BmobQuery<MyUser> query = new BmobQuery<>();
-        query.getObject(data.get(position).getAuthor().getObjectId(), new QueryListener<MyUser>() {
-            @Override
-            public void done(MyUser user, BmobException e) {
-                myUser = user;
-            }
-        });
-        if(myUser!=null){
-            holder.textUserHead.displayImage(myUser.getHead().getUrl());
-            holder.textUserName.setText(myUser.getNickname());
+        Log.i("data",data.size() + "data2");
+        Note note = new Note();
+        MyUser myUser = new MyUser();
+        for (Map.Entry<Note,MyUser> entry : data.get(position).entrySet()){
+            note = entry.getKey();
+            myUser = entry.getValue();
         }
+//        holder.imgPic.displayImage(note.getImage().get(0).getUrl());
+        holder.textTitle.setText(note.getTitle());
+        holder.textUserHead.displayImage(myUser.getHead().getUrl());
+        holder.textUserName.setText(myUser.getNickname());
     }
 
     @Override
