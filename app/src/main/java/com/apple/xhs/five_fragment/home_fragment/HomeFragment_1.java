@@ -1,6 +1,7 @@
 package com.apple.xhs.five_fragment.home_fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ import static com.data.SelectDataBmob.getStyleId;
  */
 
 public class HomeFragment_1 extends Fragment {
+    View view;
     RecyclerView recyclerView;
     MyRecyclerAdapter adapter;
     List<Note> data = new ArrayList<>();
@@ -49,28 +51,54 @@ public class HomeFragment_1 extends Fragment {
             super.handleMessage(msg);
             if(msg.what==1){
                 data= (List<Note>) msg.obj;
-                adapter.notifyDataSetChanged();
+                initPagerView();
+                //adapter.notifyDataSetChanged();
             }
         }
     };
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        getNoteByStyle("武汉");
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.home_viewp_itemv1,container,false);
-        getNoteByStyle("武汉");
-        initView(view);
+        if(view==null){
+            view = inflater.inflate(R.layout.home_viewp_itemv1,container,false);
+            initView(view);
+        }else {
+            ViewGroup viewGroup = (ViewGroup) view.getParent();
+            if(viewGroup != null){
+                viewGroup.removeView(view);
+            }
+        }
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     private void initView(View view) {
         recyclerView = view.findViewById(R.id.homeFragment1);
+    }
+    private void initPagerView() {
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         adapter = new MyRecyclerAdapter(data);
         recyclerView.setAdapter(adapter);
-        SpacesItemDecoration space = new SpacesItemDecoration(16);
+        SpacesItemDecoration space = new SpacesItemDecoration(20);
         recyclerView.addItemDecoration(space);
     }
-
     public class SpacesItemDecoration extends RecyclerView.ItemDecoration{
         int space;
         public SpacesItemDecoration(int space){
@@ -79,8 +107,8 @@ public class HomeFragment_1 extends Fragment {
         public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state){
             outRect.left=space;
             outRect.right=space;
-            outRect.bottom=space;
-            if(parent.getChildAdapterPosition(view)==0){
+            outRect.bottom=space*2;
+            if(parent.getChildAdapterPosition(view)==0||parent.getChildAdapterPosition(view)==1){
                 outRect.top=space;
             }
         }

@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.apple.xhs.CustomView.InfoSettingTitleRed;
+import com.apple.xhs.CustomView.InfoSettingTitle;
 import com.apple.xhs.R;
 import com.apple.xhs.five_fragment.view_util.MyFragmentPagerAdapter;
 import com.apple.xhs.five_fragment.search_fragment.SearchAddF_1;
@@ -26,7 +26,7 @@ import butterknife.BindView;
 
 public class SearchAdd extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.search_find_friend)
-    InfoSettingTitleRed searchTitle;
+    InfoSettingTitle searchTitle;
     @BindView(R.id.search_add_tab)
     TabLayout tabLayout;
     @BindView(R.id.search_add_viewpager)
@@ -65,10 +65,10 @@ public class SearchAdd extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.my_setting_back_red:
+            case R.id.my_setting_back:
                 finish();
                 break;
-            case R.id.my_setting_done_red:
+            case R.id.my_setting_done:
                 finish();
                 break;
         }

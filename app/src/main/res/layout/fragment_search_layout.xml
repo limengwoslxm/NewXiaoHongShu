@@ -18,4 +18,27 @@
             android:layout_marginTop="11dp"
             android:layout_marginLeft="8dp"/>
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/search_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="110dp">
+
+            </android.support.v4.view.ViewPager>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/backgroundcolor"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/search_hot_chat"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

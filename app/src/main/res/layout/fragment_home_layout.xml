@@ -49,6 +49,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/home_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="475dp"
+        android:background="@color/backgroundcolor">
     </android.support.v4.view.ViewPager>
 </LinearLayout>

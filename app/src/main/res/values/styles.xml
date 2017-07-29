@@ -10,6 +10,7 @@
     <style name="Welcome" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowSoftInputMode">stateHidden</item>
         <item name="android:textCursorDrawable">@drawable/textcursordrawablenull</item>
     </style>
     <style name="Mine_Dialog.Alert"
@@ -20,6 +21,7 @@
     <style name="XHSstatusbar" parent="Theme.AppCompat.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowSoftInputMode">stateHidden</item>
         <item name="android:textCursorDrawable">@drawable/textcursordrawable</item>
         <item name="android:windowAnimationStyle">@style/noAnimation</item>
         <item name="android:alertDialogTheme">@style/Mine_Dialog.Alert</item>
@@ -138,6 +140,9 @@
     </style>
     <style name="NoteCheckShareWeixin" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/note_share_weixin</item>
+    </style>
+    <style name="HomeHeartLike" parent="android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/home_like_heart</item>
     </style>
     <style name="AddView" parent="AppTheme">
         <item name="android:layout_width">100dp</item>

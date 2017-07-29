@@ -24,10 +24,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <com.youth.banner.Banner
-                android:id="@+id/store_autoPlayPic"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/store_viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="170dp"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/sort"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/backgroundcolor"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/sort_show"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/backgroundcolor"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -4,6 +4,8 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +13,7 @@ import java.util.List;
  */
 
 public class MyViewPagerAdapter extends PagerAdapter {
-    List<View> list;
+    List<View> list = new ArrayList<>();
     public MyViewPagerAdapter(List<View> list){
         this.list = list;
     }
@@ -27,7 +29,7 @@ public class MyViewPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        container.addView(list.get(position),0);
+        container.addView(list.get(position));
         return list.get(position);
     }
 

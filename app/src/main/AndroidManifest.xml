@@ -22,8 +22,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
         <activity android:name=".WelcomeActivity" android:theme="@style/Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -61,5 +60,8 @@
         <activity android:name=".five_fragment.home_activity.HomeOpenCamera" android:theme="@style/Welcome"></activity>
         <activity android:name=".five_fragment.search_activity.SearchAdd" android:theme="@style/XHSstatusbar"></activity>
         <activity android:name=".note.NoteEditView" android:theme="@style/XHSstatusbar"></activity>
+        <activity android:name=".shopping.ProductScan" android:theme="@style/XHSstatusbar">
+
+        </activity>
     </application>
 </manifest>

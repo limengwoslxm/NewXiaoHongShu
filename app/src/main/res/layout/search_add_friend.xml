@@ -4,12 +4,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-   <com.apple.xhs.CustomView.InfoSettingTitleRed
+   <com.apple.xhs.CustomView.InfoSettingTitle
        android:id="@+id/search_find_friend"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       app:setTextRed="发现好友"
-       app:setDoneTextRed="查找"/>
+       app:setText="发现好友"
+       app:setBackground="@color/xhsColor"
+       app:setDoneTextBackground="@mipmap/ic_home_search"/>
     <android.support.design.widget.TabLayout
         android:id="@+id/search_add_tab"
         android:layout_width="match_parent"

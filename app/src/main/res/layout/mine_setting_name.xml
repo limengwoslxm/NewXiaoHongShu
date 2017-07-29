@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:setText="修改昵称"
-        app:setDoneText="完成"/>
+        app:setDoneText="完成"
+        app:setBackground="@drawable/setting_toolbar"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"

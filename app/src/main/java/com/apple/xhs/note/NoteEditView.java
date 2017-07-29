@@ -10,25 +10,21 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.apple.xhs.CustomView.InfoSettingTitleRed;
+import com.apple.xhs.CustomView.InfoSettingTitle;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
 import com.data.AddDataBmob;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import me.xiaopan.sketch.SketchImageView;
@@ -39,7 +35,7 @@ import me.xiaopan.sketch.SketchImageView;
 
 public class NoteEditView extends BaseActivity implements View.OnClickListener, TextWatcher {
     @BindView(R.id.send_note_title)
-    InfoSettingTitleRed noteToolBar;
+    InfoSettingTitle noteToolBar;
     @BindView(R.id.note_title)
     EditText noteTitle;
     @BindView(R.id.note_context)
@@ -124,15 +120,16 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.my_setting_back_red:
+            case R.id.my_setting_back:
 
                 finish();
                 break;
-            case R.id.my_setting_done_red:
+            case R.id.my_setting_done:
                 title = noteTitle.getText().toString();
                 context = noteContext.getText().toString();
                 addCheckData();//返回数据到 getCheckData；
                 AddDataBmob.addDataToNote(title,context,picData,getCheckData);
+                finish();
                 break;
             case R.id.note_add_pic:
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);

@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:setText="母婴"
-        app:setDoneText="确定"/>
+        app:setDoneText="确定"
+        app:setBackground="@drawable/setting_toolbar"/>
     <TextView
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
