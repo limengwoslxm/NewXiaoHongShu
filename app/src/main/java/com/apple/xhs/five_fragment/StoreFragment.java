@@ -24,6 +24,7 @@ import java.util.List;
  */
 
 public class StoreFragment extends Fragment  {
+    //轮播图
     private int[] views = new int[]{R.mipmap.store_viewpager_1,R.mipmap.store_viewpager_2,R.mipmap.store_viewpager_3,
             R.mipmap.store_viewpager_4,R.mipmap.store_viewpager_5,R.mipmap.store_viewpager_6,
             R.mipmap.store_viewpager_7,R.mipmap.store_viewpager_8};

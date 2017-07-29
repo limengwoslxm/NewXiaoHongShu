@@ -28,10 +28,20 @@
                 android:id="@+id/store_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"/>
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/sort"/>
+                android:layout_height="160dp"
+                android:orientation="vertical"
+                android:background="@mipmap/sort">
+                <com.apple.xhs.CustomView.StoreSortTen
+                    android:id="@+id/sort_row1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <com.apple.xhs.CustomView.StoreSortTen
+                    android:id="@+id/sort_row2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
