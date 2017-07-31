@@ -1,6 +1,5 @@
 package com.apple.xhs.note;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -13,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -34,7 +34,7 @@ import me.xiaopan.sketch.request.DisplayOptions;
  * Created by limeng on 2017/7/30.
  */
 
-public class NoteScan extends BaseActivity {
+public class NoteScan extends BaseActivity implements View.OnClickListener {
     //伸缩toolbar
     @BindView(R.id.note_appbar)
             AppBarLayout appBarLayout;
@@ -59,8 +59,10 @@ public class NoteScan extends BaseActivity {
             TextView usernotetitle;
     @BindView(R.id.user_notecontext)
             TextView usernotecontext;
+
     View popView;
     PopupWindow popupWindow;
+    MyUser myUser;
     @Override
     public int getContentViewId() {
         return R.layout.note_scan;
@@ -79,15 +81,17 @@ public class NoteScan extends BaseActivity {
     private void setUserHeadImage() {
         DisplayOptions displayOptions = new DisplayOptions();
         displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
+        imageView.getOptions().setDecodeGifImage(true);
         userheadimagetoolbar.setOptions(displayOptions);
         userheadimagecontext.setOptions(displayOptions);
     }
 
     private void setNoteData() {
+        //获取intent传来的数据，设置页面
         List<Map<Note,MyUser>> userdata = (List<Map<Note,MyUser>>)getIntent().getSerializableExtra("userdata");
         int position = getIntent().getIntExtra("id",0);
         Note note = new Note();
-        MyUser myUser = new MyUser();
+        myUser = new MyUser();
         for (Map.Entry<Note,MyUser> entry : userdata.get(position).entrySet()){
             note = entry.getKey();
             myUser = entry.getValue();
@@ -116,7 +120,7 @@ public class NoteScan extends BaseActivity {
             }
         });
     }
-
+    //设置toolbar
     private void setCollapsingToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -137,13 +141,25 @@ public class NoteScan extends BaseActivity {
             }
         });
     }
+    //设置弹出popUpWindow
     private void setSharePopupwindow() {
         LayoutInflater inflater = getLayoutInflater();
         popView =inflater.inflate(R.layout.share_popupwindow,null);
         popupWindow = new PopupWindow(popView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT,true);
         popupWindow.setAnimationStyle(R.style.SharePopupWindow);
         popupWindow.setOnDismissListener(new MyPopUpWindow());
+        popView.findViewById(R.id.quxiao).setOnClickListener(this);
     }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.quxiao:
+                popupWindow.dismiss();
+                break;
+        }
+    }
+
     public class MyPopUpWindow implements PopupWindow.OnDismissListener{
 
         @Override
@@ -155,6 +171,10 @@ public class NoteScan extends BaseActivity {
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = bgAlpha;
         getWindow().setAttributes(lp);
+    }
+    //关注该用户
+    public void guanZhu(){
+
     }
 
     @Override

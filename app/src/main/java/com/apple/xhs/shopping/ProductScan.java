@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.apple.xhs.R;
 import com.apple.xhs.custom_view.InfoSettingTitle;
@@ -34,13 +35,15 @@ public class ProductScan extends BaseActivity implements View.OnClickListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTopTitle();
-        addViewListener();
         setPopUpWindow();
+        addViewListener();
     }
 
     private void addViewListener() {
         toptoolbar.setImgListener(this);
         toptoolbar.setDoneListener(this);
+        //popUpWindow的取消按钮监听
+        popView.findViewById(R.id.quxiao).setOnClickListener(this);
     }
 
     private void setTopTitle() {
@@ -58,6 +61,9 @@ public class ProductScan extends BaseActivity implements View.OnClickListener {
             case R.id.my_setting_done:
                 popupWindow.showAtLocation(main,Gravity.BOTTOM,0,0);
                 backgroundAlpha(0.6f);
+                break;
+            case R.id.quxiao:
+                popupWindow.dismiss();
                 break;
         }
     }

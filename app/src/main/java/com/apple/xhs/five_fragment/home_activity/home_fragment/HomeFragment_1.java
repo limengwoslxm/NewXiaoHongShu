@@ -122,7 +122,7 @@ public class HomeFragment_1 extends Fragment implements MyRecyclerViewAdapter.On
                 initPagerView();
                 swiperefreshlayout.setRefreshing(false);
             }
-        },3000);
+        },2000);
     }
 
     //设置item外边距

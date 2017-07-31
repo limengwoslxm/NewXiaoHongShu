@@ -3,10 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        android:src="@drawable/find_friend_position_unavailable_icon"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="3"
-        android:textSize="30sp"
-        android:gravity="center"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="功能模块待开发"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="0dp"/>
 </LinearLayout>

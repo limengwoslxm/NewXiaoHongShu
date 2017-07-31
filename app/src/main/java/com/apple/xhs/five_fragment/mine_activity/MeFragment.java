@@ -45,26 +45,34 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     SketchImageView head_icon;
     TextView nickname;
     TextView guanzhu,fans,mynotes,mylikes;
-    Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what){
-                case 1:
-                    guanzhu.setText(msg.arg1);
-                    break;
-                case 2:
-                    fans.setText(msg.arg1);
-                    break;
-                case 3:
-                    mynotes.setText(msg.arg1);
-                    break;
-                case 4:
-                    mylikes.setText(msg.arg1);
-                    break;
-            }
-        }
-    };
+//    Handler handler = new Handler(){
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            switch (msg.what){
+//                case 1:
+//                    if(msg.arg1!=0){
+//                        guanzhu.setText(msg.arg1);
+//                    }
+//                    break;
+//                case 2:
+//                    if(msg.arg1!=0){
+//                        fans.setText(msg.arg1);
+//                    }
+//                    break;
+//                case 3:
+//                    if (msg.arg1!=0){
+//                        mynotes.setText(msg.arg1);
+//                    }
+//                    break;
+//                case 4:
+//                    if(msg.arg1!=0){
+//                        mylikes.setText(msg.arg1);
+//                    }
+//                    break;
+//            }
+//        }
+//    };
 
     @Nullable
     @Override
@@ -91,10 +99,13 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         DisplayOptions displayOptions = new DisplayOptions();
         displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
         head_icon.setOptions(displayOptions);
-        head_icon.displayImage(myUser.getHead().getUrl());
-        nickname.setText(myUser.getNickname());
-
-        selectFour();
+        if(myUser.getHead()!=null){
+            head_icon.displayImage(myUser.getHead().getUrl());
+        }
+        if(myUser.getNickname() != null){
+            nickname.setText(myUser.getNickname());
+        }
+        //selectFour();
     }
 
     @Override
@@ -159,71 +170,71 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     }
 
     //关注、粉丝、发布、收藏
-    private void selectFour(){
-        MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
-
-        BmobQuery<MyUser> query1 = new BmobQuery<MyUser>();
-        query1.addWhereRelatedTo("attention",new BmobPointer(myUser));
-        query1.findObjects(new FindListener<MyUser>() {
-            @Override
-            public void done(List<MyUser> list, BmobException e) {
-                if (e==null){
-                    Message message = handler.obtainMessage();
-                    message.what = 1;
-                    message.arg1 = list.size();
-                    handler.sendMessage(message);
-                }else {
-
-                }
-            }
-        });
-
-        BmobQuery<MyUser> query2 = new BmobQuery<MyUser>();
-        query2.addWhereRelatedTo("fans",new BmobPointer(myUser));
-        query2.findObjects(new FindListener<MyUser>() {
-            @Override
-            public void done(List<MyUser> list, BmobException e) {
-                if (e==null){
-                    Message message = handler.obtainMessage();
-                    message.what = 2;
-                    message.arg1 = list.size();
-                    handler.sendMessage(message);
-                }else {
-
-                }
-            }
-        });
-
-        BmobQuery<Note> query3 = new BmobQuery<Note>();
-        query3.addWhereEqualTo("author",myUser);
-        query3.findObjects(new FindListener<Note>() {
-            @Override
-            public void done(List<Note> list, BmobException e) {
-                if(e==null){
-                    Message message = handler.obtainMessage();
-                    message.what = 3;
-                    message.arg1 = list.size();
-                    handler.sendMessage(message);
-                }else{
-
-                }
-            }
-        });
-
-        BmobQuery<Note> query4 = new BmobQuery<Note>();
-        query4.addWhereRelatedTo("likes",new BmobPointer(myUser));
-        query4.findObjects(new FindListener<Note>() {
-            @Override
-            public void done(List<Note> list, BmobException e) {
-                if (e==null){
-                    Message message = handler.obtainMessage();
-                    message.what = 4;
-                    message.arg1 = list.size();
-                    handler.sendMessage(message);
-                }else {
-
-                }
-            }
-        });
-    }
+//    private void selectFour(){
+//        MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+//
+//        BmobQuery<MyUser> query1 = new BmobQuery<MyUser>();
+//        query1.addWhereRelatedTo("attention",new BmobPointer(myUser));
+//        query1.findObjects(new FindListener<MyUser>() {
+//            @Override
+//            public void done(List<MyUser> list, BmobException e) {
+//                if (e==null){
+//                    Message message = handler.obtainMessage();
+//                    message.what = 1;
+//                    message.arg1 = list.size();
+//                    handler.sendMessage(message);
+//                }else {
+//
+//                }
+//            }
+//        });
+//
+//        BmobQuery<MyUser> query2 = new BmobQuery<MyUser>();
+//        query2.addWhereRelatedTo("fans",new BmobPointer(myUser));
+//        query2.findObjects(new FindListener<MyUser>() {
+//            @Override
+//            public void done(List<MyUser> list, BmobException e) {
+//                if (e==null){
+//                    Message message = handler.obtainMessage();
+//                    message.what = 2;
+//                    message.arg1 = list.size();
+//                    handler.sendMessage(message);
+//                }else {
+//
+//                }
+//            }
+//        });
+//
+//        BmobQuery<Note> query3 = new BmobQuery<Note>();
+//        query3.addWhereEqualTo("author",myUser);
+//        query3.findObjects(new FindListener<Note>() {
+//            @Override
+//            public void done(List<Note> list, BmobException e) {
+//                if(e==null){
+//                    Message message = handler.obtainMessage();
+//                    message.what = 3;
+//                    message.arg1 = list.size();
+//                    handler.sendMessage(message);
+//                }else{
+//
+//                }
+//            }
+//        });
+//
+//        BmobQuery<Note> query4 = new BmobQuery<Note>();
+//        query4.addWhereRelatedTo("likes",new BmobPointer(myUser));
+//        query4.findObjects(new FindListener<Note>() {
+//            @Override
+//            public void done(List<Note> list, BmobException e) {
+//                if (e==null){
+//                    Message message = handler.obtainMessage();
+//                    message.what = 4;
+//                    message.arg1 = list.size();
+//                    handler.sendMessage(message);
+//                }else {
+//
+//                }
+//            }
+//        });
+//    }
 }

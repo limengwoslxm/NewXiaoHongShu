@@ -68,19 +68,22 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     String currentId;
     String currentArea;
     String currentSignatures;
+    boolean sexDialog = false;
     List<Map<Integer,String>> skinData = new ArrayList<>();
     Map<Integer,String> map = new HashMap<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHeadIconCircle();
         refreshUserInfo();
         setViewListener();
 
+    }
+    public void setHeadIconCircle(){
         DisplayOptions displayOptions = new DisplayOptions();
         displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
         head_icon.setOptions(displayOptions);
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -299,6 +302,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     }
     //性别选择
     private void sexChoiceDialog() {
+
         new AlertDialog.Builder(this)
                 .setTitle("请选择你的性别")
                 .setSingleChoiceItems(new String[]{"男", "女"}, 0, new DialogInterface.OnClickListener() {
@@ -306,16 +310,17 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if(i == 0){
                             sex_dialog = "男";
-                            UpdateDataBmob.UpdataSex(false);
+                            sexDialog = false;
                         }else if(i == 1){
                             sex_dialog = "女";
-                            UpdateDataBmob.UpdataSex(true);
+                            sexDialog = true;
                         }
                     }
                 })
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        UpdateDataBmob.UpdataSex(sexDialog);
                         sex.getName().setText(sex_dialog);
                     }
                 })
@@ -330,19 +335,23 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     //从数据库获取个人信息（创建和刷新时调用）
     private void refreshUserInfo(){
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
-        //加载头像
-        head_icon.displayImage(myUser.getHead().getUrl());
+        if(myUser.getHead()!=null){
+            //加载头像
+            head_icon.displayImage(myUser.getHead().getUrl());
+        }
 
         //昵称
         String nickname_Bmob = myUser.getNickname();
         if (nickname_Bmob!=null){
             name.getName().setText(nickname_Bmob);
+        }else {
+            name.getName().setText("小红书");
         }
 
         //ID
         String id_Bmob = myUser.getCopyId();
         if (id_Bmob!=null){
-            id.getName().setText(nickname_Bmob);
+            id.getName().setText(id_Bmob);
         }
 
         //性别
