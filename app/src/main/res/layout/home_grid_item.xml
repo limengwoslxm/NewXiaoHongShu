@@ -13,7 +13,7 @@
             android:id="@+id/grid_item_pic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/yeah"
+            android:src="@drawable/testgril"
             android:scaleType="centerCrop"/>
         <TextView
             android:id="@+id/grid_item_textTitle"

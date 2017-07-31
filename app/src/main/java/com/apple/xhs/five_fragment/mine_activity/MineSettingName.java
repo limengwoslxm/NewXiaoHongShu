@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.apple.xhs.CustomView.InfoSettingTitle;
+import com.apple.xhs.custom_view.InfoSettingTitle;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
 import com.data.UpdateDataBmob;

@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center_horizontal">
-    <com.apple.xhs.CustomView.InfoSettingTitle
+    <com.apple.xhs.custom_view.InfoSettingTitle
         android:id="@+id/reset_mombaby"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -3,13 +3,12 @@ package com.apple.xhs.five_fragment.mine_activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.apple.xhs.CustomView.InfoSettingTitle;
+import com.apple.xhs.custom_view.InfoSettingTitle;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
 import com.bean.MyUser;

@@ -26,6 +26,10 @@
         <item name="android:windowAnimationStyle">@style/noAnimation</item>
         <item name="android:alertDialogTheme">@style/Mine_Dialog.Alert</item>
     </style>
+    <style name="CollapingTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#E12830</item>
+        <item name="colorPrimaryDark">#E12830</item>
+    </style>
     <style name="MyDialogStyleInHomeScrollView">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>

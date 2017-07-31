@@ -7,4 +7,5 @@
     <string name="login_name_pass">账号密码登录</string>
     <string name="three_search">大家都在搜 \"盛夏好物大赏\"</string>
     <string name="action_settings">Settings</string>
+    <string name="notetestcontext">为RecyclerView的每个子item设置setOnClickListener，然后在onClick中再调用一次对外封装的接口，将这个事件传递给外面的调用者。而“为RecyclerView的每个子item设置setOnClickListener”在Adapter中设置。其实直接在onClick中也能完全处理item的点击事件，但是这样会破坏代码的逻辑。</string>
 </resources>

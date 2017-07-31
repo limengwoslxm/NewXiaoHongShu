@@ -7,12 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.apple.xhs.CustomView.InfoSettingTitle;
+import com.apple.xhs.custom_view.InfoSettingTitle;
 import com.apple.xhs.R;
-import com.apple.xhs.five_fragment.view_util.MyFragmentPagerAdapter;
-import com.apple.xhs.five_fragment.search_fragment.SearchAddF_1;
-import com.apple.xhs.five_fragment.search_fragment.SearchAddF_2;
-import com.apple.xhs.five_fragment.search_fragment.SearchAddF_3;
+import com.apple.xhs.adapter_util.MyFragmentPagerAdapter;
+import com.apple.xhs.five_fragment.search_activity.search_fragment.SearchAddF_1;
+import com.apple.xhs.five_fragment.search_activity.search_fragment.SearchAddF_2;
+import com.apple.xhs.five_fragment.search_activity.search_fragment.SearchAddF_3;
 import com.base.BaseActivity;
 
 import java.util.ArrayList;

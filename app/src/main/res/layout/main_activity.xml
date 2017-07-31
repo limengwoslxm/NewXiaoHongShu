@@ -8,27 +8,27 @@
         android:layout_height="match_parent">
         <fragment
             android:id="@+id/fragment_home"
-            android:name="com.apple.xhs.five_fragment.HomeFragment"
+            android:name="com.apple.xhs.five_fragment.home_activity.HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <fragment
             android:id="@+id/fragment_search"
-            android:name="com.apple.xhs.five_fragment.SearchFragment"
+            android:name="com.apple.xhs.five_fragment.search_activity.SearchFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <fragment
             android:id="@+id/fragment_store"
-            android:name="com.apple.xhs.five_fragment.StoreFragment"
+            android:name="com.apple.xhs.five_fragment.store_activity.StoreFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <fragment
             android:id="@+id/fragment_msg"
-            android:name="com.apple.xhs.five_fragment.MsgFragment"
+            android:name="com.apple.xhs.five_fragment.msg_activity.msg_viewpager_fragment.MsgFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <fragment
             android:id="@+id/fragment_me"
-            android:name="com.apple.xhs.five_fragment.MeFragment"
+            android:name="com.apple.xhs.five_fragment.mine_activity.MeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </FrameLayout>

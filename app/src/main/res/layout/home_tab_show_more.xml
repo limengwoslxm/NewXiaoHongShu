@@ -14,6 +14,7 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:text="全部选项"
+            android:textColor="@color/black"
             android:gravity="center_vertical"
             android:paddingLeft="20dp"/>
         <ImageView
@@ -27,13 +28,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="43dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/white">
         <TextView
             android:id="@+id/home_tab1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="推荐"
+            android:textColor="@color/black"
             android:gravity="center"/>
         <View
             android:layout_width="1px"
@@ -45,6 +48,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="关注"
+            android:textColor="@color/black"
             android:gravity="center"/>
         <View
             android:layout_width="1px"
@@ -56,6 +60,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="武汉"
+            android:textColor="@color/black"
             android:gravity="center"/>
         <View
             android:layout_width="1px"
@@ -67,6 +72,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="男人"
+            android:textColor="@color/black"
             android:gravity="center"/>
     </LinearLayout>
     <View
@@ -76,13 +82,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="43dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/white">
         <TextView
             android:id="@+id/home_tab5"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="护肤"
+            android:textColor="@color/black"
             android:gravity="center"/>
         <View
             android:layout_width="1px"
@@ -94,6 +102,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="居家"
+            android:textColor="@color/black"
             android:gravity="center"/>
         <View
             android:layout_width="1px"
@@ -105,6 +114,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="时尚"
+            android:textColor="@color/black"
             android:gravity="center"/>
         <View
             android:layout_width="1px"
@@ -116,6 +126,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="美食"
+            android:textColor="@color/black"
             android:gravity="center"/>
     </LinearLayout>
     <View
@@ -125,13 +136,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="43dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/white">
         <TextView
             android:id="@+id/home_tab9"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="运动"
+            android:textColor="@color/black"
             android:gravity="center"/>
         <View
             android:layout_width="1px"
@@ -143,6 +156,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="旅行"
+            android:textColor="@color/black"
             android:gravity="center"/>
         <View
             android:layout_width="1px"
@@ -154,6 +168,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="彩妆"
+            android:textColor="@color/black"
             android:gravity="center"/>
         <View
             android:layout_width="1px"
@@ -165,6 +180,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="母婴"
+            android:textColor="@color/black"
             android:gravity="center"/>
     </LinearLayout>
     <TextView

@@ -5,14 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.apple.xhs.CustomView.InfoSettingTitle;
+import com.apple.xhs.custom_view.InfoSettingTitle;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
 

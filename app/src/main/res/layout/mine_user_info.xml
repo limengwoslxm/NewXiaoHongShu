@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <com.apple.xhs.CustomView.InfoSettingTitle
+    <com.apple.xhs.custom_view.InfoSettingTitle
         android:id="@+id/infosetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,42 +54,42 @@
                     android:src="@mipmap/arrow_icon_right" />
             </LinearLayout>
             <include layout="@layout/setting_line_merge" />
-            <com.apple.xhs.CustomView.UserInfoRow
+            <com.apple.xhs.custom_view.UserInfoRow
                 android:id="@+id/override_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setItemTitle="昵称"
                 app:setNameText="小红书" />
             <include layout="@layout/setting_line_merge" />
-            <com.apple.xhs.CustomView.UserInfoRow
+            <com.apple.xhs.custom_view.UserInfoRow
                 android:id="@+id/override_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setItemTitle="小红书ID"
                 app:setNameText="18813141902" />
             <include layout="@layout/setting_line_merge" />
-            <com.apple.xhs.CustomView.UserInfoRow
+            <com.apple.xhs.custom_view.UserInfoRow
                 android:id="@+id/sex_choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setItemTitle="性别"
                 app:setNameText="男" />
             <include layout="@layout/setting_line_merge" />
-            <com.apple.xhs.CustomView.UserInfoRow
+            <com.apple.xhs.custom_view.UserInfoRow
                 android:id="@+id/area_choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setItemTitle="常住地"
                 app:setNameText="地球的某一片红薯地" />
             <include layout="@layout/setting_line_merge" />
-            <com.apple.xhs.CustomView.UserInfoRow
+            <com.apple.xhs.custom_view.UserInfoRow
                 android:id="@+id/birthday_choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setHintText="未选择"
                 app:setItemTitle="生日" />
             <include layout="@layout/setting_line_merge" />
-            <com.apple.xhs.CustomView.UserInfoRow
+            <com.apple.xhs.custom_view.UserInfoRow
                 android:id="@+id/signatures_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,14 +106,14 @@
                 android:textColor="@color/textGrayColor"
                 android:textSize="13sp" />
             <include layout="@layout/setting_line_merge" />
-            <com.apple.xhs.CustomView.UserInfoRow
+            <com.apple.xhs.custom_view.UserInfoRow
                 android:id="@+id/choose_skin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setHintText="补充信息"
                 app:setItemTitle="肤质" />
             <include layout="@layout/setting_line_merge" />
-            <com.apple.xhs.CustomView.UserInfoRow
+            <com.apple.xhs.custom_view.UserInfoRow
                 android:id="@+id/choose_fransnana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

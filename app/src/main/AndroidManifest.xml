@@ -63,5 +63,8 @@
         <activity android:name=".shopping.ProductScan" android:theme="@style/XHSstatusbar">
 
         </activity>
+        <activity android:name=".note.NoteScan" android:theme="@style/CollapingTheme">
+
+        </activity>
     </application>
 </manifest>
