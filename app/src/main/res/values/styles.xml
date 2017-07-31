@@ -152,4 +152,8 @@
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">100dp</item>
     </style>
+    <style name="SharePopupWindow">
+        <item name="android:windowEnterAnimation">@anim/share_popupwindow_show</item>
+        <item name="android:windowExitAnimation">@anim/share_popupwindow_hide</item>
+    </style>
 </resources>

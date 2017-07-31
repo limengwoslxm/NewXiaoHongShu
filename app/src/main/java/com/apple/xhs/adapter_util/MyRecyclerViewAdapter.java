@@ -38,7 +38,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_grid_item,parent,false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
         view.setOnClickListener(this);
         return new MyViewHolder(view);
     }

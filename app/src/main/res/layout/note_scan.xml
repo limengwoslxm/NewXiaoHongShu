@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/note_appbar"
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             app:contentScrim="@color/xhsColor"
             app:statusBarScrim="@android:color/transparent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-            <ImageView
+            <me.xiaopan.sketch.SketchImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -40,12 +41,14 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:visibility="gone">
-                    <ImageView
+                    <me.xiaopan.sketch.SketchImageView
+                        android:id="@+id/userheadimage_toolbar"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/xy_walkthroughs_account"/>
                     <TextView
+                        android:id="@+id/username_toolbar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#ffffff"
@@ -73,10 +76,12 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="15dp">
                 <me.xiaopan.sketch.SketchImageView
+                    android:id="@+id/userheadimage_context"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:src="@drawable/xy_walkthroughs_account"/>
                 <TextView
+                    android:id="@+id/username_context"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -100,6 +105,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"/>
             <TextView
+                android:id="@+id/user_notetitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="12dp"
@@ -109,6 +115,7 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
             <TextView
+                android:id="@+id/user_notecontext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

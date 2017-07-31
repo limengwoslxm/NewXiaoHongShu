@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.bean.MyUser;
 import com.bean.Note;
 import com.bean.Style;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,11 +40,14 @@ import static com.data.SelectDataBmob.getStyleId;
  * Created by limeng on 2017/7/26.
  */
 
-public class HomeFragment_1 extends Fragment implements MyRecyclerViewAdapter.OnItemClickListener {
+public class HomeFragment_1 extends Fragment implements MyRecyclerViewAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
     View view;
     RecyclerView recyclerView;
     MyRecyclerViewAdapter adapter;
+    SwipeRefreshLayout swiperefreshlayout;
     List<Map<Note,MyUser>> data = new ArrayList<>();
+    SpacesItemDecoration space;
+
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -85,11 +90,16 @@ public class HomeFragment_1 extends Fragment implements MyRecyclerViewAdapter.On
 
     private void initView(View view) {
         recyclerView = view.findViewById(R.id.homeFragment1);
+        swiperefreshlayout = view.findViewById(R.id.swiperefreshlayout);
+        swiperefreshlayout.setColorSchemeColors(getResources().getColor(R.color.xhsColor));
+        swiperefreshlayout.setOnRefreshListener(this);
     }
     private void initPagerView() {
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-        SpacesItemDecoration space = new SpacesItemDecoration(20);
-        recyclerView.addItemDecoration(space);
+        if(space==null){
+            space = new SpacesItemDecoration(20);
+            recyclerView.addItemDecoration(space);
+        }
         adapter = new MyRecyclerViewAdapter(data);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(this);
@@ -97,12 +107,27 @@ public class HomeFragment_1 extends Fragment implements MyRecyclerViewAdapter.On
 
     @Override
     public void onItemClick(View view, int position) {
-        startActivity(new Intent(getActivity(), NoteScan.class));
+        Intent intent = new Intent(getActivity(), NoteScan.class);
+        intent.putExtra("userdata", (Serializable) data);
+        intent.putExtra("id",position);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getNoteByStyle("男人");
+                initPagerView();
+                swiperefreshlayout.setRefreshing(false);
+            }
+        },3000);
     }
 
     //设置item外边距
     public class SpacesItemDecoration extends RecyclerView.ItemDecoration{
-        int space;
+        int space = 0;
         public SpacesItemDecoration(int space){
             this.space = space;
         }

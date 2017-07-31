@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/product_scan_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +9,6 @@
         android:id="@+id/product_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:setText="你好啊"
         app:setDoneTextBackground="@mipmap/mine_share"
-        app:setBackground="@drawable/setting_toolbar"/>
+        app:setBackground="@color/xhsColor"/>
 </LinearLayout>

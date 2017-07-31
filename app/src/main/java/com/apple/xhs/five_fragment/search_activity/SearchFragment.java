@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.apple.xhs.R;
 import com.apple.xhs.adapter_util.MyViewPagerAdapter;
+import com.apple.xhs.note.NoteScan;
 
 import java.util.ArrayList;
 import java.util.List;

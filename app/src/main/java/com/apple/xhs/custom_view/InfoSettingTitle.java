@@ -20,6 +20,7 @@ import com.apple.xhs.R;
 public class InfoSettingTitle extends RelativeLayout {
     View parent,img;
     TextView textView,textViewDone;
+
     public InfoSettingTitle(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initUiView(context,attrs);
@@ -43,6 +44,9 @@ public class InfoSettingTitle extends RelativeLayout {
         parent.setBackground(drawable1);
     }
 
+    public void setTitleText(String str){
+        textView.setText(str);
+    }
     public void setImgListener(OnClickListener listener) {
         img.setOnClickListener(listener);
     }
