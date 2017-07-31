@@ -163,11 +163,9 @@ public class HomeFragment_1 extends Fragment implements MyRecyclerViewAdapter.On
                                 Log.i("bmob","查询作者成功" + userlist.size());
                                 List<Map<Note,MyUser>> maps = new ArrayList<>();
                                 for (int i = 0;i < notelist.size();i++){
-                                    Log.i("bmob","note = " + notelist.get(i).getAuthor().getObjectId());
                                     for (int j = 0;j < userlist.size();j++){
-                                        Log.i("bmob","user = " + userlist.get(j).getObjectId());
                                         if (notelist.get(i).getAuthor().getObjectId().equals(userlist.get(j).getObjectId())){
-                                            Log.i("data1",notelist.size() + "||" + userlist.size());
+                                            Log.i("bmob","note = " + notelist.get(i).getImage().get(0).getFilename());
                                             Map<Note,MyUser> map = new HashMap<>();
                                             map.put(notelist.get(i),userlist.get(j));
                                             maps.add(map);

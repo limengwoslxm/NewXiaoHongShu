@@ -19,10 +19,12 @@ public class MyUser extends BmobUser {
     private String signature;
     private String CopyId;
     private Boolean Change;
-    private List<Map> skin;
+    private List<Map<Integer,String>> skin;
     private String pregnant;
     private BmobRelation attention;
     private BmobRelation fans;
+    private City address;
+    private BmobRelation likes;
 
     public MyUser() {
     }
@@ -83,11 +85,11 @@ public class MyUser extends BmobUser {
         this.signature = signature;
     }
 
-    public List<Map> getSkin() {
+    public List<Map<Integer,String>> getSkin() {
         return skin;
     }
 
-    public void setSkin(List<Map> skin) {
+    public void setSkin(List<Map<Integer,String>> skin) {
         this.skin = skin;
     }
 
@@ -113,5 +115,21 @@ public class MyUser extends BmobUser {
 
     public void setFans(BmobRelation fans) {
         this.fans = fans;
+    }
+
+    public City getAddress() {
+        return address;
+    }
+
+    public void setAddress(City address) {
+        this.address = address;
+    }
+
+    public BmobRelation getLikes() {
+        return likes;
+    }
+
+    public void setLikes(BmobRelation likes) {
+        this.likes = likes;
     }
 }

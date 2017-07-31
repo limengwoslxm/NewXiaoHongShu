@@ -15,6 +15,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
 
@@ -68,12 +69,48 @@ public class SelectDataBmob {
         });
     }
 
-    //获取MyUser对象通过ID
-    public void getUserByID(String id){
+    //关注人数
+    public void selectAttentions(){
+        MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
         BmobQuery<MyUser> query = new BmobQuery<MyUser>();
-        query.getObject(id, new QueryListener<MyUser>() {
+        query.addWhereRelatedTo("attention",new BmobPointer(myUser));
+        query.findObjects(new FindListener<MyUser>() {
             @Override
-            public void done(MyUser myUser, BmobException e) {
+            public void done(List<MyUser> list, BmobException e) {
+                if (e==null){
+
+                }else {
+
+                }
+            }
+        });
+    }
+
+    //粉丝人数
+    public void selectFans(){
+        MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+        BmobQuery<MyUser> query = new BmobQuery<MyUser>();
+        query.addWhereRelatedTo("fans",new BmobPointer(myUser));
+        query.findObjects(new FindListener<MyUser>() {
+            @Override
+            public void done(List<MyUser> list, BmobException e) {
+                if (e==null){
+
+                }else {
+
+                }
+            }
+        });
+    }
+
+    //我的收藏
+    public void selectLikes(){
+        MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+        BmobQuery<Note> query = new BmobQuery<Note>();
+        query.addWhereRelatedTo("likes",new BmobPointer(myUser));
+        query.findObjects(new FindListener<Note>() {
+            @Override
+            public void done(List<Note> list, BmobException e) {
                 if (e==null){
 
                 }else {
