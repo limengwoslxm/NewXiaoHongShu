@@ -45,7 +45,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
         Log.i("data",data.size() + "data2");
         Note note = new Note();
         MyUser myUser = new MyUser();
@@ -53,6 +52,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             note = entry.getKey();
             myUser = entry.getValue();
         }
+        Log.i("bmob",note.getImage().get(0) + "new");
         holder.imgPic.displayImage(note.getImage().get(0).getUrl());
         holder.textTitle.setText(note.getTitle());
         holder.textUserHead.displayImage(myUser.getHead().getUrl());
@@ -89,7 +89,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 //            ViewGroup.LayoutParams params = imgPic.getLayoutParams();
 //            params.height = (int)(200+ Math.random()*600);
 //            imgPic.setLayoutParams(params);
-            imgPic.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imgPic.setScaleType(SketchImageView.ScaleType.CENTER_CROP);
             imgPic.setAdjustViewBounds(true);
             //
             textTitle = itemView.findViewById(R.id.grid_item_textTitle);

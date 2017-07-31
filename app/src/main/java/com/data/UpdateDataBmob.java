@@ -2,10 +2,15 @@ package com.data;
 
 
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.apple.initbmob.InitBmob;
+import com.bean.City;
 import com.bean.MyUser;
 import com.bean.Note;
+import com.collecter.ErrorCollecter;
 
 
 import java.util.List;
@@ -40,8 +45,10 @@ public class UpdateDataBmob {
                         @Override
                         public void done(BmobException e) {
                             if(e==null){
+                                Toast.makeText(InitBmob.getContext(),"头像更新成功", Toast.LENGTH_SHORT).show();
                                 Log.i("bmob","头像更新成功");
                             }else{
+                                Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                                 Log.i("bmob","头像更新失败："+e.getMessage()+","+e.getErrorCode());
                             }
                         }
@@ -62,8 +69,10 @@ public class UpdateDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    Toast.makeText(InitBmob.getContext(), "昵称更新成功", Toast.LENGTH_SHORT).show();
                     Log.i("bmob","昵称更新成功");
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","昵称更新失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
@@ -80,8 +89,10 @@ public class UpdateDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    Toast.makeText(InitBmob.getContext(), "ID初始化成功", Toast.LENGTH_SHORT).show();
                     Log.i("bmob","ID初始化成功");
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","ID初始化失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
@@ -98,8 +109,10 @@ public class UpdateDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    Toast.makeText(InitBmob.getContext(), "ID更新成功", Toast.LENGTH_SHORT).show();
                     Log.i("bmob","ID更新成功");
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","ID更新失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
@@ -115,8 +128,10 @@ public class UpdateDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    Toast.makeText(InitBmob.getContext(), "性别更新成功", Toast.LENGTH_SHORT).show();
                     Log.i("bmob","性别更新成功");
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","性别更新失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
@@ -132,9 +147,32 @@ public class UpdateDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    Toast.makeText(InitBmob.getContext(), "生日更新成功", Toast.LENGTH_SHORT).show();
                     Log.i("bmob","生日更新成功");
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","生日更新失败："+e.getMessage()+","+e.getErrorCode());
+                }
+            }
+        });
+    }
+
+    //更改常住地
+    public static void UpdataArea(String area){
+        final MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+        City city = new City();
+        city.setObjectId("nV96hhhk");
+        MyUser user = new MyUser();
+        user.setAddress(city);
+        user.update(myUser.getObjectId(), new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    Toast.makeText(InitBmob.getContext(), "常住地更新成功", Toast.LENGTH_SHORT).show();
+                    Log.i("bmob","常住地更新成功");
+                }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
+                    Log.i("bmob","常住地更新失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
         });
@@ -149,8 +187,10 @@ public class UpdateDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    Toast.makeText(InitBmob.getContext(), "签名更新成功", Toast.LENGTH_SHORT).show();
                     Log.i("bmob","签名更新成功");
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","签名更新失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
@@ -158,7 +198,7 @@ public class UpdateDataBmob {
     }
 
     //更改肤质
-    public static void UpdataSkin(List<Map> skin){
+    public static void UpdataSkin(List<Map<Integer,String>> skin){
         final MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
         MyUser user = new MyUser();
         user.setValue("skin",skin);
@@ -166,8 +206,10 @@ public class UpdateDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    Toast.makeText(InitBmob.getContext(), "肤质更新成功", Toast.LENGTH_SHORT).show();
                     Log.i("bmob","肤质更新成功");
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","肤质更新失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
@@ -183,8 +225,10 @@ public class UpdateDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    Toast.makeText(InitBmob.getContext(), "母婴更新成功", Toast.LENGTH_SHORT).show();
                     Log.i("bmob","母婴更新成功");
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","母婴更新失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
@@ -212,4 +256,6 @@ public class UpdateDataBmob {
             }
         });
     }
+
+
 }

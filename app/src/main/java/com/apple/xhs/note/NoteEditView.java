@@ -128,8 +128,12 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
                 title = noteTitle.getText().toString();
                 context = noteContext.getText().toString();
                 addCheckData();//返回数据到 getCheckData；
-                AddDataBmob.addDataToNote(title,context,picData,getCheckData);
-                finish();
+                if (picData.size()==0){
+                    Toast.makeText(this,"请至少添加一张照片",Toast.LENGTH_SHORT).show();
+                }else {
+                    AddDataBmob.addDataToNote(title,context,picData,getCheckData);
+                    finish();
+                }
                 break;
             case R.id.note_add_pic:
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);

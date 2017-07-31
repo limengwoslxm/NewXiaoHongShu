@@ -8,12 +8,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import com.apple.xhs.custom_view.InfoSettingTitle;
 import com.apple.xhs.custom_view.UserInfoRow;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
+import com.bean.City;
 import com.bean.MyUser;
 import com.data.UpdateDataBmob;
 
@@ -25,8 +27,11 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 import me.xiaopan.sketch.SketchImageView;
 import me.xiaopan.sketch.process.CircleImageProcessor;
 import me.xiaopan.sketch.request.DisplayOptions;
@@ -99,6 +104,14 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 id.getName().setText(newid);
                 UpdateDataBmob.UpdataID(newid);
                 break;
+            case 3:
+                String newArea = data.getStringExtra("area");
+                if(newArea.equals("")){
+                    return;
+                }
+                area.getName().setText(newArea);
+                UpdateDataBmob.UpdataArea(newArea);
+                break;
             case 4:
                 String newsign = data.getStringExtra("sign");
                 if(newsign.equals("")){
@@ -113,6 +126,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                     return;
                 }
                 mombaby.getName().setText(newMom);
+                UpdateDataBmob.UpdataPregnant(newMom);
                 break;
             default:
                 String img_url=uriChange(data);
@@ -231,6 +245,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                             str = str+entry.getValue()+"  ";
                         }
                         skin.getName().setText(str);
+                        UpdateDataBmob.UpdataSkin(skinData);
                         map.clear();
                     }
                 })
@@ -326,7 +341,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
 
         //ID
         String id_Bmob = myUser.getCopyId();
-        if (nickname_Bmob!=null){
+        if (id_Bmob!=null){
             id.getName().setText(nickname_Bmob);
         }
 
@@ -334,6 +349,22 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         Boolean sex_Bmob = myUser.getSex();
         if(sex_Bmob != null){
             sex.getName().setText(sex_Bmob ? "女" : "男");
+        }
+
+        //常住地
+        City city_Bmob = myUser.getAddress();
+        if(city_Bmob != null){
+            BmobQuery<City> query = new BmobQuery<City>();
+            query.getObject(city_Bmob.getObjectId(), new QueryListener<City>() {
+                @Override
+                public void done(City city, BmobException e) {
+                    if(e==null){
+                        area.getName().setText(city.getCityname());
+                    }else{
+                        Log.i("bmob","获取常住地失败："+e.getMessage()+","+e.getErrorCode());
+                    }
+                }
+            });
         }
 
         //生日
@@ -346,6 +377,22 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         String sign_Bmob = myUser.getSignature();
         if (sign_Bmob != null){
             signatures.getName().setText(sign_Bmob);
+        }
+
+        //肤质
+        List<Map<Integer,String>> skin_Bmob = myUser.getSkin();
+        if (skin_Bmob != null){
+            String str = "";
+            for(Map.Entry<Integer,String> entry: skin_Bmob.get(0).entrySet()){
+                str = str+entry.getValue()+"  ";
+            }
+            skin.getName().setText(str);
+        }
+
+        //母婴
+        String mom_Bmob = myUser.getPregnant();
+        if (mom_Bmob != null){
+            mombaby.getName().setText(sign_Bmob);
         }
     }
 }
