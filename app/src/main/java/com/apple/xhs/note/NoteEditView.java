@@ -69,6 +69,9 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
     List<CheckBox> checkItem = new ArrayList<>();
     String[] strings = {"男人","护肤","居家","时尚","美食","运动","旅行","彩妆","母婴"};
     List<String> picData = new ArrayList<>();
+    List<ImageView> addImageList = new ArrayList<>();
+    int imageIndex;
+    LinearLayout linearLayout;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,7 +172,7 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
         addView(img_url);
     }
     private void addView(String s) {
-        LinearLayout linearLayout = findViewById(R.id.linearlayout);
+        linearLayout = findViewById(R.id.linearlayout);
         SketchImageView img = new SketchImageView(this);
         TextView textView = new TextView(this);
         img.setLayoutParams(new LinearLayout.LayoutParams(300,300));
@@ -177,9 +180,9 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
         Bitmap bitmap = BitmapFactory.decodeFile(s);
         img.setImageBitmap(bitmap);
         img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
         linearLayout.addView(textView);
         linearLayout.addView(img);
+        addImageList.add(imageIndex,img);
     }
 
     private void addCheckData() {
@@ -190,7 +193,14 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
             }
         }
     }
-
+//    private void deleteImage(View view){
+//        for(int i = 0;i<addImageList.size();i++){
+//            if(addImageList.get(i)==view){
+//                linearLayout.removeViewAt();
+//            }
+//        }
+//    }
+    //设置字数
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 

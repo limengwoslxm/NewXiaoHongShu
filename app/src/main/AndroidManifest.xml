@@ -66,5 +66,6 @@
         <activity android:name=".note.NoteScan" android:theme="@style/CollapingTheme">
 
         </activity>
+        <activity android:name=".note.SelfNoteScan" android:theme="@style/XHSstatusbar"></activity>
     </application>
 </manifest>

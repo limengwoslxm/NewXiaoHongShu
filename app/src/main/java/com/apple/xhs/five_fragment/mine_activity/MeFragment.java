@@ -22,6 +22,7 @@ import com.apple.xhs.Login;
 import com.apple.xhs.R;
 import com.apple.xhs.five_fragment.mine_activity.MineShowGuanzhu;
 import com.apple.xhs.five_fragment.mine_activity.MineUserInfoSetting;
+import com.apple.xhs.note.SelfNoteScan;
 import com.bean.MyUser;
 import com.bean.Note;
 
@@ -79,6 +80,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_me_layout,container,false);
         view.findViewById(R.id.mine_exit_account).setOnClickListener(this);
+        view.findViewById(R.id.myselfnote).setOnClickListener(this);
         view.findViewById(R.id.ge).setOnClickListener(this);
         view.findViewById(R.id.me_guanzhu).setOnClickListener(this);
         view.findViewById(R.id.me_guanzhu1).setOnClickListener(this);
@@ -126,6 +128,10 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
                 galleryIntent.setType("image/*");//图片
                 startActivityForResult(galleryIntent, 1);
+                break;
+            case R.id.myselfnote:
+                startActivity(new Intent(getActivity(), SelfNoteScan.class));
+                break;
         }
     }
 

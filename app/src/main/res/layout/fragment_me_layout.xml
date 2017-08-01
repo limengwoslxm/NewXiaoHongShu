@@ -126,6 +126,7 @@
                 android:textColor="#000" />
         </LinearLayout>
         <com.apple.xhs.custom_view.InfoSettingRow
+            android:id="@+id/myselfnote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:setRowTitle="我的笔记" />
