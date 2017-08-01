@@ -202,6 +202,12 @@
                     android:id="@+id/note_muying"
                     style="@style/NoteCheckBiaoqian"/>
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="最多选择三个哦"
+                android:textColor="@color/gray"
+                android:layout_margin="15dp"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

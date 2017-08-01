@@ -17,7 +17,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.apple.xhs.R;
-import com.apple.xhs.five_fragment.home_activity.HomeOpenCamera;
 import com.apple.xhs.five_fragment.home_activity.home_fragment.HomeFragment_1;
 import com.apple.xhs.five_fragment.home_activity.home_fragment.HomeFragment_10;
 import com.apple.xhs.five_fragment.home_activity.home_fragment.HomeFragment_11;
@@ -30,12 +29,10 @@ import com.apple.xhs.five_fragment.home_activity.home_fragment.HomeFragment_6;
 import com.apple.xhs.five_fragment.home_activity.home_fragment.HomeFragment_7;
 import com.apple.xhs.five_fragment.home_activity.home_fragment.HomeFragment_8;
 import com.apple.xhs.five_fragment.home_activity.home_fragment.HomeFragment_9;
-import com.apple.xhs.adapter_util.MyFragmentPagerAdapter;
+import com.apple.util.MyFragmentPagerAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**

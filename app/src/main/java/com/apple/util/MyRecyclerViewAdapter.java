@@ -1,11 +1,10 @@
-package com.apple.xhs.adapter_util;
+package com.apple.util;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.apple.xhs.R;

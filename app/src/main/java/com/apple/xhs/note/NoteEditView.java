@@ -28,6 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import me.xiaopan.sketch.SketchImageView;
+import rx.internal.schedulers.EventLoopsScheduler;
 
 /**
  * Created by limeng on 2017/7/27.
@@ -130,7 +131,8 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
             case R.id.my_setting_done:
                 title = noteTitle.getText().toString();
                 context = noteContext.getText().toString();
-                addCheckData();//返回数据到 getCheckData；
+                addCheckData();
+                //addCheckData();//返回数据到 getCheckData；
                 if (picData.size()==0){
                     Toast.makeText(this,"请至少添加一张照片",Toast.LENGTH_SHORT).show();
                 }else {
@@ -144,6 +146,18 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
                 galleryIntent.setType("image/*");//图片
                 startActivityForResult(galleryIntent, 100);
                 break;
+            case R.id.note_nanren:
+            case R.id.note_hufu:
+            case R.id.note_jujia:
+            case R.id.note_shishang:
+            case R.id.note_meishi:
+            case R.id.note_yundong:
+            case R.id.note_lvxing:
+            case R.id.note_caizhuang:
+            case R.id.note_muying:
+                checkLimit();
+                break;
+
         }
     }
 
@@ -182,7 +196,13 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
         img.setScaleType(ImageView.ScaleType.CENTER_CROP);
         linearLayout.addView(textView);
         linearLayout.addView(img);
-        addImageList.add(imageIndex,img);
+        img.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                linearLayout.removeView(view);
+                return false;
+            }
+        });
     }
 
     private void addCheckData() {
@@ -214,5 +234,21 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
     @Override
     public void afterTextChanged(Editable editable) {
         limit.setHint((20-noteTitle.getText().toString().length())+"");
+    }
+    public void checkLimit(){
+        //感觉逻辑写的不好
+        int check = 0;
+        for(CheckBox box : checkItem){
+            if(box.isChecked()&&check<3){
+                check ++;
+            }
+        }
+        for (CheckBox box : checkItem){
+            if(!box.isChecked()&&check==3){
+                box.setClickable(false);
+            }else if(check<3){
+                box.setClickable(true);
+            }
+        }
     }
 }

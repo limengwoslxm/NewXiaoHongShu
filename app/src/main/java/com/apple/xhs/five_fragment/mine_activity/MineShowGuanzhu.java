@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.apple.xhs.custom_view.InfoSettingTitle;
 import com.apple.xhs.R;
-import com.apple.xhs.adapter_util.MyFragmentPagerAdapter;
+import com.apple.util.MyFragmentPagerAdapter;
 import com.apple.xhs.five_fragment.mine_activity.biaoqian_fragment.FragmentFour;
 import com.apple.xhs.five_fragment.mine_activity.biaoqian_fragment.FragmentOne;
 import com.apple.xhs.five_fragment.mine_activity.biaoqian_fragment.FragmentThree;

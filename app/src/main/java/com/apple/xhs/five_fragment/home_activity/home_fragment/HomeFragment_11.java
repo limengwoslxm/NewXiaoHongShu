@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.apple.xhs.R;
-import com.apple.xhs.adapter_util.MyRecyclerViewAdapter;
+import com.apple.util.MyRecyclerViewAdapter;
 import com.apple.xhs.note.NoteScan;
 import com.bean.MyUser;
 import com.bean.Note;

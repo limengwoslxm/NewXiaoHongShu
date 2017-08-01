@@ -1,4 +1,4 @@
-package com.apple.xhs.adapter_util;
+package com.apple.util;
 
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;

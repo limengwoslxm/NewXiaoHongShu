@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.apple.xhs.R;
-import com.apple.xhs.adapter_util.MyViewPagerAdapter;
+import com.apple.util.MyViewPagerAdapter;
 import com.apple.xhs.shopping.ProductScan;
 
 import java.util.ArrayList;

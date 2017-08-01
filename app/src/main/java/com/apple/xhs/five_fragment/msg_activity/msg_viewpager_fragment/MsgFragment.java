@@ -10,10 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.apple.xhs.R;
-import com.apple.xhs.adapter_util.MyFragmentPagerAdapter;
-import com.apple.xhs.five_fragment.msg_activity.msg_viewpager_fragment.MsgViewPgFgLeft;
-import com.apple.xhs.five_fragment.msg_activity.msg_viewpager_fragment.MsgViewPgFgMid;
-import com.apple.xhs.five_fragment.msg_activity.msg_viewpager_fragment.MsgViewPgFgRight;
+import com.apple.util.MyFragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

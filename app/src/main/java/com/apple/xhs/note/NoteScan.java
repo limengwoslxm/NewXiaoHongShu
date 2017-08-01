@@ -12,16 +12,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.apple.util.AppBarStateChangeListener;
 import com.apple.xhs.R;
-import com.apple.xhs.adapter_util.AppBarStateChangeListener;
 import com.base.BaseActivity;
 import com.bean.MyUser;
 import com.bean.Note;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +34,7 @@ import me.xiaopan.sketch.request.DisplayOptions;
  * Created by limeng on 2017/7/30.
  */
 
-public class NoteScan extends BaseActivity implements View.OnClickListener {
+public class NoteScan extends BaseActivity implements View.OnClickListener{
     //伸缩toolbar
     @BindView(R.id.note_appbar)
             AppBarLayout appBarLayout;
@@ -46,7 +46,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener {
             ButtonBarLayout playButton;
     //user info
     @BindView(R.id.image)
-            SketchImageView imageView;
+    SketchImageView imageView;
     @BindView(R.id.userheadimage_toolbar)
             SketchImageView userheadimagetoolbar;
     @BindView(R.id.username_toolbar)
@@ -63,6 +63,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener {
     View popView;
     PopupWindow popupWindow;
     MyUser myUser;
+    List<SketchImageView> sketchImageViews = new ArrayList<>();
     @Override
     public int getContentViewId() {
         return R.layout.note_scan;
@@ -81,7 +82,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener {
     private void setUserHeadImage() {
         DisplayOptions displayOptions = new DisplayOptions();
         displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
-        imageView.getOptions().setDecodeGifImage(true);
+        //imageView.getOptions().setDecodeGifImage(true);
         userheadimagetoolbar.setOptions(displayOptions);
         userheadimagecontext.setOptions(displayOptions);
     }
