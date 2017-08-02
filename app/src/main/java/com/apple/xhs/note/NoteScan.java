@@ -73,7 +73,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener {
 
         setCollapsingToolbar();
 
-        setAppbarCollapsing();
+        //setAppbarCollapsing();
         setSharePopupwindow();
 
     }
@@ -120,7 +120,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener {
     //设置toolbar
     private void setCollapsingToolbar() {
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         //返回
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

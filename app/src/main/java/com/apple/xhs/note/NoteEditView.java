@@ -193,7 +193,7 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
         linearLayout = findViewById(R.id.linearlayout);
         final SketchImageView img = new SketchImageView(this);
         TextView textView = new TextView(this);
-        img.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        img.setLayoutParams(new LinearLayout.LayoutParams(300, 300));
         textView.setLayoutParams(new LinearLayout.LayoutParams(20,300));
         img.setScaleType(ImageView.ScaleType.CENTER_CROP);
         img.displayImage(s);
