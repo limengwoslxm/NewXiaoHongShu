@@ -1,7 +1,9 @@
 package com.data;
 
 import android.util.Log;
+import android.widget.Toast;
 
+import com.apple.initbmob.InitBmob;
 import com.bean.MyUser;
 import com.bean.Note;
 
@@ -25,9 +27,10 @@ public class DeleteDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    Toast.makeText(InitBmob.getContext(),"取消收藏成功",Toast.LENGTH_SHORT).show();
                     Log.i("bmob","取消收藏成功");
                 }else{
-                    Log.i("bmob","取消收藏失败："+e.getMessage());
+                    Log.i("bmob","取消收藏失败："+e.getMessage() + e.getErrorCode());
                 }
             }
         });

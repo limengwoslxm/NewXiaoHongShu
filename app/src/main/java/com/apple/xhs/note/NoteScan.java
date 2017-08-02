@@ -12,10 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.apple.util.AppBarStateChangeListener;
+import com.apple.util.MySketchViewPagerAdapter;
+import com.apple.util.MyViewPager;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
 import com.bean.MyUser;
@@ -23,7 +26,6 @@ import com.bean.Note;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import me.xiaopan.sketch.SketchImageView;
@@ -34,7 +36,7 @@ import me.xiaopan.sketch.request.DisplayOptions;
  * Created by limeng on 2017/7/30.
  */
 
-public class NoteScan extends BaseActivity implements View.OnClickListener{
+public class NoteScan extends BaseActivity implements View.OnClickListener {
     //伸缩toolbar
     @BindView(R.id.note_appbar)
             AppBarLayout appBarLayout;
@@ -46,7 +48,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener{
             ButtonBarLayout playButton;
     //user info
     @BindView(R.id.image)
-    SketchImageView imageView;
+    MyViewPager myViewPager;
     @BindView(R.id.userheadimage_toolbar)
             SketchImageView userheadimagetoolbar;
     @BindView(R.id.username_toolbar)
@@ -59,11 +61,10 @@ public class NoteScan extends BaseActivity implements View.OnClickListener{
             TextView usernotetitle;
     @BindView(R.id.user_notecontext)
             TextView usernotecontext;
-
+    List<SketchImageView> sketchImageViews = new ArrayList<>();
     View popView;
     PopupWindow popupWindow;
     MyUser myUser;
-    List<SketchImageView> sketchImageViews = new ArrayList<>();
     @Override
     public int getContentViewId() {
         return R.layout.note_scan;
@@ -89,15 +90,23 @@ public class NoteScan extends BaseActivity implements View.OnClickListener{
 
     private void setNoteData() {
         //获取intent传来的数据，设置页面
-        List<Map<Note,MyUser>> userdata = (List<Map<Note,MyUser>>)getIntent().getSerializableExtra("userdata");
+        List<Note> userdata = (List<Note>)getIntent().getSerializableExtra("userdata");
         int position = getIntent().getIntExtra("id",0);
-        Note note = new Note();
-        myUser = new MyUser();
-        for (Map.Entry<Note,MyUser> entry : userdata.get(position).entrySet()){
-            note = entry.getKey();
-            myUser = entry.getValue();
+        Note note = userdata.get(position);
+        MyUser myUser = userdata.get(position).getAuthor();
+
+        for(int i = 0; i < note.getImage().size(); i++){
+            SketchImageView sketchImageView = new SketchImageView(this);
+            sketchImageView.setFitsSystemWindows(true);
+            sketchImageView.setAdjustViewBounds(true);
+            sketchImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            sketchImageView.getOptions().setDecodeGifImage(true);
+            sketchImageView.displayImage(note.getImage().get(0).getUrl());
+            sketchImageViews.add(sketchImageView);
         }
-        imageView.displayImage(note.getImage().get(0).getUrl());
+        MySketchViewPagerAdapter adapter = new MySketchViewPagerAdapter(sketchImageViews);
+        myViewPager.setAdapter(adapter);
+        //imageView.displayImage(note.getImage().get(0).getUrl());
         userheadimagetoolbar.displayImage(myUser.getHead().getUrl());
         usernametoolbar.setText(myUser.getNickname());
         userheadimagecontext.displayImage(myUser.getHead().getUrl());
@@ -125,12 +134,14 @@ public class NoteScan extends BaseActivity implements View.OnClickListener{
     private void setCollapsingToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //返回
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+        //右菜单，从底部弹出分享
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

@@ -5,15 +5,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.apple.xhs.R;
 import com.bean.MyUser;
 import com.bean.Note;
+import com.data.AddDataBmob;
+import com.data.DeleteDataBmob;
+import com.data.UpdateDataBmob;
 
 import java.util.List;
-import java.util.Map;
 
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobPointer;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import me.xiaopan.sketch.SketchImageView;
 import me.xiaopan.sketch.process.CircleImageProcessor;
 import me.xiaopan.sketch.request.DisplayOptions;
@@ -23,9 +32,9 @@ import me.xiaopan.sketch.request.DisplayOptions;
  */
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder> implements View.OnClickListener{
-    List<Map<Note,MyUser>> data;
+    List<Note> data;
     View view;
-    public MyRecyclerViewAdapter(List<Map<Note,MyUser>> data){
+    public MyRecyclerViewAdapter(List<Note> data){
         this.data = data;
     }
     private OnItemClickListener mOnItemClickListener = null;
@@ -42,20 +51,44 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        Log.i("data",data.size() + "data2");
-        Note note = new Note();
-        MyUser myUser = new MyUser();
-        for (Map.Entry<Note,MyUser> entry : data.get(position).entrySet()){
-            note = entry.getKey();
-            myUser = entry.getValue();
-        }
-        Log.i("bmob",note.getImage().get(0) + "new");
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        final Note note = data.get(position);
+        MyUser myUser = data.get(position).getAuthor();
         holder.imgPic.displayImage(note.getImage().get(0).getUrl());
         holder.textTitle.setText(note.getTitle());
         holder.textUserHead.displayImage(myUser.getHead().getUrl());
         holder.textUserName.setText(myUser.getNickname());
         holder.itemView.setTag(position);
+
+        MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        BmobQuery<Note> query = new BmobQuery<Note>();
+        query.addWhereRelatedTo("likes",new BmobPointer(user));
+        query.findObjects(new FindListener<Note>() {
+            @Override
+            public void done(List<Note> list, BmobException e) {
+                if (e==null){
+                    for (Note n : list){
+                        if (n.getObjectId().equals(note.getObjectId())){
+                            holder.checkBox.setChecked(true);
+                        }
+                    }
+                    holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                            if (b){
+                                AddDataBmob.addLikes(note);
+                                UpdateDataBmob.clickUp(note);
+                            }else {
+                                DeleteDataBmob.deleteLikes(note);
+                                UpdateDataBmob.delUp(note);
+                            }
+                        }
+                    });
+                }else {
+                    Log.i("bmob","获取收藏列表失败："+e.getMessage() + e.getErrorCode());
+                }
+            }
+        });
     }
 
     @Override
@@ -80,8 +113,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         TextView textTitle;
         TextView textUserName;
         SketchImageView textUserHead;
+        CheckBox checkBox;
         public MyViewHolder(View itemView) {
             super(itemView);
+            checkBox = itemView.findViewById(R.id.grid_item_checkbox);
             // 获取img设置
             imgPic = itemView.findViewById(R.id.grid_item_pic);
 //            ViewGroup.LayoutParams params = imgPic.getLayoutParams();

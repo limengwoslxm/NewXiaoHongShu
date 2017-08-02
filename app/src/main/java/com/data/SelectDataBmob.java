@@ -3,7 +3,10 @@ package com.data;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.apple.initbmob.InitBmob;
+import com.bean.Comment;
 import com.bean.MyUser;
 import com.bean.Note;
 import com.bean.Style;
@@ -25,29 +28,29 @@ import cn.bmob.v3.listener.QueryListener;
 
 public class SelectDataBmob {
 
-    public static Handler handler;
-
-    //在Style表中查找styleName对应notes
-    public static void getNoteByStyle(String styleName){
-        BmobQuery<Note> query = new BmobQuery<Note>();
-        Style style = new Style();
-        style.setObjectId(getStyleId(styleName));
-        query.addWhereRelatedTo("note",new BmobPointer(style));
-        query.findObjects(new FindListener<Note>() {
-            @Override
-            public void done(List<Note> list, BmobException e) {
-                if(e==null){
-                    Message message = handler.obtainMessage();
-                    message.what = 1;
-                    message.obj = list;
-                    handler.sendMessage(message);
-                }else{
-                    Log.i("bmob",e + "");
-                }
-            }
-        });
-    }
-
+//    public static Handler handler;
+//
+//    //在Style表中查找styleName对应notes
+//    public static void getNoteByStyle(String styleName){
+//        BmobQuery<Note> query = new BmobQuery<Note>();
+//        Style style = new Style();
+//        style.setObjectId(getStyleId(styleName));
+//        query.addWhereRelatedTo("note",new BmobPointer(style));
+//        query.findObjects(new FindListener<Note>() {
+//            @Override
+//            public void done(List<Note> list, BmobException e) {
+//                if(e==null){
+//                    Message message = handler.obtainMessage();
+//                    message.what = 1;
+//                    message.obj = list;
+//                    handler.sendMessage(message);
+//                }else{
+//                    Log.i("bmob",e + "");
+//                }
+//            }
+//        });
+//    }
+//
     //获取本人的笔记
     public static void getMineNote(){
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
@@ -57,19 +60,15 @@ public class SelectDataBmob {
             @Override
             public void done(List<Note> list, BmobException e) {
                 if(e==null){
-                    Message message = handler.obtainMessage();
-                    message.what = 0;
-                    message.obj = list;
-                    handler.sendMessage(message);
                     Log.i("bmob","成功");
                 }else{
-                    Log.i("bmob","获取失败："+e.getMessage());
+                    Log.i("bmob","获取本人笔记失败："+e.getMessage() + e.getErrorCode());
                 }
             }
         });
     }
 
-    //关注人数
+    //关注列表
     public void selectAttentions(){
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
         BmobQuery<MyUser> query = new BmobQuery<MyUser>();
@@ -80,13 +79,13 @@ public class SelectDataBmob {
                 if (e==null){
 
                 }else {
-
+                    Log.i("bmob","获取关注列表失败："+e.getMessage() + e.getErrorCode());
                 }
             }
         });
     }
 
-    //粉丝人数
+    //粉丝列表
     public void selectFans(){
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
         BmobQuery<MyUser> query = new BmobQuery<MyUser>();
@@ -97,7 +96,7 @@ public class SelectDataBmob {
                 if (e==null){
 
                 }else {
-
+                    Log.i("bmob","获取粉丝列表失败："+e.getMessage() + e.getErrorCode());
                 }
             }
         });
@@ -114,7 +113,50 @@ public class SelectDataBmob {
                 if (e==null){
 
                 }else {
+                    Log.i("bmob","获取收藏列表失败："+e.getMessage() + e.getErrorCode());
+                }
+            }
+        });
+    }
 
+    //模糊查询
+    public void selectMore(final String ss){
+        BmobQuery<Note> query = new BmobQuery<Note>();
+        query.findObjects(new FindListener<Note>() {
+            @Override
+            public void done(List<Note> list, BmobException e) {
+                if (e==null){
+                    List<Note> newList = new ArrayList<>();
+                    for (Note note:list){
+                        if (note.getTitle().contains(ss)){
+                            newList.add(note);
+                        }
+                    }
+                    if (newList.size()==0){
+                        Toast.makeText(InitBmob.getContext(),"结果不存在",Toast.LENGTH_SHORT).show();
+                    }else {
+
+                    }
+                }else {
+                    Log.i("bmob","模糊查询失败" + e.getErrorCode() + e.getMessage());
+                }
+            }
+        });
+    }
+
+    //查询评论
+    public void selectComment(Note note){
+        BmobQuery<Comment> query = new BmobQuery<Comment>();
+        query.addWhereEqualTo("note",note);
+        query.order("-createdAt");
+        query.include("user");
+        query.findObjects(new FindListener<Comment>() {
+            @Override
+            public void done(List<Comment> list, BmobException e) {
+                if (e==null){
+                    Toast.makeText(InitBmob.getContext(),"查询到" + list.size() + "条评论",Toast.LENGTH_SHORT).show();
+                }else {
+                    Log.i("bmob","查询评论失败" + e.getErrorCode() + e.getMessage());
                 }
             }
         });

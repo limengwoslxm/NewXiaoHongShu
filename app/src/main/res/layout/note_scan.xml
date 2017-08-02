@@ -15,19 +15,19 @@
             android:id="@+id/note_collapsing"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             app:contentScrim="@color/xhsColor"
             app:statusBarScrim="@android:color/transparent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-            <me.xiaopan.sketch.SketchImageView
+            <com.apple.util.MyViewPager
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
+                android:layout_marginBottom="-23dp"
                 android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.8">
-            </me.xiaopan.sketch.SketchImageView>
+            </com.apple.util.MyViewPager>
             <android.support.v7.widget.Toolbar
                 android:id="@+id/note_toolbar"
                 android:layout_width="match_parent"
@@ -112,7 +112,7 @@
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
                 android:layout_marginTop="12dp"
-                android:text="别看这个标题起名不好"
+                android:text="这个标题起名不好"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
             <TextView
@@ -123,7 +123,6 @@
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
                 android:lineSpacingMultiplier="1.2"
-                android:text="@string/notetestcontext"
                 android:textColor="@color/black"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -205,26 +204,158 @@
                 android:background="#d9d8d8"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"/>
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:paddingLeft="10dp"
-                android:text="先到这里好吧"/>
-            <TextView
+                android:paddingRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+                <me.xiaopan.sketch.SketchImageView
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/xy_walkthroughs_account"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="28dp"
+                    android:layout_weight="7"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/note_edittextshape">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="5dp"
+                        android:background="@null"
+                        android:hint="分享你的人生"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="28dp"
+                    android:layout_weight="1.5"
+                    android:text="发布"
+                    android:textSize="13sp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/note_pinglun_fabu"
+                    style="?android:borderlessButtonStyle"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:paddingLeft="10dp"
-                android:text="先到这里好吧"/>
-            <TextView
+                android:paddingRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <me.xiaopan.sketch.SketchImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/xy_walkthroughs_account"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="茶小翁"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="40dp"
+                    android:text="@string/notetestcontext"
+                    android:maxLines="3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="40dp"
+                    android:text="2017-8-1"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:paddingLeft="10dp"
-                android:text="先到这里好吧"/>
-            <TextView
+                android:paddingRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <me.xiaopan.sketch.SketchImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/xy_walkthroughs_account"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="茶小翁"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="40dp"
+                    android:text="@string/notetestcontext2"
+                    android:maxLines="3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="40dp"
+                    android:text="2017-8-1"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:paddingLeft="10dp"
-                android:text="先到这里好吧"/>
+                android:paddingRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <me.xiaopan.sketch.SketchImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/xy_walkthroughs_account"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="茶小翁"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="40dp"
+                    android:text="@string/notetestcontext3"
+                    android:maxLines="3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="40dp"
+                    android:text="2017-8-1"
+                    android:textSize="12sp" />
+            </LinearLayout>
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

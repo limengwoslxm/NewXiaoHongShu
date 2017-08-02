@@ -6,20 +6,26 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.apple.initbmob.InitBmob;
+import com.bean.Comment;
 import com.bean.MyUser;
 import com.bean.Note;
 import com.bean.Style;
 import com.collecter.ErrorCollecter;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.AsyncCustomEndpoints;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobRelation;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.CloudCodeListener;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -47,6 +53,7 @@ public class AddDataBmob {
         BmobFile.uploadBatch(imglist, new UploadBatchListener() {
             @Override
             public void onSuccess(List<BmobFile> list, List<String> urls) {
+                Log.i("bmob","已上传图片数目：" + urls.size() + " 总数为：" + image.size());
                 if(urls.size()==image.size()){
                     imageList.addAll(list);
                     note.setImage(imageList);
@@ -64,7 +71,7 @@ public class AddDataBmob {
                                 Toast.makeText(InitBmob.getContext(), "笔记添加成功", Toast.LENGTH_SHORT).show();
                             }else{
                                 Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
-                                Log.i("bmob","添加失败："+e.getMessage()+","+e.getErrorCode());
+                                Log.i("bmob","笔记添加失败："+e.getMessage()+","+e.getErrorCode());
                             }
                         }
                     });
@@ -82,6 +89,27 @@ public class AddDataBmob {
             }
         });
     }
+
+    //添加评论
+    public static void addComment(Note note,String data){
+        MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        Comment comment = new Comment();
+        comment.setContent(data);
+        comment.setNote(note);
+        comment.setUser(user);
+        comment.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e==null){
+                    Toast.makeText(InitBmob.getContext(),"评论添加成功",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(InitBmob.getContext(),"评论添加失败",Toast.LENGTH_SHORT).show();
+                    Log.i("bmob","评论添加失败" + e.getMessage() + e.getErrorCode());
+                }
+            }
+        });
+    }
+
     //添加多对多关系(note--style）
     public static void noteToStyle(String styleId,String noteId){
         Note note = new Note();
@@ -97,7 +125,7 @@ public class AddDataBmob {
                 if(e==null){
                     Log.i("bmob","多对多关联添加成功");
                 }else{
-                    Log.i("bmob","失败："+e.getMessage());
+                    Log.i("bmob","多对多关联添加失败："+e.getMessage() + e.getErrorCode());
                 }
             }
         });
@@ -106,55 +134,24 @@ public class AddDataBmob {
     //添加多对多关系(关注）
     public static void addAttention(final String otherId){
         final MyUser my = BmobUser.getCurrentUser(MyUser.class);
-        BmobQuery<MyUser> query = new BmobQuery<MyUser>();
-        query.getObject(otherId, new QueryListener<MyUser>() {
+        String cloudCodeName = "addGuanzhu";
+        JSONObject params = new JSONObject();
+        try {
+            params.put("myId",my.getObjectId());
+            params.put("otherId",otherId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        AsyncCustomEndpoints cloudCode = new AsyncCustomEndpoints();
+        cloudCode.callEndpoint(cloudCodeName,params, new CloudCodeListener() {
             @Override
-            public void done(MyUser other, BmobException e) {
+            public void done(Object o, BmobException e) {
                 if (e==null){
-                    BmobRelation relation = new BmobRelation();
-                    relation.add(other);
-                    my.setAttention(relation);
-                    my.update(new UpdateListener() {
-                        @Override
-                        public void done(BmobException e) {
-                            if(e==null){
-                                addFans(otherId);
-                                Log.i("bmob","关注成功");
-                            }else{
-                                Log.i("bmob","关注失败2："+e.getMessage() + e.getErrorCode());
-                            }
-                        }
-                    });
+                    Toast.makeText(InitBmob.getContext(),o.toString(),Toast.LENGTH_SHORT).show();
+                    Log.i("bmob","关注成功，返回：" + o.toString());
                 }else {
-                    Log.i("bmob","关注失败1："+e.getMessage() + e.getErrorCode());
-                }
-            }
-        });
-    }
-
-    //添加多对多关系(粉丝）
-    public static void addFans(String otherId){
-        final MyUser my = BmobUser.getCurrentUser(MyUser.class);
-        BmobQuery<MyUser> query = new BmobQuery<MyUser>();
-        query.getObject(otherId, new QueryListener<MyUser>() {
-            @Override
-            public void done(MyUser other, BmobException e) {
-                if (e==null){
-                    BmobRelation relation = new BmobRelation();
-                    relation.add(other);
-                    my.setFans(relation);
-                    my.update(new UpdateListener() {
-                        @Override
-                        public void done(BmobException e) {
-                            if(e==null){
-                                Log.i("bmob","粉丝成功");
-                            }else{
-                                Log.i("bmob","粉丝失败2："+e.getMessage() + e.getErrorCode());
-                            }
-                        }
-                    });
-                }else {
-                    Log.i("bmob","粉丝失败1："+e.getMessage() + e.getErrorCode());
+                    Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
+                    Log.i("bmob","关注失败" + e.getMessage() + e.getErrorCode());
                 }
             }
         });
@@ -170,9 +167,10 @@ public class AddDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    Toast.makeText(InitBmob.getContext(),"收藏成功",Toast.LENGTH_SHORT).show();
                     Log.i("bmob","收藏成功");
                 }else{
-                    Log.i("bmob","收藏失败："+e.getMessage());
+                    Log.i("bmob","收藏失败："+e.getMessage() + e.getErrorCode());
                 }
             }
         });

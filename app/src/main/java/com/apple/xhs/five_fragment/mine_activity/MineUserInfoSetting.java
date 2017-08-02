@@ -84,6 +84,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
         head_icon.setOptions(displayOptions);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

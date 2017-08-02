@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setItemTitle="常住地"
-                app:setNameText="地球的某一片红薯地" />
+                app:setNameText="中国" />
             <include layout="@layout/setting_line_merge" />
             <com.apple.xhs.custom_view.UserInfoRow
                 android:id="@+id/birthday_choice"

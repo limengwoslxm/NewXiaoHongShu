@@ -16,7 +16,6 @@ public class Note extends BmobObject{
     private String title;
     private String content;
     private MyUser author;
-    private BmobRelation likes;
     private Integer up;
 
     public Note() {
@@ -52,14 +51,6 @@ public class Note extends BmobObject{
 
     public void setAuthor(MyUser author) {
         this.author = author;
-    }
-
-    public BmobRelation getLikes() {
-        return likes;
-    }
-
-    public void setLikes(BmobRelation likes) {
-        this.likes = likes;
     }
 
     public Integer getUp() {

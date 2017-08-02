@@ -1,5 +1,8 @@
 package com.apple.xhs.note;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -185,9 +188,9 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
         picData.add(img_url);
         addView(img_url);
     }
-    private void addView(String s) {
+    private void addView(final String s) {
         linearLayout = findViewById(R.id.linearlayout);
-        SketchImageView img = new SketchImageView(this);
+        final SketchImageView img = new SketchImageView(this);
         TextView textView = new TextView(this);
         img.setLayoutParams(new LinearLayout.LayoutParams(300,300));
         textView.setLayoutParams(new LinearLayout.LayoutParams(20,300));
@@ -196,13 +199,39 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
         img.setScaleType(ImageView.ScaleType.CENTER_CROP);
         linearLayout.addView(textView);
         linearLayout.addView(img);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NoteEditView.this,NoteEditShowBigPic.class);
+                intent.putExtra("showbigpic",s);
+                startActivity(intent);
+                overridePendingTransition(R.anim.showbigpic_in,R.anim.showbigpic_out);
+            }
+        });
         img.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                linearLayout.removeView(view);
-                return false;
+                popDeleteDialog(view);
+                return true;
             }
         });
+    }
+
+    private void popDeleteDialog(final View view) {
+        new AlertDialog.Builder(this)
+                .setTitle("确定删除此图片吗？")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        linearLayout.removeView(view);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
     }
 
     private void addCheckData() {
