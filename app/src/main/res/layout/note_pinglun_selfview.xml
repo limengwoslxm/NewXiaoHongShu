@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        android:id="@+id/otheruser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <me.xiaopan.sketch.SketchImageView
+            android:id="@+id/otheruserhead"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/xy_walkthroughs_account" />
+
+        <TextView
+            android:id="@+id/otherusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="茶小翁" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pingluncontent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:paddingLeft="40dp"
+        android:text="@string/notetestcontext3" />
+
+    <TextView
+        android:id="@+id/pinglundate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="40dp"
+        android:text="2017-8-1"
+        android:textSize="12sp" />
+</LinearLayout>
