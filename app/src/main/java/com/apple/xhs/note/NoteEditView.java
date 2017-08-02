@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -192,11 +193,10 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
         linearLayout = findViewById(R.id.linearlayout);
         final SketchImageView img = new SketchImageView(this);
         TextView textView = new TextView(this);
-        img.setLayoutParams(new LinearLayout.LayoutParams(300,300));
+        img.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         textView.setLayoutParams(new LinearLayout.LayoutParams(20,300));
-        Bitmap bitmap = BitmapFactory.decodeFile(s);
-        img.setImageBitmap(bitmap);
         img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        img.displayImage(s);
         linearLayout.addView(textView);
         linearLayout.addView(img);
         img.setOnClickListener(new View.OnClickListener() {

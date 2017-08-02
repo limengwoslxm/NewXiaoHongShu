@@ -7,17 +7,19 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="Welcome" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowSoftInputMode">stateHidden</item>
         <item name="android:textCursorDrawable">@drawable/textcursordrawablenull</item>
     </style>
-    <style name="Mine_Dialog.Alert"
-        parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+
+    <style name="Mine_Dialog.Alert" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
         <!--修改AlertDialog按钮的颜色-->
         <item name="colorAccent">#E12830</item>
     </style>
+
     <style name="XHSstatusbar" parent="Theme.AppCompat.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -26,10 +28,12 @@
         <item name="android:windowAnimationStyle">@style/noAnimation</item>
         <item name="android:alertDialogTheme">@style/Mine_Dialog.Alert</item>
     </style>
+
     <style name="CollapingTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#E12830</item>
         <item name="colorPrimaryDark">#E12830</item>
     </style>
+
     <style name="MyDialogStyleInHomeScrollView">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
@@ -40,6 +44,7 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
     <style name="noAnimation">
         <item name="android:activityOpenEnterAnimation">@null</item>
         <item name="android:activityOpenExitAnimation">@null</item>
@@ -54,11 +59,13 @@
         <item name="android:taskToBackEnterAnimation">@null</item>
         <item name="android:taskToBackExitAnimation">@null</item>
     </style>
+
     <style name="mine_setting_showline">
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">#f2f2f2</item>
     </style>
+
     <style name="mine_pt_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -67,6 +74,7 @@
         <item name="android:textColor">#000</item>
         <item name="android:drawablePadding">-6dp</item>
     </style>
+
     <style name="mine_focusstate_titleNum">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -74,6 +82,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">#fff</item>
     </style>
+
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
@@ -101,6 +110,7 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/black_gray</item>
     </style>
+
     <style name="MyCustomTabLayoutHome" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/xhsColor</item>
         <item name="tabIndicatorHeight">2dp</item>
@@ -114,6 +124,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/black_gray</item>
     </style>
+
     <style name="MyCustomTabLayoutMsg" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/xhsColor</item>
         <item name="tabIndicatorHeight">2dp</item>
@@ -121,6 +132,7 @@
         <item name="tabTextAppearance">@style/MyCustomTabTextAppearanceMsg</item>
         <item name="tabSelectedTextColor">@color/xhsColor</item>
     </style>
+
     <style name="CustomDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -128,6 +140,7 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
     </style>
+
     <style name="NoteCheckBiaoqian" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/note_check_biaoqian</item>
         <item name="android:layout_width">0dp</item>
@@ -136,24 +149,39 @@
         <item name="android:paddingLeft">5dp</item>
         <item name="android:textColor">@color/gray</item>
     </style>
+
     <style name="NoteCheckShareQQ" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/note_share_qq</item>
     </style>
+
     <style name="NoteCheckShareWeibo" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/note_share_weibo</item>
     </style>
+
     <style name="NoteCheckShareWeixin" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/note_share_weixin</item>
     </style>
+
     <style name="HomeHeartLike" parent="android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/home_like_heart</item>
     </style>
+
     <style name="AddView" parent="AppTheme">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">100dp</item>
     </style>
+
     <style name="SharePopupWindow">
         <item name="android:windowEnterAnimation">@anim/share_popupwindow_show</item>
         <item name="android:windowExitAnimation">@anim/share_popupwindow_hide</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

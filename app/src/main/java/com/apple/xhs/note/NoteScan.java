@@ -12,19 +12,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.apple.util.AppBarStateChangeListener;
-import com.apple.util.MySketchViewPagerAdapter;
-import com.apple.util.MyViewPager;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
 import com.bean.MyUser;
 import com.bean.Note;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -47,8 +43,9 @@ public class NoteScan extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.playButton)
             ButtonBarLayout playButton;
     //user info
-    @BindView(R.id.image)
-    MyViewPager myViewPager;
+    @BindView(R.id.sketchimageview)
+    SketchImageView sketchimageview;
+
     @BindView(R.id.userheadimage_toolbar)
             SketchImageView userheadimagetoolbar;
     @BindView(R.id.username_toolbar)
@@ -61,10 +58,8 @@ public class NoteScan extends BaseActivity implements View.OnClickListener {
             TextView usernotetitle;
     @BindView(R.id.user_notecontext)
             TextView usernotecontext;
-    List<SketchImageView> sketchImageViews = new ArrayList<>();
     View popView;
     PopupWindow popupWindow;
-    MyUser myUser;
     @Override
     public int getContentViewId() {
         return R.layout.note_scan;
@@ -75,15 +70,18 @@ public class NoteScan extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setUserHeadImage();
         setNoteData();
+
         setCollapsingToolbar();
+
         setAppbarCollapsing();
         setSharePopupwindow();
+
     }
 
     private void setUserHeadImage() {
         DisplayOptions displayOptions = new DisplayOptions();
         displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
-        //imageView.getOptions().setDecodeGifImage(true);
+        sketchimageview.getOptions().setDecodeGifImage(true);
         userheadimagetoolbar.setOptions(displayOptions);
         userheadimagecontext.setOptions(displayOptions);
     }
@@ -95,18 +93,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener {
         Note note = userdata.get(position);
         MyUser myUser = userdata.get(position).getAuthor();
 
-        for(int i = 0; i < note.getImage().size(); i++){
-            SketchImageView sketchImageView = new SketchImageView(this);
-            sketchImageView.setFitsSystemWindows(true);
-            sketchImageView.setAdjustViewBounds(true);
-            sketchImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            sketchImageView.getOptions().setDecodeGifImage(true);
-            sketchImageView.displayImage(note.getImage().get(0).getUrl());
-            sketchImageViews.add(sketchImageView);
-        }
-        MySketchViewPagerAdapter adapter = new MySketchViewPagerAdapter(sketchImageViews);
-        myViewPager.setAdapter(adapter);
-        //imageView.displayImage(note.getImage().get(0).getUrl());
+        sketchimageview.displayImage(note.getImage().get(0).getUrl());
         userheadimagetoolbar.displayImage(myUser.getHead().getUrl());
         usernametoolbar.setText(myUser.getNickname());
         userheadimagecontext.displayImage(myUser.getHead().getUrl());
@@ -125,7 +112,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener {
                 }else if(state == State.COLLAPSED){
                     playButton.setVisibility(View.VISIBLE);
                 }else {
-
+                    playButton.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -133,7 +120,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener {
     //设置toolbar
     private void setCollapsingToolbar() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         //返回
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
