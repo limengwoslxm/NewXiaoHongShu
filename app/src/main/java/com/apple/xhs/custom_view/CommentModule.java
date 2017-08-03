@@ -3,10 +3,13 @@ package com.apple.xhs.custom_view;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.apple.initbmob.InitBmob;
 import com.apple.xhs.R;
 
 import me.xiaopan.sketch.SketchImageView;
@@ -27,8 +30,9 @@ public class CommentModule extends LinearLayout {
     }
 
     private void initView(Context context, AttributeSet attrs) {
+
         LayoutInflater.from(context).inflate(R.layout.note_pinglun_selfview,this);
-        otheruser.findViewById(R.id.otheruser);
+        otheruser = findViewById(R.id.otheruser);
         headPic = findViewById(R.id.otheruserhead);
         userName = findViewById(R.id.otherusername);
         userContent = findViewById(R.id.pingluncontent);

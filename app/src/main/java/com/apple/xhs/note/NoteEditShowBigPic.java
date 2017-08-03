@@ -31,8 +31,7 @@ public class NoteEditShowBigPic extends BaseActivity {
     }
 
     private void initView() {
-        Bitmap bitmap = BitmapFactory.decodeFile(getIntent().getStringExtra("showbigpic"));
-        imageView.setImageBitmap(bitmap);
+        imageView.displayImage(getIntent().getStringExtra("showbigpic"));
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

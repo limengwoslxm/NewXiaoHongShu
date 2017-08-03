@@ -101,7 +101,7 @@ public class AddDataBmob {
             @Override
             public void done(String s, BmobException e) {
                 if (e==null){
-                    Toast.makeText(InitBmob.getContext(),"评论添加成功",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(InitBmob.getContext(),"评论添加成功",Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(InitBmob.getContext(),"评论添加失败",Toast.LENGTH_SHORT).show();
                     Log.i("bmob","评论添加失败" + e.getMessage() + e.getErrorCode());

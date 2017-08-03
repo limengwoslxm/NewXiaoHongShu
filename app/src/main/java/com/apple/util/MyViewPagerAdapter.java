@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.apple.xhs.note.NoteScan;
+import com.apple.xhs.shopping.ProductScan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class MyViewPagerAdapter extends PagerAdapter implements View.OnClickList
         Intent intent = new Intent();
         //传递一个序列化对象
         //intent.putExtra()
-        intent.setClass(view.getContext(), NoteScan.class);
+        intent.setClass(view.getContext(), ProductScan.class);
         view.getContext().startActivity(intent);
     }
 }

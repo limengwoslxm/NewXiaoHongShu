@@ -92,6 +92,9 @@
         <activity
             android:name=".note.NoteEditShowBigPic"
             android:theme="@style/Welcome" />
+        <activity
+            android:name=".note.NoteAllPinglun"
+            android:theme="@style/XHSstatusbar"/>
     </application>
 
 </manifest>

@@ -26,7 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="茶小翁" />
+            android:visibility="visible"
+            android:text="茶小翁"
+            android:textColor="#6b6969" />
     </LinearLayout>
 
     <TextView
@@ -34,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="3"
+        android:textColor="#1e1e1e"
         android:paddingLeft="40dp"
         android:text="@string/notetestcontext3" />
 
@@ -44,5 +47,6 @@
         android:layout_marginTop="5dp"
         android:paddingLeft="40dp"
         android:text="2017-8-1"
+        android:textColor="#6b6969"
         android:textSize="12sp" />
 </LinearLayout>

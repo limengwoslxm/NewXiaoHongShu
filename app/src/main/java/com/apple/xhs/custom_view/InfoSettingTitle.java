@@ -53,4 +53,8 @@ public class InfoSettingTitle extends RelativeLayout {
     public void setDoneListener(OnClickListener listener) {
         textViewDone.setOnClickListener(listener);
     }
+
+    public TextView getTextView() {
+        return textView;
+    }
 }
