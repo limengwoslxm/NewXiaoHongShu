@@ -5,23 +5,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <com.apple.xhs.custom_view.InfoSettingTitle
-        android:id="@+id/selfnotetoolbar"
+        android:id="@+id/helptoolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:setText="我的笔记"
-        app:setDoneText="客服中心"
+        app:setText="客服中心"
         android:background="@color/xhsColor"/>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:background="#f5f5f5">
+        android:layout_height="match_parent">
         <LinearLayout
-            android:id="@+id/note_card_parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="如需删除某项，请尝试长按。"
+                android:textSize="17sp"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

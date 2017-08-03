@@ -47,7 +47,7 @@ public class Logon extends BaseActivity {
     private void initView() {
 
     }
-
+    //注册
     @OnClick(R.id.bt_logon)
     public void logonOnClick() {
         name = userName.getText().toString().trim();

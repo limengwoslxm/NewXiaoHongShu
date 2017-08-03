@@ -77,7 +77,7 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
         account.setY(y);
     }
 
-
+    //小头像的翻转动画
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         if(positionOffsetPixels==0){
@@ -139,6 +139,7 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
         public void destroyItem(ViewGroup container, int position, Object object) {
 //            super.destroyItem(container, position, object);
 //            container.removeView(data.get(position));
+            //不销毁
         }
 
         @Override

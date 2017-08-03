@@ -37,22 +37,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.fragment_store) View fragment_store;
     @BindView(R.id.fragment_msg) View fragment_msg;
     @BindView(R.id.fragment_me) View fragment_me;
-    FragmentManager fm;
-    List<Fragment> data = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setFullScreen();
         initView();
     }
-    private void setFullScreen() {
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
-    }
+    //全屏显示
+//    private void setFullScreen() {
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        }
+//    }
     @Override
     public int getContentViewId() {
         return R.layout.main_activity;

@@ -135,6 +135,10 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
         note_fabupinglun.setOnClickListener(this);
         pinglunSum.setOnClickListener(this);
         show_morePinglun.setOnClickListener(this);
+        userheadimagetoolbar.setOnClickListener(this);
+        usernametoolbar.setOnClickListener(this);
+        userheadimagecontext.setOnClickListener(this);
+        usernamecontext.setOnClickListener(this);
     }
 
     private void setUserHeadImage() {
@@ -307,6 +311,14 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
                 Intent intent = new Intent(NoteScan.this,NoteAllPinglun.class);
                 intent.putExtra("allpinglun", (Serializable) allpinglun);
                 startActivity(intent);
+                break;
+            case R.id.userheadimage_context:
+            case R.id.userheadimage_toolbar:
+            case R.id.username_context:
+            case R.id.username_toolbar:
+                Intent notelist = new Intent(NoteScan.this,SelfNoteScan.class);
+                notelist.putExtra("userselfnote",myUser);
+                startActivity(notelist);
                 break;
         }
     }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/yourselfnotebgshape"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/yourselfnotetitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="减肥"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/yourselfnoteshoucang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="已被收藏36次"
+        android:textColor="#4e4d4d"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <me.xiaopan.sketch.SketchImageView
+            android:id="@+id/yourselfnoteimg1"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/nomoreimg" />
+
+        <me.xiaopan.sketch.SketchImageView
+            android:id="@+id/yourselfnoteimg2"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/nomoreimg"/>
+
+        <me.xiaopan.sketch.SketchImageView
+            android:id="@+id/yourselfnoteimg3"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/nomoreimg" />
+
+        <me.xiaopan.sketch.SketchImageView
+            android:id="@+id/yourselfnoteimg4"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/nomoreimg" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/yourselfnotedate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="2017-8-3 18:23:32"
+        android:textColor="#4e4d4d"
+        android:textSize="12sp" />
+</LinearLayout>

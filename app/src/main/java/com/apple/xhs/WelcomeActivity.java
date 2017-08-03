@@ -24,6 +24,7 @@ public class WelcomeActivity extends Activity {
         setContentView(R.layout.welcome_pic);
         final MyUser userInfo = BmobUser.getCurrentUser(MyUser.class);
         Handler handler = new Handler();
+        //账号是否已经登录
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

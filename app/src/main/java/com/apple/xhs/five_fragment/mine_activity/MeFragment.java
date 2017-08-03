@@ -123,7 +123,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 startActivityForResult(galleryIntent, 1);
                 break;
             case R.id.myselfnote:
-                startActivity(new Intent(getActivity(), SelfNoteScan.class));
+                Intent intent = new Intent(getActivity(), SelfNoteScan.class);
+                intent.putExtra("userselfnote",BmobUser.getCurrentUser(MyUser.class));
+                startActivity(intent);
                 break;
         }
     }
