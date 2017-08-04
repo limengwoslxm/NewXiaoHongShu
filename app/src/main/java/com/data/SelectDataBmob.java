@@ -28,29 +28,24 @@ import cn.bmob.v3.listener.QueryListener;
 
 public class SelectDataBmob {
 
-//    public static Handler handler;
-//
-//    //在Style表中查找styleName对应notes
-//    public static void getNoteByStyle(String styleName){
-//        BmobQuery<Note> query = new BmobQuery<Note>();
-//        Style style = new Style();
-//        style.setObjectId(getStyleId(styleName));
-//        query.addWhereRelatedTo("note",new BmobPointer(style));
-//        query.findObjects(new FindListener<Note>() {
-//            @Override
-//            public void done(List<Note> list, BmobException e) {
-//                if(e==null){
-//                    Message message = handler.obtainMessage();
-//                    message.what = 1;
-//                    message.obj = list;
-//                    handler.sendMessage(message);
-//                }else{
-//                    Log.i("bmob",e + "");
-//                }
-//            }
-//        });
-//    }
-//
+    //在Style表中查找styleName对应notes
+    public static void getNoteByStyle(String styleName){
+        BmobQuery<Note> query = new BmobQuery<Note>();
+        Style style = new Style();
+        style.setObjectId(getStyleId(styleName));
+        query.addWhereRelatedTo("note",new BmobPointer(style));
+        query.findObjects(new FindListener<Note>() {
+            @Override
+            public void done(List<Note> list, BmobException e) {
+                if(e==null){
+
+                }else{
+                    Log.i("bmob",e + "");
+                }
+            }
+        });
+    }
+
     //获取本人的笔记
     public static void getMineNote(){
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
@@ -135,7 +130,7 @@ public class SelectDataBmob {
                     if (newList.size()==0){
                         Toast.makeText(InitBmob.getContext(),"结果不存在",Toast.LENGTH_SHORT).show();
                     }else {
-
+                        //代码块
                     }
                 }else {
                     Log.i("bmob","模糊查询失败" + e.getErrorCode() + e.getMessage());

@@ -59,6 +59,7 @@ public class AddDataBmob {
                     String tempPath = Environment.getExternalStorageDirectory().getPath()
                             + "/XHS/temp/" + System.currentTimeMillis() + ".jpg";
                     compressBitmap(img,tempPath);
+                    Log.i("bmob","图片压缩成功，数目：" + (i+1) + "，地址：" + tempPath);
                     imglist[i] = tempPath;
                 }
                 BmobFile.uploadBatch(imglist, new UploadBatchListener() {
@@ -73,6 +74,7 @@ public class AddDataBmob {
                                 @Override
                                 public void done(String objectId, BmobException e) {
                                     if(e==null){
+                                        Log.i("bmob","笔记添加成功:" + note.getTitle());
                                         if (styles.size()!=0){
                                             for (String s:styles ) {
                                                 String style = SelectDataBmob.getStyleId(s);
@@ -103,7 +105,7 @@ public class AddDataBmob {
         }).start();
     }
     //图片压缩
-    private static void compressBitmap(String imgPath, String outPath) {
+    public static void compressBitmap(String imgPath, String outPath) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
         Bitmap bitmap = BitmapFactory.decodeFile(imgPath, options);
@@ -121,9 +123,9 @@ public class AddDataBmob {
     }
 
     //添加评论
-    public static void addComment(Note note,String data){
-        MyUser user = BmobUser.getCurrentUser(MyUser.class);
-        Comment comment = new Comment();
+    public static void addComment(final Note note, String data){
+        final MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        final Comment comment = new Comment();
         comment.setContent(data);
         comment.setNote(note);
         comment.setUser(user);
@@ -131,10 +133,10 @@ public class AddDataBmob {
             @Override
             public void done(String s, BmobException e) {
                 if (e==null){
-                    //Toast.makeText(InitBmob.getContext(),"评论添加成功",Toast.LENGTH_SHORT).show();
+                    Log.i("bmob","评论添加成功：" + "用户<" + user.getNickname() + ">对笔记<" + note.getTitle() + ">评论：" + comment.getContent());
                 }else {
                     Toast.makeText(InitBmob.getContext(),"评论添加失败",Toast.LENGTH_SHORT).show();
-                    Log.i("bmob","评论添加失败" + e.getMessage() + e.getErrorCode());
+                    Log.i("bmob","评论添加失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
         });
@@ -142,9 +144,9 @@ public class AddDataBmob {
 
     //添加多对多关系(note--style）
     public static void noteToStyle(String styleId,String noteId){
-        Note note = new Note();
+        final Note note = new Note();
         note.setObjectId(noteId);
-        Style style = new Style();
+        final Style style = new Style();
         style.setObjectId(styleId);
         BmobRelation relation = new BmobRelation();
         relation.add(note);
@@ -153,9 +155,9 @@ public class AddDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
-                    Log.i("bmob","多对多关联添加成功");
+                    Log.i("bmob","标签绑定成功：" + note.getTitle() + "---->" + style.getName());
                 }else{
-                    Log.i("bmob","多对多关联添加失败："+e.getMessage() + e.getErrorCode());
+                    Log.i("bmob","标签绑定失败："+e.getMessage() + e.getErrorCode());
                 }
             }
         });
@@ -178,18 +180,18 @@ public class AddDataBmob {
             public void done(Object o, BmobException e) {
                 if (e==null){
                     Toast.makeText(InitBmob.getContext(),o.toString(),Toast.LENGTH_SHORT).show();
-                    Log.i("bmob","关注成功，返回：" + o.toString());
+                    Log.i("bmob","执行云端关注方法成功，返回：" + o.toString());
                 }else {
                     Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
-                    Log.i("bmob","关注失败" + e.getMessage() + e.getErrorCode());
+                    Log.i("bmob","执行云端关注方法失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
         });
     }
 
     //添加收藏
-    public static void addLikes(Note note){
-        MyUser my = BmobUser.getCurrentUser(MyUser.class);
+    public static void addLikes(final Note note){
+        final MyUser my = BmobUser.getCurrentUser(MyUser.class);
         BmobRelation relation = new BmobRelation();
         relation.add(note);
         my.setLikes(relation);
@@ -198,7 +200,7 @@ public class AddDataBmob {
             public void done(BmobException e) {
                 if(e==null){
                     Toast.makeText(InitBmob.getContext(),"收藏成功",Toast.LENGTH_SHORT).show();
-                    Log.i("bmob","收藏成功");
+                    Log.i("bmob","收藏成功：" + "用户<" + my.getNickname() + ">收藏了笔记<" + note.getTitle() + ">");
                 }else{
                     Log.i("bmob","收藏失败："+e.getMessage() + e.getErrorCode());
                 }

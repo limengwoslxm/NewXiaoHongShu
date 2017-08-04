@@ -37,8 +37,6 @@ public class UpdateDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
-                    //bmobFile.getFileUrl()--返回的上传文件的完整地址
-//                    toast("上传文件成功:" + bmobFile.getFileUrl());
                     MyUser myUser = new MyUser();
                     myUser.setValue("head",bmobFile);
                     myUser.update(user.getObjectId(), new UpdateListener() {
@@ -54,7 +52,7 @@ public class UpdateDataBmob {
                         }
                     });
                 }else{
-                    Log.i("bmob","上传失败" + e);
+                    Log.i("bmob","头像图片上传失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
         });
@@ -236,23 +234,31 @@ public class UpdateDataBmob {
     }
 
     //点赞
-    public static void clickUp(Note note){
+    public static void clickUp(final Note note){
         note.increment("up",1);
         note.update(new UpdateListener() {
             @Override
             public void done(BmobException e) {
-
+                if (e==null){
+                    Log.i("bmob","笔记<" + note.getTitle() + ">被收藏次数+1，总次数：" + note.getUp());
+                }else {
+                    Log.i("bmob","笔记<" + note.getTitle() + ">被收藏次数增加失败，总次数：" + note.getUp());
+                }
             }
         });
     }
 
     //取消点赞
-    public static void delUp(Note note){
+    public static void delUp(final Note note){
         note.increment("up",-1);
         note.update(new UpdateListener() {
             @Override
             public void done(BmobException e) {
-
+                if (e==null){
+                    Log.i("bmob","笔记<" + note.getTitle() + ">被收藏次数-1，总次数：" + note.getUp());
+                }else {
+                    Log.i("bmob","笔记<" + note.getTitle() + ">被收藏次数减少失败，总次数：" + note.getUp());
+                }
             }
         });
     }

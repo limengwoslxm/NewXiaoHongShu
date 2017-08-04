@@ -180,6 +180,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void done(List<MyUser> list, BmobException e) {
                 if (e==null){
+                    Log.i("bmob","查询关注列表成功，数目为：" + list.size());
                     if (list!=null){
                         Message message = handler.obtainMessage();
                         message.what = 1;
@@ -187,7 +188,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         handler.sendMessage(message);
                     }
                 }else {
-
+                    Log.i("bmob","查询关注列表失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
         });
@@ -198,6 +199,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void done(List<MyUser> list, BmobException e) {
                 if (e==null){
+                    Log.i("bmob","查询粉丝列表成功，数目为：" + list.size());
                     if (list!=null){
                         Message message = handler.obtainMessage();
                         message.what = 2;
@@ -205,7 +207,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         handler.sendMessage(message);
                     }
                 }else {
-
+                    Log.i("bmob","查询粉丝列表失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
         });
@@ -216,6 +218,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void done(List<Note> list, BmobException e) {
                 if(e==null){
+                    Log.i("bmob","查询个人笔记列表成功，数目为：" + list.size());
                     if(list!=null){
                         Message message = handler.obtainMessage();
                         message.what = 3;
@@ -223,7 +226,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         handler.sendMessage(message);
                     }
                 }else{
-
+                    Log.i("bmob","查询个人笔记列表失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
         });
@@ -234,6 +237,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void done(List<Note> list, BmobException e) {
                 if (e==null){
+                    Log.i("bmob","查询收藏列表成功，数目为：" + list.size());
                     if (list!=null){
                         Message message = handler.obtainMessage();
                         message.what = 4;
@@ -241,7 +245,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         handler.sendMessage(message);
                     }
                 }else {
-
+                    Log.i("bmob","查询收藏列表失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
         });
