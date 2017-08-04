@@ -25,6 +25,7 @@ public class MyUser extends BmobUser {
     private BmobRelation fans;
     private City address;
     private BmobRelation likes;
+    private List<String> history;
 
     public MyUser() {
     }
@@ -131,5 +132,13 @@ public class MyUser extends BmobUser {
 
     public void setLikes(BmobRelation likes) {
         this.likes = likes;
+    }
+
+    public List<String> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<String> history) {
+        this.history = history;
     }
 }

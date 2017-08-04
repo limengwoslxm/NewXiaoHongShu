@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -36,6 +37,8 @@ import cn.bmob.v3.listener.FindListener;
 import me.xiaopan.sketch.SketchImageView;
 import me.xiaopan.sketch.process.CircleImageProcessor;
 import me.xiaopan.sketch.request.DisplayOptions;
+
+import static com.data.AddDataBmob.compressBitmap;
 
 /**
  * Created by limeng on 2017/7/22.
@@ -143,8 +146,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 int index=cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 cursor.moveToFirst();
                 String img_url=cursor.getString(index);
+                String tempPath = Environment.getExternalStorageDirectory().getPath()
+                        + "/XHS/temp/" + System.currentTimeMillis() + ".jpg";
+                compressBitmap(img_url,tempPath);
+                Log.i("bmob","头像图片压缩成功，地址：" + tempPath);
 
-                head_icon.displayImage(img_url);
+                head_icon.displayImage(tempPath);
                 break;
         }
     }
@@ -176,10 +183,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
         BmobQuery<MyUser> query1 = new BmobQuery<MyUser>();
         query1.addWhereRelatedTo("attention",new BmobPointer(myUser));
+        query1.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query1.findObjects(new FindListener<MyUser>() {
             @Override
             public void done(List<MyUser> list, BmobException e) {
                 if (e==null){
+                    Log.i("bmob","查询关注列表成功，数目为：" + list.size());
                     if (list!=null){
                         Message message = handler.obtainMessage();
                         message.what = 1;
@@ -187,17 +196,19 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         handler.sendMessage(message);
                     }
                 }else {
-
+                    Log.i("bmob","查询关注列表失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
         });
 
         BmobQuery<MyUser> query2 = new BmobQuery<MyUser>();
         query2.addWhereRelatedTo("fans",new BmobPointer(myUser));
+        query2.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query2.findObjects(new FindListener<MyUser>() {
             @Override
             public void done(List<MyUser> list, BmobException e) {
                 if (e==null){
+                    Log.i("bmob","查询粉丝列表成功，数目为：" + list.size());
                     if (list!=null){
                         Message message = handler.obtainMessage();
                         message.what = 2;
@@ -205,17 +216,19 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         handler.sendMessage(message);
                     }
                 }else {
-
+                    Log.i("bmob","查询粉丝列表失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
         });
 
         BmobQuery<Note> query3 = new BmobQuery<Note>();
         query3.addWhereEqualTo("author",myUser);
+        query3.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query3.findObjects(new FindListener<Note>() {
             @Override
             public void done(List<Note> list, BmobException e) {
                 if(e==null){
+                    Log.i("bmob","查询个人笔记列表成功，数目为：" + list.size());
                     if(list!=null){
                         Message message = handler.obtainMessage();
                         message.what = 3;
@@ -223,17 +236,19 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         handler.sendMessage(message);
                     }
                 }else{
-
+                    Log.i("bmob","查询个人笔记列表失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
         });
 
         BmobQuery<Note> query4 = new BmobQuery<Note>();
         query4.addWhereRelatedTo("likes",new BmobPointer(myUser));
+        query4.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query4.findObjects(new FindListener<Note>() {
             @Override
             public void done(List<Note> list, BmobException e) {
                 if (e==null){
+                    Log.i("bmob","查询收藏列表成功，数目为：" + list.size());
                     if (list!=null){
                         Message message = handler.obtainMessage();
                         message.what = 4;
@@ -241,7 +256,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         handler.sendMessage(message);
                     }
                 }else {
-
+                    Log.i("bmob","查询收藏列表失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
         });

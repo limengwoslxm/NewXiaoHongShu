@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -35,6 +36,8 @@ import cn.bmob.v3.listener.QueryListener;
 import me.xiaopan.sketch.SketchImageView;
 import me.xiaopan.sketch.process.CircleImageProcessor;
 import me.xiaopan.sketch.request.DisplayOptions;
+
+import static com.data.AddDataBmob.compressBitmap;
 
 /**
  * Created by limeng on 2017/7/24.
@@ -134,9 +137,13 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 break;
             default:
                 String img_url=uriChange(data);
-                head_icon.displayImage(img_url);
+                String tempPath = Environment.getExternalStorageDirectory().getPath()
+                        + "/XHS/temp/" + System.currentTimeMillis() + ".jpg";
+                compressBitmap(img_url,tempPath);
+                Log.i("bmob","头像图片压缩成功，地址：" + tempPath);
+                head_icon.displayImage(tempPath);
 
-                BmobFile icon = new BmobFile(new File(img_url));
+                BmobFile icon = new BmobFile(new File(tempPath));
                 UpdateDataBmob.UpdataHead(icon);
                 break;
         }
@@ -365,6 +372,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         City city_Bmob = myUser.getAddress();
         if(city_Bmob != null){
             BmobQuery<City> query = new BmobQuery<City>();
+            query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
             query.getObject(city_Bmob.getObjectId(), new QueryListener<City>() {
                 @Override
                 public void done(City city, BmobException e) {

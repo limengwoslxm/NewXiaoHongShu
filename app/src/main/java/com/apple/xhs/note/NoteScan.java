@@ -199,6 +199,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
         query.order("-createdAt");
         query.include("user");
         //query.setLimit(3);
+        query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query.findObjects(new FindListener<Comment>() {
             @Override
             public void done(List<Comment> list, BmobException e) {

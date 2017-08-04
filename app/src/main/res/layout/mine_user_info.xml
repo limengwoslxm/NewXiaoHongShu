@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setItemTitle="昵称"
-                app:setNameText="小红书" />
+                app:setHintText="无名薯辈"/>
             <include layout="@layout/setting_line_merge" />
             <com.apple.xhs.custom_view.UserInfoRow
                 android:id="@+id/override_id"
@@ -73,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setItemTitle="性别"
-                app:setNameText="男" />
+                app:setNameText="保密" />
             <include layout="@layout/setting_line_merge" />
             <com.apple.xhs.custom_view.UserInfoRow
                 android:id="@+id/area_choice"

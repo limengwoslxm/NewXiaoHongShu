@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="小红书"
+                    android:text="无名薯辈"
                     android:layout_marginTop="5dp"
                     android:textColor="#fff"
                     android:textSize="17sp" />
