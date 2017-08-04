@@ -66,6 +66,7 @@ public class SelfNoteScan extends BaseActivity implements View.OnClickListener {
         BmobQuery<Note> query = new BmobQuery<Note>();
         query.addWhereEqualTo("author",user);
         query.include("author");
+        query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query.findObjects(new FindListener<Note>() {
             @Override
             public void done(List<Note> list, BmobException e) {

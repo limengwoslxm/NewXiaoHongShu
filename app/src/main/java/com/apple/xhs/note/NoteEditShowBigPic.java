@@ -11,6 +11,7 @@ import com.base.BaseActivity;
 
 import butterknife.BindView;
 import me.xiaopan.sketch.SketchImageView;
+import me.xiaopan.sketch.viewfun.zoom.ImageZoomer;
 
 /**
  * Created by limeng on 2017/8/1.
@@ -31,6 +32,9 @@ public class NoteEditShowBigPic extends BaseActivity {
     }
 
     private void initView() {
+        imageView.setZoomEnabled(true);
+        ImageZoomer imageZoomer = new ImageZoomer(imageView);
+        imageZoomer.zoom(3f,true);
         imageView.displayImage(getIntent().getStringExtra("showbigpic"));
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -84,4 +84,22 @@ public class DeleteDataBmob {
             }
         });
     }
+
+    //清空历史搜索
+    public static void deleteHistory(){
+        MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        user.remove("history");
+        user.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e==null){
+                    Toast.makeText(InitBmob.getContext(),"清空历史成功",Toast.LENGTH_SHORT).show();
+                    Log.i("bmob","清空历史成功");
+                }else {
+                    Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
+                    Log.i("bmob","清空历史失败：" + e.getMessage() + e.getErrorCode());
+                }
+            }
+        });
+    }
 }

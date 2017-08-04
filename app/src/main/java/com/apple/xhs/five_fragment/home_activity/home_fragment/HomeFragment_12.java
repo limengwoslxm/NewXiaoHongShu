@@ -59,7 +59,7 @@ public class HomeFragment_12 extends Fragment implements MyRecyclerViewAdapter.O
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        getNoteByStyle("母婴");
+        getNoteByStyle("母婴",true);
     }
 
     @Nullable
@@ -113,7 +113,7 @@ public class HomeFragment_12 extends Fragment implements MyRecyclerViewAdapter.O
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                getNoteByStyle("母婴");
+                getNoteByStyle("母婴",false);
                 initPagerView();
                 swiperefreshlayout.setRefreshing(false);
             }
@@ -135,13 +135,18 @@ public class HomeFragment_12 extends Fragment implements MyRecyclerViewAdapter.O
             }
         }
     }
-    public void getNoteByStyle(String styleName){
+    public void getNoteByStyle(String styleName,boolean isCache){
         BmobQuery<Note> query = new BmobQuery<Note>();
         Style style = new Style();
         style.setObjectId(getStyleId(styleName));
         query.addWhereRelatedTo("note",new BmobPointer(style));
         query.order("-createdAt");
         query.include("author");
+        if(isCache){
+            query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);    // 第一次进入的话，则设置策略为CACHE_ELSE_NETWORK
+        }else{
+            query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);    // 下拉刷新的话，则设置策略为NETWORK_ELSE_CACHE
+        }
         query.findObjects(new FindListener<Note>() {
             @Override
             public void done(final List<Note> notelist, BmobException e) {

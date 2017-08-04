@@ -109,7 +109,7 @@ public class AddDataBmob {
     //图片压缩
     public static void compressBitmap(String imgPath, String outPath) {
         BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 2;
+//        options.inSampleSize = 2;
         Bitmap bitmap = BitmapFactory.decodeFile(imgPath, options);
         try {
             File dir = new File( Environment.getExternalStorageDirectory().getPath()
@@ -206,6 +206,22 @@ public class AddDataBmob {
                 }else{
                     Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
                     Log.i("bmob","收藏失败："+e.getMessage() + e.getErrorCode());
+                }
+            }
+        });
+    }
+
+    //添加历史搜索
+    public static void addHistory(String ss){
+        MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        user.addUnique("history",ss);
+        user.save(new SaveListener<String>() {
+            @Override
+            public void done(String objectId,BmobException e) {
+                if(e==null){
+                    Log.i("bmob","历史搜索保存成功");
+                }else{
+                    Log.i("bmob","历史搜索保存失败："+e.getMessage() + e.getErrorCode());
                 }
             }
         });
