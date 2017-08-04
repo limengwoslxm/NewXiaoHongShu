@@ -101,6 +101,8 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
             TextView pinglunSum;
     @BindView(R.id.show_morePinglun)
             TextView show_morePinglun;
+    @BindView(R.id.note_guanzhu)
+            Button guanzhu;
     Note note;
     //当前笔记作者
     MyUser myUser;
@@ -112,6 +114,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
     int keyHeight;
     DisplayOptions displayOptions;
     List<Comment> allpinglun = new ArrayList<>();
+    boolean isGuanzhu = false;
     @Override
     public int getContentViewId() {
         return R.layout.note_scan;
@@ -135,6 +138,11 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
         note_fabupinglun.setOnClickListener(this);
         pinglunSum.setOnClickListener(this);
         show_morePinglun.setOnClickListener(this);
+        userheadimagetoolbar.setOnClickListener(this);
+        usernametoolbar.setOnClickListener(this);
+        userheadimagecontext.setOnClickListener(this);
+        usernamecontext.setOnClickListener(this);
+        guanzhu.setOnClickListener(this);
     }
 
     private void setUserHeadImage() {
@@ -304,9 +312,24 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
                 break;
             case R.id.pinglunSum:
             case R.id.show_morePinglun:
+                if(allpinglun.size()==0){
+                    Toast.makeText(this,"还没有评论哦",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(NoteScan.this,NoteAllPinglun.class);
                 intent.putExtra("allpinglun", (Serializable) allpinglun);
                 startActivity(intent);
+                break;
+            case R.id.userheadimage_context:
+            case R.id.userheadimage_toolbar:
+            case R.id.username_context:
+            case R.id.username_toolbar:
+                Intent notelist = new Intent(NoteScan.this,SelfNoteScan.class);
+                notelist.putExtra("userselfnote",myUser);
+                startActivity(notelist);
+                break;
+            case R.id.note_guanzhu:
+                guanZhu();
                 break;
         }
     }
@@ -353,8 +376,19 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
         getWindow().setAttributes(lp);
     }
     //关注该用户
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void guanZhu(){
-
+        if(isGuanzhu==false){
+            guanzhu.setText("已关注");
+            guanzhu.setTextColor(getResources().getColor(R.color.gray));
+            guanzhu.setBackground(getResources().getDrawable(R.drawable.cancelguanzhu_buttonshape));
+            isGuanzhu = true;
+        }else {
+            guanzhu.setText("+ 关注");
+            guanzhu.setTextColor(getResources().getColor(R.color.xhsColor));
+            guanzhu.setBackground(getResources().getDrawable(R.drawable.addguanzhu_buttonshape));
+            isGuanzhu = false;
+        }
     }
 
     @Override
