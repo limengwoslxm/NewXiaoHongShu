@@ -1,6 +1,9 @@
 package com.data;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,6 +19,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,56 +43,81 @@ import cn.bmob.v3.listener.UploadBatchListener;
 public class AddDataBmob {
     private static MyUser user = BmobUser.getCurrentUser(MyUser.class);
     //添加一个笔记
-    public static void addDataToNote(String title,String content,final List<String> image,final List<String> styles){
-        final Note note = new Note();
-        note.setTitle(title);
-        note.setContent(content);
-        note.setAuthor(user);
-        note.setUp(0);
-        String[] imglist = new String[image.size()];
-        final List<BmobFile> imageList = new ArrayList<>();
-        for (int i = 0;i < image.size();i++) {
-            String img = image.get(i);
-            imglist[i] = img;
-        }
-        BmobFile.uploadBatch(imglist, new UploadBatchListener() {
+    public static void addDataToNote(final String title, final String content, final List<String> image, final List<String> styles){
+        new Thread(new Runnable() {
             @Override
-            public void onSuccess(List<BmobFile> list, List<String> urls) {
-                Log.i("bmob","已上传图片数目：" + urls.size() + " 总数为：" + image.size());
-                if(urls.size()==image.size()){
-                    imageList.addAll(list);
-                    note.setImage(imageList);
-                    Log.i("bmob","图片上传成功："+imageList.size());
-                    note.save(new SaveListener<String>() {
-                        @Override
-                        public void done(String objectId, BmobException e) {
-                            if(e==null){
-                                if (styles.size()!=0){
-                                    for (String s:styles ) {
-                                        String style = SelectDataBmob.getStyleId(s);
-                                        noteToStyle(style,objectId);
+            public void run() {
+                final Note note = new Note();
+                note.setTitle(title);
+                note.setContent(content);
+                note.setAuthor(user);
+                note.setUp(0);
+                String[] imglist = new String[image.size()];
+                final List<BmobFile> imageList = new ArrayList<>();
+                for (int i = 0;i < image.size();i++) {
+                    String img = image.get(i);
+                    String tempPath = Environment.getExternalStorageDirectory().getPath()
+                            + "/XHS/temp/" + System.currentTimeMillis() + ".jpg";
+                    compressBitmap(img,tempPath);
+                    imglist[i] = tempPath;
+                }
+                BmobFile.uploadBatch(imglist, new UploadBatchListener() {
+                    @Override
+                    public void onSuccess(List<BmobFile> list, List<String> urls) {
+                        Log.i("bmob","已上传图片数目：" + urls.size() + " 总数为：" + image.size());
+                        if(urls.size()==image.size()){
+                            imageList.addAll(list);
+                            note.setImage(imageList);
+                            Log.i("bmob","图片上传成功："+imageList.size());
+                            note.save(new SaveListener<String>() {
+                                @Override
+                                public void done(String objectId, BmobException e) {
+                                    if(e==null){
+                                        if (styles.size()!=0){
+                                            for (String s:styles ) {
+                                                String style = SelectDataBmob.getStyleId(s);
+                                                noteToStyle(style,objectId);
+                                            }
+                                        }
+                                        Toast.makeText(InitBmob.getContext(), "笔记添加成功", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
+                                        Log.i("bmob","笔记添加失败："+e.getMessage()+","+e.getErrorCode());
                                     }
                                 }
-                                Toast.makeText(InitBmob.getContext(), "笔记添加成功", Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
-                                Log.i("bmob","笔记添加失败："+e.getMessage()+","+e.getErrorCode());
-                            }
+                            });
                         }
-                    });
-                }
+                    }
+
+                    @Override
+                    public void onProgress(int i, int i1, int i2, int i3) {
+
+                    }
+
+                    @Override
+                    public void onError(int i, String s) {
+
+                    }
+                });
             }
-
-            @Override
-            public void onProgress(int i, int i1, int i2, int i3) {
-
+        }).start();
+    }
+    //图片压缩
+    private static void compressBitmap(String imgPath, String outPath) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 2;
+        Bitmap bitmap = BitmapFactory.decodeFile(imgPath, options);
+        try {
+            File dir = new File( Environment.getExternalStorageDirectory().getPath()
+                    + "/XHS/temp/");
+            if (!dir.exists()) {
+                dir.mkdirs();
             }
-
-            @Override
-            public void onError(int i, String s) {
-
-            }
-        });
+            FileOutputStream os = new FileOutputStream(outPath);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, os);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     //添加评论

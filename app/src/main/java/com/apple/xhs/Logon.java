@@ -81,5 +81,6 @@ public class Logon extends BaseActivity {
     @OnClick(R.id.logon_login)
     public void loginOnClick(){
         startActivity(new Intent(Logon.this,Login.class));
+        finish();
     }
 }

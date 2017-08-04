@@ -144,12 +144,13 @@ public class SelectDataBmob {
         });
     }
 
-    //查询评论
+    //查询评论-第一页
     public void selectComment(Note note){
         BmobQuery<Comment> query = new BmobQuery<Comment>();
         query.addWhereEqualTo("note",note);
         query.order("-createdAt");
         query.include("user");
+        query.setLimit(3);
         query.findObjects(new FindListener<Comment>() {
             @Override
             public void done(List<Comment> list, BmobException e) {

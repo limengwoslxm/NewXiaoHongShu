@@ -63,6 +63,7 @@ public class Login extends BaseActivity implements View.OnClickListener {
                         if(e==null){
                             Toast.makeText(getApplicationContext(),"登陆成功",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Login.this,MainActivity.class));
+                            finish();
                         }else {
                             Toast.makeText(getApplicationContext(), ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
                         }
