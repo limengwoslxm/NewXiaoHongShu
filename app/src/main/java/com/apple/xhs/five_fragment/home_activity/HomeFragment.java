@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ import com.apple.xhs.five_fragment.home_activity.home_fragment.HomeFragment_7;
 import com.apple.xhs.five_fragment.home_activity.home_fragment.HomeFragment_8;
 import com.apple.xhs.five_fragment.home_activity.home_fragment.HomeFragment_9;
 import com.apple.util.MyFragmentPagerAdapter;
+import com.apple.xhs.searchwhole.SearchMain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,7 @@ import java.util.List;
  */
 
 public class HomeFragment extends Fragment implements View.OnClickListener, ViewPager.OnPageChangeListener {
+    TextView main_search_bar;
     View popUpView,homeTop,popUpDismiss1,popUpDismiss2;
     TextView tab1,tab2,tab3,tab4,tab5,tab6,tab7,tab8,tab9,tab10,tab11,tab12;
     ImageView openCamera;
@@ -76,6 +79,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
     }
 
     private void initOthersView(View view) {
+        main_search_bar = view.findViewById(R.id.main_search_bar);
         openCamera = view.findViewById(R.id.home_open_camera);
         tab1 = popUpView.findViewById(R.id.home_tab1);
         tab1.setTextColor(getResources().getColor(R.color.xhsColor));
@@ -107,6 +111,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
     private void setViewListener() {
         viewPager.addOnPageChangeListener(this);
         openCamera.setOnClickListener(this);
+        main_search_bar.setOnClickListener(this);
     }
 
     private void initViewPager(View view) {
@@ -175,6 +180,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            case R.id.main_search_bar:
+                startActivity(new Intent(getActivity(), SearchMain.class));
+                break;
             case R.id.home_scrollview_showMore:
                 hideLine.setVisibility(View.INVISIBLE);
                 popupWindow.showAsDropDown(homeTop);

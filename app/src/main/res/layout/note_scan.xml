@@ -247,7 +247,8 @@
                 android:id="@+id/show_morePinglun"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:text="还没有评论"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"

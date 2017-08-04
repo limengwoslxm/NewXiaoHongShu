@@ -34,7 +34,11 @@
         <item name="android:windowSoftInputMode">stateAlwaysHidden|adjustResize</item>
         <item name="colorPrimaryDark">#E12830</item>
     </style>
-
+    <style name="SearchMain" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#E12830</item>
+        <item name="android:windowSoftInputMode">stateVisible</item>
+        <item name="colorPrimaryDark">#E12830</item>
+    </style>
     <style name="MyDialogStyleInHomeScrollView">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
@@ -185,4 +189,5 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

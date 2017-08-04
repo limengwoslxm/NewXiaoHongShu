@@ -31,4 +31,7 @@
         <attr name="setName" format="string"/>
         <attr name="setFensi" format="string"/>
     </declare-styleable>
+    <declare-styleable name="HotSearchLable">
+        <attr name="setHotLable" format="string"/>
+    </declare-styleable>
 </resources>

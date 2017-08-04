@@ -18,4 +18,5 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="toolbar">#f24f73</color>
+    <color name="hotlable">#ecebeb</color>
 </resources>
