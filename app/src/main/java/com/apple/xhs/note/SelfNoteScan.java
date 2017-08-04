@@ -18,6 +18,7 @@ import com.apple.xhs.custom_view.SelfNoteCard;
 import com.base.BaseActivity;
 import com.bean.MyUser;
 import com.bean.Note;
+import com.data.DeleteDataBmob;
 
 import java.io.Serializable;
 import java.util.List;
@@ -69,7 +70,7 @@ public class SelfNoteScan extends BaseActivity implements View.OnClickListener {
             @Override
             public void done(List<Note> list, BmobException e) {
                 if(e==null){
-                    Log.i("bmob","成功");
+                    Log.i("bmob","获取笔记成功");
                     addNoteCard(list);
                 }else{
                     Log.i("bmob","获取笔记失败："+e.getMessage() + e.getErrorCode());
@@ -83,7 +84,7 @@ public class SelfNoteScan extends BaseActivity implements View.OnClickListener {
             @Override
             public void run() {
                 for(int i = list.size()-1 ; i >= 0 ; i--){
-                    Note note = list.get(i);
+                    final Note note = list.get(i);
                     SelfNoteCard card = new SelfNoteCard(getApplicationContext());
                     card.setSelfNoteTitle(note.getTitle());
                     card.setSelfNoteShoucang("已被收藏"+note.getUp()+"次");
@@ -120,7 +121,7 @@ public class SelfNoteScan extends BaseActivity implements View.OnClickListener {
                     card.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
                         public boolean onLongClick(View view) {
-                            deleteCurrentNote(view);
+                            deleteCurrentNote(view,note);
                             return true;
                         }
                     });
@@ -129,7 +130,7 @@ public class SelfNoteScan extends BaseActivity implements View.OnClickListener {
         });
     }
     //删除笔记
-    private void deleteCurrentNote(final View view) {
+    private void deleteCurrentNote(final View view, final Note note) {
         if(user.getObjectId().equals(BmobUser.getCurrentUser(MyUser.class).getObjectId())){
             new AlertDialog.Builder(this)
                     .setTitle("删除笔记")
@@ -138,6 +139,7 @@ public class SelfNoteScan extends BaseActivity implements View.OnClickListener {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             parent.removeView(view);
+                            DeleteDataBmob.deleteNote(note);
                         }
                     })
                     .setNegativeButton("取消", new DialogInterface.OnClickListener() {

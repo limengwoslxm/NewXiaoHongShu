@@ -88,6 +88,8 @@ public class AddDataBmob {
                                     }
                                 }
                             });
+                        }else {
+                            Log.i("bmob","等待上传图片数目：" + (image.size()-urls.size()));
                         }
                     }
 
@@ -98,7 +100,7 @@ public class AddDataBmob {
 
                     @Override
                     public void onError(int i, String s) {
-
+                        Log.i("bmob","图片上传失败：<" + i + ">" + s);
                     }
                 });
             }
@@ -135,7 +137,7 @@ public class AddDataBmob {
                 if (e==null){
                     Log.i("bmob","评论添加成功：" + "用户<" + user.getNickname() + ">对笔记<" + note.getTitle() + ">评论：" + comment.getContent());
                 }else {
-                    Toast.makeText(InitBmob.getContext(),"评论添加失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
                     Log.i("bmob","评论添加失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
@@ -202,6 +204,7 @@ public class AddDataBmob {
                     Toast.makeText(InitBmob.getContext(),"收藏成功",Toast.LENGTH_SHORT).show();
                     Log.i("bmob","收藏成功：" + "用户<" + my.getNickname() + ">收藏了笔记<" + note.getTitle() + ">");
                 }else{
+                    Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
                     Log.i("bmob","收藏失败："+e.getMessage() + e.getErrorCode());
                 }
             }

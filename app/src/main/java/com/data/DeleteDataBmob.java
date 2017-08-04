@@ -36,6 +36,7 @@ public class DeleteDataBmob {
                     Toast.makeText(InitBmob.getContext(),"取消收藏成功",Toast.LENGTH_SHORT).show();
                     Log.i("bmob","取消收藏成功：" + "用户<" + my.getNickname() + ">取消收藏了笔记<" + note.getTitle() + ">");
                 }else{
+                    Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
                     Log.i("bmob","取消收藏失败："+e.getMessage() + e.getErrorCode());
                 }
             }
@@ -77,7 +78,7 @@ public class DeleteDataBmob {
                     Toast.makeText(InitBmob.getContext(),"删除笔记成功",Toast.LENGTH_SHORT).show();
                     Log.i("bmob","删除笔记成功：" + note.getTitle());
                 }else {
-                    Toast.makeText(InitBmob.getContext(),"删除笔记失败" + e.getErrorCode(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
                     Log.i("bmob","删除笔记失败：" + e.getErrorCode() + e.getMessage());
                 }
             }
