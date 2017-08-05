@@ -11,6 +11,9 @@ import com.collecter.ErrorCollecter;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 import cn.bmob.v3.AsyncCustomEndpoints;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobRelation;
@@ -98,6 +101,22 @@ public class DeleteDataBmob {
                 }else {
                     Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
                     Log.i("bmob","清空历史失败：" + e.getMessage() + e.getErrorCode());
+                }
+            }
+        });
+    }
+
+    //删除单个搜索记录
+    public static void deleteHisOne(String ss){
+        MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        user.removeAll("history", Arrays.asList(ss));
+        user.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e==null){
+
+                }else {
+
                 }
             }
         });

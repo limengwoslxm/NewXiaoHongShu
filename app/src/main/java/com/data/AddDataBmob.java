@@ -214,6 +214,12 @@ public class AddDataBmob {
     //添加历史搜索
     public static void addHistory(String ss){
         MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        List<String> list = user.getHistory();
+        for (String s : list){
+            if (s.equals(ss)){
+                DeleteDataBmob.deleteHisOne(s);
+            }
+        }
         user.addUnique("history",ss);
         user.save(new SaveListener<String>() {
             @Override

@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.apple.initbmob.InitBmob;
+import com.bean.Note;
 import com.collecter.ActivityCollecter;
 import com.base.BaseActivity;
 
@@ -20,6 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * Created by limeng on 2017/7/21.
@@ -41,8 +47,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        selectAllNote();
         initView();
     }
+
+    private void selectAllNote() {
+        BmobQuery<Note> query = new BmobQuery<Note>();
+        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);
+        query.findObjects(new FindListener<Note>() {
+            @Override
+            public void done(List<Note> list, BmobException e) {
+                if (e==null){
+                    InitBmob.setList(list);
+                }else {
+                    Log.i("bmob","获取全部笔记失败" + e.getMessage() + e.getErrorCode());
+                }
+            }
+        });
+    }
+
     //全屏显示
 //    private void setFullScreen() {
 //        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -125,4 +148,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onDestroy();
         ActivityCollecter.finishAll();
     }
+
+
 }

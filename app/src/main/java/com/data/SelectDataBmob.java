@@ -117,9 +117,11 @@ public class SelectDataBmob {
     //模糊查询
     public void selectMore(final String ss){
         BmobQuery<Note> query = new BmobQuery<Note>();
+        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);
         query.findObjects(new FindListener<Note>() {
             @Override
             public void done(List<Note> list, BmobException e) {
+                AddDataBmob.addHistory(ss);
                 if (e==null){
                     List<Note> newList = new ArrayList<>();
                     for (Note note:list){
