@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.apple.initbmob.InitBmob;
+import com.apple.xhs.five_fragment.home_activity.HomeOpenCamera;
 import com.bean.Comment;
+import com.bean.Hot;
 import com.bean.MyUser;
 import com.bean.Note;
 import com.bean.Style;
@@ -31,6 +34,7 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobRelation;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.CloudCodeListener;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -214,6 +218,12 @@ public class AddDataBmob {
     //添加历史搜索
     public static void addHistory(String ss){
         MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        List<String> list = user.getHistory();
+        for (String s : list){
+            if (s.equals(ss)){
+                DeleteDataBmob.deleteHisOne(s);
+            }
+        }
         user.addUnique("history",ss);
         user.save(new SaveListener<String>() {
             @Override
@@ -222,6 +232,49 @@ public class AddDataBmob {
                     Log.i("bmob","历史搜索保存成功");
                 }else{
                     Log.i("bmob","历史搜索保存失败："+e.getMessage() + e.getErrorCode());
+                }
+            }
+        });
+    }
+
+    //添加热门搜索
+    public static void addHot(final String ss){
+        BmobQuery<Hot> query = new BmobQuery<Hot>();
+        query.addWhereEqualTo("name",ss);
+        query.findObjects(new FindListener<Hot>() {
+            @Override
+            public void done(List<Hot> list, BmobException e) {
+                if (e==null){
+                    if (list.size()==0){
+                        Hot hot = new Hot();
+                        hot.setName(ss);
+                        hot.setNumber(0);
+                        hot.save(new SaveListener<String>() {
+                            @Override
+                            public void done(String s, BmobException e) {
+                                if (e==null){
+                                    Log.i("bmob","热门搜索添加成功");
+                                }else {
+                                    Log.i("bmob","热门搜索添加失败" + e.getMessage() + e.getErrorCode());
+                                }
+                            }
+                        });
+                    }else {
+                        Hot hot = list.get(0);
+                        hot.increment("number",1);
+                        hot.update(new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+                                if (e==null){
+                                    Log.i("bmob","热门搜索更新成功");
+                                }else {
+                                    Log.i("bmob","热门搜索更新失败"  + e.getMessage() + e.getErrorCode());
+                                }
+                            }
+                        });
+                    }
+                }else {
+                    Log.i("bmob","热门搜索查询失败" + e.getMessage() + e.getErrorCode());
                 }
             }
         });

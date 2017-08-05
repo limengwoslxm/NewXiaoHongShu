@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.apple.initbmob.InitBmob;
 import com.bean.Comment;
+import com.bean.Hot;
 import com.bean.MyUser;
 import com.bean.Note;
 import com.bean.Style;
@@ -117,9 +118,12 @@ public class SelectDataBmob {
     //模糊查询
     public void selectMore(final String ss){
         BmobQuery<Note> query = new BmobQuery<Note>();
+        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);
         query.findObjects(new FindListener<Note>() {
             @Override
             public void done(List<Note> list, BmobException e) {
+                AddDataBmob.addHistory(ss);
+                AddDataBmob.addHot(ss);
                 if (e==null){
                     List<Note> newList = new ArrayList<>();
                     for (Note note:list){
@@ -127,13 +131,31 @@ public class SelectDataBmob {
                             newList.add(note);
                         }
                     }
+                    Log.i("bmob","结果个数：" + newList.size());
                     if (newList.size()==0){
-                        Toast.makeText(InitBmob.getContext(),"结果不存在",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(InitBmob.getContext(),"结果不存在",Toast.LENGTH_SHORT).show();
                     }else {
                         //代码块
                     }
                 }else {
                     Log.i("bmob","模糊查询失败" + e.getErrorCode() + e.getMessage());
+                }
+            }
+        });
+    }
+
+    //获取前16热门搜索
+    public void selectHot(){
+        BmobQuery<Hot> query = new BmobQuery<Hot>();
+        query.order("-number");
+        query.setLimit(16);
+        query.findObjects(new FindListener<Hot>() {
+            @Override
+            public void done(List<Hot> list, BmobException e) {
+                if (e==null){
+
+                }else {
+                    Log.i("bmob","热门搜索查询失败" + e.getErrorCode() + e.getMessage());
                 }
             }
         });
