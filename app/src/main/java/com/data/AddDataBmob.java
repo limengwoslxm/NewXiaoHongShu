@@ -218,20 +218,14 @@ public class AddDataBmob {
     //添加历史搜索
     public static void addHistory(String ss){
         MyUser user = BmobUser.getCurrentUser(MyUser.class);
-        List<String> list = user.getHistory();
-        for (String s : list){
-            if (s.equals(ss)){
-                DeleteDataBmob.deleteHisOne(s);
-            }
-        }
         user.addUnique("history",ss);
-        user.save(new SaveListener<String>() {
+        user.update(new UpdateListener() {
             @Override
-            public void done(String objectId,BmobException e) {
-                if(e==null){
-                    Log.i("bmob","历史搜索保存成功");
-                }else{
-                    Log.i("bmob","历史搜索保存失败："+e.getMessage() + e.getErrorCode());
+            public void done(BmobException e) {
+                if (e==null){
+                    Log.i("bmob","历史搜索添加成功");
+                }else {
+                    Log.i("bmob","历史搜索添加失败" + e.getMessage() + e.getErrorCode());
                 }
             }
         });

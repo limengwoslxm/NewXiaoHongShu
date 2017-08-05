@@ -23,7 +23,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="8"
                 android:textColor="@color/white"
-                android:maxLength="8"
+                android:maxLength="20"
                 android:textSize="16sp"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
@@ -52,32 +52,34 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/historybar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/backgroundcolor"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="历史记录"
+                    android:textSize="15sp"
+                    android:textColor="@color/gray"/>
+                <ImageView
+                    android:id="@+id/deletehistorysearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_history_delete"/>
+            </RelativeLayout>
             <LinearLayout
                 android:id="@+id/historylable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/backgroundcolor"
-                    android:gravity="center_vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:text="历史记录"
-                        android:textSize="15sp"
-                        android:textColor="@color/gray"/>
-                    <ImageView
-                        android:id="@+id/deletehistorysearch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:src="@drawable/ic_history_delete"/>
-                </RelativeLayout>
+
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/hotlable"

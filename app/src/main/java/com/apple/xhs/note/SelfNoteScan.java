@@ -105,7 +105,7 @@ public class SelfNoteScan extends BaseActivity implements View.OnClickListener {
                         card.setSketchImageThree(note.getImage().get(2).getUrl());
                         card.setSketchImageFour(note.getImage().get(3).getUrl());
                     }
-                    card.setTag(i);
+                    card.setTag(i+"");
                     parent.addView(card);
                     final int finalI = i;
                     card.setOnClickListener(new View.OnClickListener() {

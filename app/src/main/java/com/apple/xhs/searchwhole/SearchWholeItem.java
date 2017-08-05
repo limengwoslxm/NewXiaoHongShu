@@ -27,5 +27,6 @@ public class SearchWholeItem extends BaseActivity {
     private void initData() {
         Intent intent = getIntent();
         String string = intent.getStringExtra("lable");
+        Toast.makeText(this, string,Toast.LENGTH_SHORT).show();
     }
 }

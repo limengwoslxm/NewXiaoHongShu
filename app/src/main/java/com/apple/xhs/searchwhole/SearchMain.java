@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,13 +29,18 @@ import com.apple.xhs.R;
 import com.apple.xhs.custom_view.HotSearchLable;
 import com.apple.xhs.custom_view.HotSearchParent;
 import com.base.BaseActivity;
+import com.bean.Hot;
+import com.bean.MyUser;
 import com.bean.Note;
+import com.data.AddDataBmob;
+import com.data.DeleteDataBmob;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
@@ -43,38 +49,62 @@ import cn.bmob.v3.listener.FindListener;
  */
 
 public class SearchMain extends BaseActivity implements View.OnClickListener, TextWatcher, TextView.OnEditorActionListener {
+    //历史记录栏
+    @BindView(R.id.historybar)
+    RelativeLayout historybar;
+    //历史记录标签父容器
     @BindView(R.id.historylable)
     LinearLayout historyParent;
+    //热门搜索标签父容器
     @BindView(R.id.hotlable)
     LinearLayout hotParent;
+    //清空历史记录
     @BindView(R.id.deletehistorysearch)
     ImageView delete;
+    //用户输入editview
     @BindView(R.id.getuserinput)
     EditText getuserinput;
+    //取消搜索
     @BindView(R.id.cancel_search)
             TextView cancel_search;
+    //搜索提示的listview
     @BindView(R.id.searchlistview)
     ListView listView;
+    //显示搜索标签的view
     @BindView(R.id.defindedresult)
             LinearLayout defindedresult;
+
     List<String> history = new ArrayList<>();
-    List<String> hotlable = new ArrayList<>();
+    List<Hot> hotlable = new ArrayList<>();
+    List<String> gethot = new ArrayList<>();
     List<String> relatedTitle = new ArrayList<>();
     List<Note> noteList = new ArrayList<>();
-    String relatedcount ;
     int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
     int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if(msg.what==1){
-                relatedcount = msg.obj+"";
-                relatedTitle.clear();
-                relatedTitle.add("共有"+relatedcount+"条相关笔记");
-                setListView(relatedTitle);
-                listView.setVisibility(View.VISIBLE);
-                defindedresult.setVisibility(View.INVISIBLE);
+            switch (msg.what){
+                case 1:
+                    noteList = (List<Note>) msg.obj;
+                    relatedTitle.clear();
+                    relatedTitle.add("共有"+noteList.size()+"条相关笔记");
+                    for(int i = 0 ; i < noteList.size();i++){
+                        relatedTitle.add(noteList.get(i).getTitle());
+                    }
+                    setListView(relatedTitle);
+                    listView.setVisibility(View.VISIBLE);
+                    defindedresult.setVisibility(View.INVISIBLE);
+                    break;
+                case 2:
+                    hotlable = (List<Hot>) msg.obj;
+                    for(Hot hot : hotlable){
+                        gethot.add(hot.getName());
+                    }
+                    addHotLable(gethot);
+                    break;
+
             }
         }
     };
@@ -88,8 +118,6 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
         super.onCreate(savedInstanceState);
         initData();
         popInputSoft();
-        addHistoryLable(history);
-        addHotLable(hotlable);
         addViewListener();
     }
 
@@ -107,21 +135,34 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
         //getuserinput.setOnKeyListener(this);
         getuserinput.addTextChangedListener(this);
         getuserinput.setOnEditorActionListener(this);
+        listView.setVisibility(View.GONE);
     }
 
     private void initData() {
-        for(int i = 0; i < 12; i++){
-            history.add("history"+i);
+        BmobQuery<Hot> query2 = new BmobQuery<Hot>();
+        query2.order("-number");
+        query2.setLimit(16);
+        query2.findObjects(new FindListener<Hot>() {
+            @Override
+            public void done(List<Hot> list, BmobException e) {
+                if (e==null){
+                    Message message = handler.obtainMessage();
+                    message.what = 2;
+                    message.obj = list;
+                    handler.sendMessage(message);
+                }else {
+                    Log.i("bmob","热门搜索查询失败" + e.getErrorCode() + e.getMessage());
+                }
+            }
+        });
+        MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        history = user.getHistory();
+        if(history != null){
+            addHistoryLable( history);
+        }else {
+            historybar.setVisibility(View.GONE);
         }
-        for(int i = 0; i < 16; i++){
-            hotlable.add("hotlable"+i);
-        }
-//        for(int i = 0; i <16 ;i++){
-//            if(i==0){
-//                //relatedTitle.add()
-//            }
-//            relatedTitle.add(i+"测试");
-//        }
+
     }
 
     private void addHistoryLable(List<String> history) {
@@ -129,7 +170,12 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
         int screenWidth = getWindowManager().getDefaultDisplay().getWidth()*5/7;
         HotSearchParent parent = null;
         HotSearchLable lable = null;
-        for(int i = history.size()-1; i >= 0 ; i--){
+        if(history == null){
+            historyParent.setVisibility(View.GONE);
+            return;
+        }
+        historyParent.setVisibility(View.VISIBLE);
+        for(int i = history.size() - 1; i >= 0  ; i--){
             if(width == 0){
                 parent = new HotSearchParent(this,null);
                 lable = new HotSearchLable(this,null);
@@ -162,7 +208,7 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
         int screenWidth = getWindowManager().getDefaultDisplay().getWidth()*5/7;
         HotSearchParent parent = null;
         HotSearchLable lable = null;
-        for(int i = hotlable.size()-1; i >= 0 ; i--){
+        for(int i = 0; i < hotlable.size() ; i++){
             if(width == 0){
                 parent = new HotSearchParent(this,null);
                 lable = new HotSearchLable(this,null);
@@ -205,7 +251,9 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.deletehistorysearch:
-
+                historyParent.removeAllViews();
+                historybar.setVisibility(View.GONE);
+                DeleteDataBmob.deleteHistory();
                 break;
             case R.id.cancel_search:
                 finish();
@@ -232,9 +280,11 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
     @Override
     public void afterTextChanged(Editable editable) {
         if(!getuserinput.getText().toString().equals("")){
+//            listView.setVisibility(View.VISIBLE);
+//            defindedresult.setVisibility(View.GONE);
             final String ss = getuserinput.getText().toString();
-            BmobQuery<Note> query = new BmobQuery<Note>();
-            query.findObjects(new FindListener<Note>() {
+            BmobQuery<Note> query1 = new BmobQuery<Note>();
+            query1.findObjects(new FindListener<Note>() {
                 @Override
                 public void done(List<Note> list, BmobException e) {
                     if (e==null){
@@ -251,7 +301,7 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
 
                             Message message = handler.obtainMessage();
                             message.what = 1;
-                            message.obj = newList.size();
+                            message.obj = newList;
                             handler.sendMessage(message);
                         }
                     }else {
@@ -260,15 +310,17 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
                 }
             });
         }else {
-            listView.setVisibility(View.INVISIBLE);
+            listView.setVisibility(View.GONE);
             defindedresult.setVisibility(View.VISIBLE);
         }
-
     }
 
     @Override
     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+        String ss = getuserinput.getText().toString();
         if (i == EditorInfo.IME_ACTION_SEARCH) {
+            AddDataBmob.addHistory(ss);
+            AddDataBmob.addHot(ss);
             return true;
         }
         return false;
