@@ -263,7 +263,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
                 finish();
             }
         });
-        //右菜单，从底部弹出分享
+        //右菜单，从底部弹出分享，并设置背景色为半透明
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -357,10 +357,8 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
     @Override
     public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
         if(i7 != 0 && i3 != 0 &&(i7 - i3 > keyHeight)){
-            //软键盘打开
             popedittext.setVisibility(View.VISIBLE);
         }else if(i7 != 0 && i3 != 0 &&(i3 - i7 > keyHeight)){
-            //软键盘关闭
             popedittext.setVisibility(View.GONE);
         }
     }
@@ -371,6 +369,7 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
             backgroundAlpha(1.0f);
         }
     }
+    //设置背景色
     public void backgroundAlpha(float bgAlpha) {
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = bgAlpha;

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
-        android:id="@+id/main_search_bar"
         android:layout_width="290dp"
         android:layout_height="35dp"
         android:orientation="horizontal"
@@ -13,7 +12,8 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/ic_home_search"
             android:layout_gravity="center_vertical"/>
-        <EditText
+        <TextView
+            android:id="@+id/main_search_bar"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

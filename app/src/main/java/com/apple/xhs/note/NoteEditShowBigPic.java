@@ -40,6 +40,7 @@ public class NoteEditShowBigPic extends BaseActivity {
             @Override
             public void onClick(View view) {
                 finish();
+                overridePendingTransition(R.anim.showbigpic_out,R.anim.showbigpic_out_big);
             }
         });
     }

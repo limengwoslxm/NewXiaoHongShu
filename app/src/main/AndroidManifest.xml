@@ -98,6 +98,10 @@
         <activity
             android:name=".ServiceHelp"
             android:theme="@style/XHSstatusbar"/>
+        <activity android:name=".searchwhole.SearchMain"
+            android:theme="@style/SearchMain"/>
+        <activity android:name=".searchwhole.SearchWholeItem"
+            android:theme="@style/XHSstatusbar"/>
     </application>
 
 </manifest>
