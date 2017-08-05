@@ -44,49 +44,63 @@
             android:textSize="18sp"
             android:textColor="@color/white"/>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/historylable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RelativeLayout
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/defindedresult"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/backgroundcolor"
-            android:gravity="center_vertical">
-            <TextView
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/historylable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="历史记录"
-                android:textSize="15sp"
-                android:textColor="@color/gray"/>
-            <ImageView
-                android:id="@+id/deletehistorysearch"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/ic_history_delete"/>
-        </RelativeLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/hotlable"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/backgroundcolor"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="历史记录"
+                        android:textSize="15sp"
+                        android:textColor="@color/gray"/>
+                    <ImageView
+                        android:id="@+id/deletehistorysearch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_history_delete"/>
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/hotlable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingLeft="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical"
+                    android:text="热门搜索"
+                    android:textSize="15sp"
+                    android:textColor="@color/gray"
+                    android:background="@color/backgroundcolor" />
+            </LinearLayout>
+        </LinearLayout>
+        <ListView
+            android:id="@+id/searchlistview"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:paddingLeft="15dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_vertical"
-            android:text="热门搜索"
-            android:textSize="15sp"
-            android:textColor="@color/gray"
-            android:background="@color/backgroundcolor" />
+            android:layout_height="match_parent">
 
-    </LinearLayout>
+        </ListView>
+    </FrameLayout>
 </LinearLayout>

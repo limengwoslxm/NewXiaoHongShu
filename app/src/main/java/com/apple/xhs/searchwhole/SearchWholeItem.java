@@ -21,8 +21,11 @@ public class SearchWholeItem extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initData();
+    }
+
+    private void initData() {
         Intent intent = getIntent();
         String string = intent.getStringExtra("lable");
-        Toast.makeText(this, string,Toast.LENGTH_SHORT).show();
     }
 }
