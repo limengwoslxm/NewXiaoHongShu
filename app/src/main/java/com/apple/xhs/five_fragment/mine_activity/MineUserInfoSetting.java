@@ -372,7 +372,6 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         City city_Bmob = myUser.getAddress();
         if(city_Bmob != null){
             BmobQuery<City> query = new BmobQuery<City>();
-            query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
             query.getObject(city_Bmob.getObjectId(), new QueryListener<City>() {
                 @Override
                 public void done(City city, BmobException e) {
