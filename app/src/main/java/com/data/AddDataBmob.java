@@ -217,6 +217,9 @@ public class AddDataBmob {
 
     //添加历史搜索
     public static void addHistory(String ss){
+        if (ss.equals("")){
+            return;
+        }
         MyUser user = BmobUser.getCurrentUser(MyUser.class);
         user.addUnique("history",ss);
         user.update(new UpdateListener() {

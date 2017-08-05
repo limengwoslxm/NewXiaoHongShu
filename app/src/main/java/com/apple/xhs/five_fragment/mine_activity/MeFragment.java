@@ -183,7 +183,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
         BmobQuery<MyUser> query1 = new BmobQuery<MyUser>();
         query1.addWhereRelatedTo("attention",new BmobPointer(myUser));
-        query1.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query1.findObjects(new FindListener<MyUser>() {
             @Override
             public void done(List<MyUser> list, BmobException e) {
@@ -203,7 +202,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
         BmobQuery<MyUser> query2 = new BmobQuery<MyUser>();
         query2.addWhereRelatedTo("fans",new BmobPointer(myUser));
-        query2.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query2.findObjects(new FindListener<MyUser>() {
             @Override
             public void done(List<MyUser> list, BmobException e) {
@@ -223,7 +221,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
         BmobQuery<Note> query3 = new BmobQuery<Note>();
         query3.addWhereEqualTo("author",myUser);
-        query3.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query3.findObjects(new FindListener<Note>() {
             @Override
             public void done(List<Note> list, BmobException e) {
@@ -243,7 +240,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
         BmobQuery<Note> query4 = new BmobQuery<Note>();
         query4.addWhereRelatedTo("likes",new BmobPointer(myUser));
-        query4.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query4.findObjects(new FindListener<Note>() {
             @Override
             public void done(List<Note> list, BmobException e) {
