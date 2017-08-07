@@ -47,24 +47,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        selectAllNote();
+//        selectAllNote();
         initView();
     }
 
-    private void selectAllNote() {
-        BmobQuery<Note> query = new BmobQuery<Note>();
-        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);
-        query.findObjects(new FindListener<Note>() {
-            @Override
-            public void done(List<Note> list, BmobException e) {
-                if (e==null){
-                    InitBmob.setList(list);
-                }else {
-                    Log.i("bmob","获取全部笔记失败" + e.getMessage() + e.getErrorCode());
-                }
-            }
-        });
-    }
+//    private void selectAllNote() {
+//        BmobQuery<Note> query = new BmobQuery<Note>();
+//        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);
+//        query.findObjects(new FindListener<Note>() {
+//            @Override
+//            public void done(List<Note> list, BmobException e) {
+//                if (e==null){
+//                    InitBmob.setList(list);
+//                }else {
+//                    Log.i("bmob","获取全部笔记失败" + e.getMessage() + e.getErrorCode());
+//                }
+//            }
+//        });
+//    }
 
     //全屏显示
 //    private void setFullScreen() {

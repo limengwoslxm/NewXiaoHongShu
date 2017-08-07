@@ -23,7 +23,7 @@ public class MyUser extends BmobUser {
     private String pregnant;
     private BmobRelation attention;
     private BmobRelation fans;
-    private City address;
+    private String address;
     private BmobRelation likes;
     private List<String> history;
 
@@ -118,11 +118,11 @@ public class MyUser extends BmobUser {
         this.fans = fans;
     }
 
-    public City getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(City address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
