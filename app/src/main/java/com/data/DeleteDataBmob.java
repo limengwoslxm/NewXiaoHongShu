@@ -36,6 +36,7 @@ public class DeleteDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    UpdateDataBmob.delUp(note);
                     Toast.makeText(InitBmob.getContext(),"取消收藏成功",Toast.LENGTH_SHORT).show();
                     Log.i("bmob","取消收藏成功：" + "用户<" + my.getNickname() + ">取消收藏了笔记<" + note.getTitle() + ">");
                 }else{

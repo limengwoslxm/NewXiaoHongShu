@@ -77,10 +77,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                             if (b){
                                 AddDataBmob.addLikes(note);
-                                UpdateDataBmob.clickUp(note);
                             }else {
                                 DeleteDataBmob.deleteLikes(note);
-                                UpdateDataBmob.delUp(note);
                             }
                         }
                     });
