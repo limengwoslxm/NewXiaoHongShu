@@ -16,7 +16,6 @@ import com.apple.xhs.custom_view.InfoSettingTitle;
 import com.apple.xhs.custom_view.UserInfoRow;
 import com.apple.xhs.R;
 import com.base.BaseActivity;
-import com.bean.City;
 import com.bean.MyUser;
 import com.data.UpdateDataBmob;
 
@@ -369,19 +368,9 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         }
 
         //常住地
-        City city_Bmob = myUser.getAddress();
+        String city_Bmob = myUser.getAddress();
         if(city_Bmob != null){
-            BmobQuery<City> query = new BmobQuery<City>();
-            query.getObject(city_Bmob.getObjectId(), new QueryListener<City>() {
-                @Override
-                public void done(City city, BmobException e) {
-                    if(e==null){
-                        area.getName().setText(city.getCityname());
-                    }else{
-                        Log.i("bmob","获取常住地失败："+e.getMessage()+","+e.getErrorCode());
-                    }
-                }
-            });
+            area.getName().setText(city_Bmob);
         }
 
         //生日

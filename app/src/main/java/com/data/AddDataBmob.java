@@ -205,6 +205,7 @@ public class AddDataBmob {
             @Override
             public void done(BmobException e) {
                 if(e==null){
+                    UpdateDataBmob.clickUp(note);
                     Toast.makeText(InitBmob.getContext(),"收藏成功",Toast.LENGTH_SHORT).show();
                     Log.i("bmob","收藏成功：" + "用户<" + my.getNickname() + ">收藏了笔记<" + note.getTitle() + ">");
                 }else{

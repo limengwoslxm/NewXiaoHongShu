@@ -2,12 +2,10 @@ package com.data;
 
 
 import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.apple.initbmob.InitBmob;
-import com.bean.City;
 import com.bean.MyUser;
 import com.bean.Note;
 import com.collecter.ErrorCollecter;
@@ -158,10 +156,8 @@ public class UpdateDataBmob {
     //更改常住地
     public static void UpdataArea(String area){
         final MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
-        City city = new City();
-        city.setObjectId("nV96hhhk");
         MyUser user = new MyUser();
-        user.setAddress(city);
+        user.setAddress(area);
         user.update(myUser.getObjectId(), new UpdateListener() {
             @Override
             public void done(BmobException e) {
