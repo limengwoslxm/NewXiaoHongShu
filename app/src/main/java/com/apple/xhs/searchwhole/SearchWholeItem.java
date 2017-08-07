@@ -51,16 +51,7 @@ public class SearchWholeItem extends BaseActivity implements View.OnClickListene
     List<Note> queryList = new ArrayList<>();
     SpacesItemDecoration space;
     MyRecyclerViewAdapter adapter;
-    Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            if(msg.what==1){
-                queryList = (List<Note>) msg.obj;
-                initView(queryList);
-            }
-        }
-    };
+
     @Override
     public int getContentViewId() {
         return R.layout.searchwholeitem;
@@ -100,18 +91,10 @@ public class SearchWholeItem extends BaseActivity implements View.OnClickListene
                         }
                     }
                     if (queryList.size()==0){
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                norelated.setVisibility(View.VISIBLE);
-                            }
-                        });
+                        norelated.setVisibility(View.VISIBLE);
                     }else {
                         //代码块
-                        Message message = handler.obtainMessage();
-                        message.what = 1;
-                        message.obj = queryList;
-                        handler.sendMessage(message);
+                        initView(queryList);
                     }
                 }else {
                     Log.i("bmob","模糊查询失败" + e.getErrorCode() + e.getMessage());

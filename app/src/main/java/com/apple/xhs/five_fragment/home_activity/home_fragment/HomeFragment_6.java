@@ -45,17 +45,6 @@ public class HomeFragment_6 extends Fragment implements MyRecyclerViewAdapter.On
     List<Note> data = new ArrayList<>();
     SpacesItemDecoration space;
 
-    Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            data = (List<Note>) msg.obj;
-            initPagerView();
-            //adapter.notifyDataSetChanged();
-
-        }
-    };
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -150,10 +139,8 @@ public class HomeFragment_6 extends Fragment implements MyRecyclerViewAdapter.On
             @Override
             public void done(final List<Note> notelist, BmobException e) {
                 if(e==null){
-                    Message message = handler.obtainMessage();
-                    message.what = 1;
-                    message.obj = notelist;
-                    handler.sendMessage(message);
+                    data = notelist;
+                    initPagerView();
                 }else{
                     Log.i("bmob",e + "查询笔记失败");
                 }

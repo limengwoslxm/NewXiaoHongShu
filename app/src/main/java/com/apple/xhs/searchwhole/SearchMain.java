@@ -85,33 +85,7 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
     List<Note> newList ;
     int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
     int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-    Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what){
-                case 1:
-                    noteList = (List<Note>) msg.obj;
-                    relatedTitle.clear();
-                    relatedTitle.add("共有"+noteList.size()+"条相关笔记");
-                    for(int i = 0 ; i < noteList.size();i++){
-                        relatedTitle.add(noteList.get(i).getTitle());
-                    }
-                    setListView(relatedTitle);
-                    listView.setVisibility(View.VISIBLE);
-                    defindedresult.setVisibility(View.INVISIBLE);
-                    break;
-                case 2:
-                    hotlable = (List<Hot>) msg.obj;
-                    for(Hot hot : hotlable){
-                        gethot.add(hot.getName());
-                    }
-                    addHotLable(gethot);
-                    break;
 
-            }
-        }
-    };
     @Override
     public int getContentViewId() {
         return R.layout.searchwholemain;
@@ -150,10 +124,11 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
             @Override
             public void done(List<Hot> list, BmobException e) {
                 if (e==null){
-                    Message message = handler.obtainMessage();
-                    message.what = 2;
-                    message.obj = list;
-                    handler.sendMessage(message);
+                    hotlable = list;
+                    for(Hot hot : hotlable){
+                        gethot.add(hot.getName());
+                    }
+                    addHotLable(gethot);
                 }else {
                     Log.i("bmob","热门搜索查询失败" + e.getErrorCode() + e.getMessage());
                 }
@@ -265,12 +240,6 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
         }
     }
 
-//    @Override
-//    public boolean onKey(View view, int i, KeyEvent keyEvent) {
-//
-//        return true;
-//    }
-
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -301,10 +270,15 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
                             //Toast.makeText(InitBmob.getContext(),"结果不存在",Toast.LENGTH_SHORT).show();
                         }else {
                             //代码块
-                            Message message = handler.obtainMessage();
-                            message.what = 1;
-                            message.obj = newList;
-                            handler.sendMessage(message);
+                            noteList = newList;
+                            relatedTitle.clear();
+                            relatedTitle.add("共有"+noteList.size()+"条相关笔记");
+                            for(int i = 0 ; i < noteList.size();i++){
+                                relatedTitle.add(noteList.get(i).getTitle());
+                            }
+                            setListView(relatedTitle);
+                            listView.setVisibility(View.VISIBLE);
+                            defindedresult.setVisibility(View.INVISIBLE);
                         }
                     }else {
                         Log.i("bmob","模糊查询失败" + e.getErrorCode() + e.getMessage());
