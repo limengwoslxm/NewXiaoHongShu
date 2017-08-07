@@ -55,16 +55,16 @@
                     style="@style/mine_focusstate_titleNum"
                     android:text="0" />
                 <TextView
-                    android:id="@+id/me_fans"
+                    android:id="@+id/me_fans1"
                     style="@style/mine_focusstate_titleNum"
                     android:text="0" />
 
                 <TextView
-                    android:id="@+id/me_minenote"
+                    android:id="@+id/me_minenote1"
                     style="@style/mine_focusstate_titleNum"
                     android:text="0" />
                 <TextView
-                    android:id="@+id/me_likes"
+                    android:id="@+id/me_likes1"
                     style="@style/mine_focusstate_titleNum"
                     android:text="0" />
             </LinearLayout>
@@ -78,12 +78,15 @@
                     style="@style/mine_focusstate_titleNum"
                     android:text="关注" />
                 <TextView
+                    android:id="@+id/me_fans"
                     style="@style/mine_focusstate_titleNum"
                     android:text="粉丝" />
                 <TextView
+                    android:id="@+id/me_minenote"
                     style="@style/mine_focusstate_titleNum"
                     android:text="发布" />
                 <TextView
+                    android:id="@+id/me_likes"
                     style="@style/mine_focusstate_titleNum"
                     android:text="收藏" />
             </LinearLayout>

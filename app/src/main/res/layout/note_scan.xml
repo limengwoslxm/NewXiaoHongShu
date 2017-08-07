@@ -125,33 +125,15 @@
                 android:paddingRight="12dp"
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/black"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="18dp"
-                    android:text="发布于"
-                    android:textSize="13sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:drawableLeft="@drawable/ic_note_detail_location"
-                    android:drawablePadding="3dp"
-                    android:text="武汉市 武汉华清远见"
-                    android:textSize="13sp"
-                    android:textColor="#4A7DDA"/>
-            </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="18dp"
-                android:paddingRight="12dp">
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:layout_marginTop="20dp">
                 <TextView
+                    android:id="@+id/submitdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="07-28"
@@ -162,15 +144,8 @@
                     android:layout_height="wrap_content"
                     android:text="90次收藏"
                     android:textSize="13sp"
-                    android:layout_toLeftOf="@+id/note_beidianzan"
-                    android:layout_marginRight="10dp"/>
-                <TextView
-                    android:id="@+id/note_beidianzan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="42次赞"
-                    android:textSize="13sp"/>
+                    android:layout_marginRight="10dp"/>
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"

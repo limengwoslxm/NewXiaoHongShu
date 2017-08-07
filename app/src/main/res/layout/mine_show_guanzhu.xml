@@ -8,7 +8,7 @@
         android:id="@+id/show_guanzhu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:setText="我的关注"
+        app:setText="数据中心"
         app:setBackground="@drawable/setting_toolbar"/>
     <android.support.design.widget.TabLayout
         android:id="@+id/guan_tablayout"

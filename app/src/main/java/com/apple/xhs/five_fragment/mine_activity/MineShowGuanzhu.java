@@ -1,5 +1,6 @@
 package com.apple.xhs.five_fragment.mine_activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -34,10 +35,17 @@ public class MineShowGuanzhu extends BaseActivity implements View.OnClickListene
     TabLayout tablayout;
     List<Fragment> data = new ArrayList<>();
     List<String> list = new ArrayList<>();
+
+    @Override
+    public int getContentViewId() {
+        return R.layout.mine_show_guanzhu;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+        initData();
     }
 
     private void initView() {
@@ -47,17 +55,31 @@ public class MineShowGuanzhu extends BaseActivity implements View.OnClickListene
         FragmentThree three = new FragmentThree();
         FragmentFour four = new FragmentFour();
         MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),data,list);
-        adapter.addFragment(one,"用户");
-        adapter.addFragment(two,"专辑");
-        adapter.addFragment(three,"标签");
-        adapter.addFragment(four,"商家");
+        adapter.addFragment(one,"关注");
+        adapter.addFragment(two,"粉丝");
+        adapter.addFragment(three,"发布");
+        adapter.addFragment(four,"收藏");
         viewPager.setAdapter(adapter);
         show_guanzhu.setImgListener(this);
     }
 
-    @Override
-    public int getContentViewId() {
-        return R.layout.mine_show_guanzhu;
+    private void initData() {
+        Intent intent = getIntent();
+        int i = intent.getIntExtra("statistical",0);
+        switch (i){
+            case 1:
+                viewPager.setCurrentItem(0);
+                break;
+            case 2:
+                viewPager.setCurrentItem(1);
+                break;
+            case 3:
+                viewPager.setCurrentItem(2);
+                break;
+            case 4:
+                viewPager.setCurrentItem(3);
+                break;
+        }
     }
 
     @Override

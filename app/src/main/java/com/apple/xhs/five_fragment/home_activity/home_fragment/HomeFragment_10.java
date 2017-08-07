@@ -103,8 +103,7 @@ public class HomeFragment_10 extends Fragment implements MyRecyclerViewAdapter.O
     @Override
     public void onItemClick(View view, int position) {
         Intent intent = new Intent(getActivity(), NoteScan.class);
-        intent.putExtra("userdata", (Serializable) data);
-        intent.putExtra("id",position);
+        intent.putExtra("userdata", data.get(position));
         startActivity(intent);
     }
 

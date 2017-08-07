@@ -74,19 +74,34 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_me_layout,container,false);
-        view.findViewById(R.id.mine_exit_account).setOnClickListener(this);
-        view.findViewById(R.id.myselfnote).setOnClickListener(this);
-        view.findViewById(R.id.ge).setOnClickListener(this);
-        view.findViewById(R.id.me_guanzhu).setOnClickListener(this);
-        view.findViewById(R.id.me_guanzhu1).setOnClickListener(this);
-        view.findViewById(R.id.me_head).setOnClickListener(this);
+        initView(view);
+        setViewListener(view);
+        return view;
+    }
+
+    private void initView(View view) {
         head_icon = view.findViewById(R.id.img_me_user_head);
         nickname = view.findViewById(R.id.me_nickname);
         guanzhu = view.findViewById(R.id.me_guanzhu1);
-        fans = view.findViewById(R.id.me_fans);
-        mynotes = view.findViewById(R.id.me_minenote);
-        mylikes = view.findViewById(R.id.me_likes);
-        return view;
+        fans = view.findViewById(R.id.me_fans1);
+        mynotes = view.findViewById(R.id.me_minenote1);
+        mylikes = view.findViewById(R.id.me_likes1);
+    }
+
+    private void setViewListener(View view) {
+        view.findViewById(R.id.me_head).setOnClickListener(this);
+        view.findViewById(R.id.mine_exit_account).setOnClickListener(this);
+        view.findViewById(R.id.myselfnote).setOnClickListener(this);
+        view.findViewById(R.id.ge).setOnClickListener(this);
+
+        view.findViewById(R.id.me_guanzhu).setOnClickListener(this);
+        guanzhu.setOnClickListener(this);
+        view.findViewById(R.id.me_fans).setOnClickListener(this);
+        fans.setOnClickListener(this);
+        view.findViewById(R.id.me_minenote).setOnClickListener(this);
+        mynotes.setOnClickListener(this);
+        view.findViewById(R.id.me_likes).setOnClickListener(this);
+        mylikes.setOnClickListener(this);
     }
 
     @Override
@@ -117,7 +132,27 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.me_guanzhu:
             case R.id.me_guanzhu1:
-                startActivity(new Intent(getActivity(),MineShowGuanzhu.class));
+                Intent guanzhu = new Intent(getActivity(),MineShowGuanzhu.class);
+                guanzhu.putExtra("statistical",1);
+                startActivity(guanzhu);
+                break;
+            case R.id.me_fans:
+            case R.id.me_fans1:
+                Intent fans = new Intent(getActivity(),MineShowGuanzhu.class);
+                fans.putExtra("statistical",2);
+                startActivity(fans);
+                break;
+            case R.id.me_minenote:
+            case R.id.me_minenote1:
+                Intent note = new Intent(getActivity(),MineShowGuanzhu.class);
+                note.putExtra("statistical",3);
+                startActivity(note);
+                break;
+            case R.id.me_likes:
+            case R.id.me_likes1:
+                Intent likes = new Intent(getActivity(),MineShowGuanzhu.class);
+                likes.putExtra("statistical",4);
+                startActivity(likes);
                 break;
             case R.id.me_head:
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -126,9 +161,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 startActivityForResult(galleryIntent, 1);
                 break;
             case R.id.myselfnote:
-                Intent intent = new Intent(getActivity(), SelfNoteScan.class);
-                intent.putExtra("userselfnote",BmobUser.getCurrentUser(MyUser.class));
-                startActivity(intent);
+                Intent selfnote = new Intent(getActivity(), SelfNoteScan.class);
+                selfnote.putExtra("userselfnote",BmobUser.getCurrentUser(MyUser.class));
+                startActivity(selfnote);
                 break;
         }
     }

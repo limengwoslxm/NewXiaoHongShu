@@ -3,6 +3,7 @@ package com.apple.xhs.note;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.apple.xhs.R;
@@ -41,6 +42,12 @@ public class NoteAllPinglun extends BaseActivity {
         displayOptions = new DisplayOptions();
         displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
         initData();
+        toolbar.setImgListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void initData() {

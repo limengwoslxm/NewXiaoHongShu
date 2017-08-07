@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,6 +29,7 @@ import com.apple.initbmob.InitBmob;
 import com.apple.xhs.R;
 import com.apple.xhs.custom_view.HotSearchLable;
 import com.apple.xhs.custom_view.HotSearchParent;
+import com.apple.xhs.note.NoteScan;
 import com.base.BaseActivity;
 import com.bean.Hot;
 import com.bean.MyUser;
@@ -35,6 +37,7 @@ import com.bean.Note;
 import com.data.AddDataBmob;
 import com.data.DeleteDataBmob;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,6 +82,7 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
     List<String> gethot = new ArrayList<>();
     List<String> relatedTitle = new ArrayList<>();
     List<Note> noteList = new ArrayList<>();
+    List<Note> newList ;
     int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
     int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
     Handler handler = new Handler(){
@@ -164,7 +168,7 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
         }
 
     }
-
+    //历史搜素标签
     private void addHistoryLable(List<String> history) {
         int width = 0;
         int screenWidth = getWindowManager().getDefaultDisplay().getWidth()*5/7;
@@ -202,7 +206,7 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
             lableAddListener(lable);
         }
     }
-
+    //热门搜索标签
     private void addHotLable(List<String> hotlable) {
         int width = 0;
         int screenWidth = getWindowManager().getDefaultDisplay().getWidth()*5/7;
@@ -280,15 +284,14 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
     @Override
     public void afterTextChanged(Editable editable) {
         if(!getuserinput.getText().toString().equals("")){
-//            listView.setVisibility(View.VISIBLE);
-//            defindedresult.setVisibility(View.GONE);
             final String ss = getuserinput.getText().toString();
             BmobQuery<Note> query1 = new BmobQuery<Note>();
+            query1.include("author");
             query1.findObjects(new FindListener<Note>() {
                 @Override
                 public void done(List<Note> list, BmobException e) {
                     if (e==null){
-                        List<Note> newList = new ArrayList<>();
+                        newList = new ArrayList<>();
                         for (Note note:list){
                             if (note.getTitle().contains(ss)){
                                 newList.add(note);
@@ -298,7 +301,6 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
                             //Toast.makeText(InitBmob.getContext(),"结果不存在",Toast.LENGTH_SHORT).show();
                         }else {
                             //代码块
-
                             Message message = handler.obtainMessage();
                             message.what = 1;
                             message.obj = newList;
@@ -321,6 +323,9 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
         if (i == EditorInfo.IME_ACTION_SEARCH) {
             AddDataBmob.addHistory(ss);
             AddDataBmob.addHot(ss);
+            Intent intent = new Intent(SearchMain.this,SearchWholeItem.class);
+            intent.putExtra("lable",getuserinput.getText().toString());
+            startActivity(intent);
             return true;
         }
         return false;
@@ -328,5 +333,20 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
     public void setListView(List<String> relatedTitle){
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.search_autotip,relatedTitle);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i == 0){
+                    Intent intent = new Intent(SearchMain.this, SearchWholeItem.class);
+                    intent.putExtra("notelist", (Serializable) noteList);
+                    intent.putExtra("lable","allrelated");
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(SearchMain.this, NoteScan.class);
+                    intent.putExtra("userdata",noteList.get(i-1));
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

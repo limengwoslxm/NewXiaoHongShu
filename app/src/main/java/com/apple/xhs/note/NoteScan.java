@@ -85,10 +85,14 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
             TextView usernotetitle;
     @BindView(R.id.user_notecontext)
             TextView usernotecontext;
+    @BindView(R.id.submitdate)
+            TextView submitdate;
+    @BindView(R.id.note_beishoucang)
+            TextView note_beishoucang;
     @BindView(R.id.note_click_pinglun)
-    TextView noteclickpingl;
+            TextView noteclickpingl;
     @BindView(R.id.note_popedittext)
-    LinearLayout popedittext;
+            LinearLayout popedittext;
     @BindView(R.id.edittext)
             EditText editText;
     @BindView(R.id.note_pinglunparent)
@@ -148,7 +152,6 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
     private void setUserHeadImage() {
         displayOptions = new DisplayOptions();
         displayOptions.setImageProcessor(CircleImageProcessor.getInstance());
-        //sketchimageview.getOptions().setDecodeGifImage(true);
         userheadimagetoolbar.setOptions(displayOptions);
         userheadimagecontext.setOptions(displayOptions);
         current_userhead_img.setOptions(displayOptions);
@@ -157,10 +160,11 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
 
     private void setNoteData() {
         //获取intent传来的数据，设置页面
-        List<Note> userdata = (List<Note>)getIntent().getSerializableExtra("userdata");
-        int position = getIntent().getIntExtra("id",0);
-        note = userdata.get(position);
-        myUser = userdata.get(position).getAuthor();
+        note = (Note) getIntent().getSerializableExtra("userdata");
+        myUser = note.getAuthor();
+        if(myUser.getObjectId().equals(BmobUser.getCurrentUser(MyUser.class).getObjectId())){
+            guanzhu.setVisibility(View.INVISIBLE);
+        }
         for(int i = 0; i < note.getImage().size();i++){
             SketchImageView imageView = new SketchImageView(this);
             imageView.displayImage(note.getImage().get(i).getUrl());
@@ -190,6 +194,8 @@ public class NoteScan extends BaseActivity implements View.OnClickListener, View
         usernamecontext.setText(myUser.getNickname());
         usernotetitle.setText(note.getTitle());
         usernotecontext.setText(note.getContent());
+        submitdate.setText(note.getCreatedAt());
+        note_beishoucang.setText(note.getUp()+"次收藏");
         addThisNotePinglunList(note);
     }
 
