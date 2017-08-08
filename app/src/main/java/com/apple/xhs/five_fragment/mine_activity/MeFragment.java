@@ -26,6 +26,7 @@ import com.apple.xhs.five_fragment.mine_activity.MineUserInfoSetting;
 import com.apple.xhs.note.SelfNoteScan;
 import com.bean.MyUser;
 import com.bean.Note;
+import com.collecter.CacheCollecter;
 
 import java.util.List;
 
@@ -49,26 +50,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     SketchImageView head_icon;
     TextView nickname;
     TextView guanzhu,fans,mynotes,mylikes;
-    Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case 1:
-                    guanzhu.setText(msg.arg1 + "");
-                    break;
-                case 2:
-                    fans.setText(msg.arg1 + "");
-                    break;
-                case 3:
-                    mynotes.setText(msg.arg1 + "");
-                    break;
-                case 4:
-                    mylikes.setText(msg.arg1 + "");
-                    break;
-            }
-            super.handleMessage(msg);
-        }
-    };
 
     @Nullable
     @Override
@@ -93,6 +74,15 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.mine_exit_account).setOnClickListener(this);
         view.findViewById(R.id.myselfnote).setOnClickListener(this);
         view.findViewById(R.id.ge).setOnClickListener(this);
+        view.findViewById(R.id.mypasswordchange).setOnClickListener(this);
+        view.findViewById(R.id.clearcache).setOnClickListener(this);
+        view.findViewById(R.id.aboutus).setOnClickListener(this);
+        view.findViewById(R.id.shoppingfun).setOnClickListener(this);
+        view.findViewById(R.id.bindyourothers).setOnClickListener(this);
+        view.findViewById(R.id.privatesetting).setOnClickListener(this);
+        view.findViewById(R.id.newmessageset).setOnClickListener(this);
+        view.findViewById(R.id.giveadvise).setOnClickListener(this);
+
 
         view.findViewById(R.id.me_guanzhu).setOnClickListener(this);
         guanzhu.setOnClickListener(this);
@@ -117,7 +107,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         if(myUser.getNickname() != null){
             nickname.setText(myUser.getNickname());
         }
-
         selectFour();
     }
 
@@ -165,6 +154,30 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 selfnote.putExtra("userselfnote",BmobUser.getCurrentUser(MyUser.class));
                 startActivity(selfnote);
                 break;
+            case R.id.mypasswordchange:
+                startActivity(new Intent(getActivity(),ChangePassword.class));
+                break;
+            case R.id.clearcache:
+                popAlertDialog();
+                break;
+            case R.id.aboutus:
+                startActivity(new Intent(getActivity(),AboutUs.class));
+                break;
+            case R.id.shoppingfun:
+                Toast.makeText(getContext(),"购物功能待实现",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.bindyourothers:
+                startActivity(new Intent(getContext(),BindYourAcount.class));
+                break;
+            case R.id.privatesetting:
+                startActivity(new Intent(getContext(),PrivateSetting.class));
+                break;
+            case R.id.newmessageset:
+                startActivity(new Intent(getContext(),NewMessage.class));
+                break;
+            case R.id.giveadvise:
+                startActivity(new Intent(getContext(),BackAdvise.class));
+                break;
         }
     }
 
@@ -189,6 +202,30 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 head_icon.displayImage(tempPath);
                 break;
         }
+    }
+
+    private void popAlertDialog() {
+        new AlertDialog.Builder(getActivity()).setTitle("清除缓存")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getContext(),"清除缓存成功",Toast.LENGTH_SHORT).show();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                CacheCollecter.clearAllCache(getContext());
+
+                            }
+                        }).start();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
     }
 
     //退出账户的方法
@@ -224,10 +261,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 if (e==null){
                     Log.i("bmob","查询关注列表成功，数目为：" + list.size());
                     if (list!=null){
-                        Message message = handler.obtainMessage();
-                        message.what = 1;
-                        message.arg1 = list.size();
-                        handler.sendMessage(message);
+                        guanzhu.setText(list.size() + "");
                     }
                 }else {
                     Log.i("bmob","查询关注列表失败：" + e.getMessage() + e.getErrorCode());
@@ -243,10 +277,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 if (e==null){
                     Log.i("bmob","查询粉丝列表成功，数目为：" + list.size());
                     if (list!=null){
-                        Message message = handler.obtainMessage();
-                        message.what = 2;
-                        message.arg1 = list.size();
-                        handler.sendMessage(message);
+                        fans.setText(list.size() + "");
                     }
                 }else {
                     Log.i("bmob","查询粉丝列表失败：" + e.getMessage() + e.getErrorCode());
@@ -262,10 +293,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 if(e==null){
                     Log.i("bmob","查询个人笔记列表成功，数目为：" + list.size());
                     if(list!=null){
-                        Message message = handler.obtainMessage();
-                        message.what = 3;
-                        message.arg1 = list.size();
-                        handler.sendMessage(message);
+                        mynotes.setText(list.size() + "");
                     }
                 }else{
                     Log.i("bmob","查询个人笔记列表失败：" + e.getMessage() + e.getErrorCode());
@@ -281,10 +309,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 if (e==null){
                     Log.i("bmob","查询收藏列表成功，数目为：" + list.size());
                     if (list!=null){
-                        Message message = handler.obtainMessage();
-                        message.what = 4;
-                        message.arg1 = list.size();
-                        handler.sendMessage(message);
+                        mylikes.setText(list.size() + "");
                     }
                 }else {
                     Log.i("bmob","查询收藏列表失败：" + e.getMessage() + e.getErrorCode());

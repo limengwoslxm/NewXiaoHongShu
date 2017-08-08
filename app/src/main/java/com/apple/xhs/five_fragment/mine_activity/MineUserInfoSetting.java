@@ -308,7 +308,9 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
         TimeSelector timeSelector = new TimeSelector(this, new TimeSelector.ResultHandler() {
             @Override
             public void handle(String time) {
-
+                String date = time.substring(0,10);
+                birthday.getName().setText(date);
+                UpdateDataBmob.UpdataBirthday(date);
             }
         },"1970-01-01 00:00","2030-12-31 00:00");
         timeSelector.setTitle("请选择生日");

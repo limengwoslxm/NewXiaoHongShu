@@ -1,12 +1,11 @@
 package com.apple.xhs.note;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,7 +13,6 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,15 +22,23 @@ import android.widget.Toast;
 
 import com.apple.xhs.custom_view.InfoSettingTitle;
 import com.apple.xhs.R;
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.base.BaseActivity;
+import com.bumptech.glide.Glide;
 import com.data.AddDataBmob;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.yuyh.library.imgsel.ImageLoader;
+import com.yuyh.library.imgsel.ImgSelActivity;
+import com.yuyh.library.imgsel.ImgSelConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import me.xiaopan.sketch.SketchImageView;
-import rx.internal.schedulers.EventLoopsScheduler;
 
 /**
  * Created by limeng on 2017/7/27.
@@ -49,6 +55,10 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
     TextView limit;
     @BindView(R.id.note_add_pic)
     ImageView noteAddPic;
+    @BindView(R.id.authorbdlocation)
+    TextView authorbdlocation;
+    @BindView(R.id.showorhidearea)
+    TextView showorhidearea;
 
     @BindView(R.id.note_nanren)
     CheckBox noteNanren;
@@ -68,20 +78,73 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
     CheckBox noteCaizhuang;
     @BindView(R.id.note_muying)
     CheckBox noteMuying;
+
     String title;
     String context;
     List<String> getCheckData = new ArrayList<>();
     List<CheckBox> checkItem = new ArrayList<>();
     String[] strings = {"男人","护肤","居家","时尚","美食","运动","旅行","彩妆","母婴"};
     List<String> picData = new ArrayList<>();
-    List<ImageView> addImageList = new ArrayList<>();
-    int imageIndex;
     LinearLayout linearLayout;
+    String addrStr,province;
+    LocationClient locationClient;
+    BDLocationListener locationListener;
+    boolean isShowArea = false;
+    private ArrayList<String> path = new ArrayList<>();
+    ImgSelConfig config;
+    private static final int REQUEST_CODE = 0;
+
+    @Override
+    public int getContentViewId() {
+        return R.layout.note_edit_view;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
+        getLocation();
         initViewListener();
         initCheckItem();
+        initImageSelector();
+    }
+
+    private ImageLoader loader = new ImageLoader() {
+        @Override
+        public void displayImage(Context context, String path, ImageView imageView) {
+            Glide.with(context).load(path).into(imageView);
+        }
+    };
+
+    //ImageSelector框架设置UI及功能
+    private void initImageSelector() {
+        config = new ImgSelConfig.Builder(this, loader)
+                .multiSelect(true)
+                // 是否记住上次选中记录
+                .rememberSelected(true)
+                // 使用沉浸式状态栏
+                .statusBarColor(Color.parseColor("#E1282D"))
+                .build();
+    }
+
+    private void getLocation() {
+        locationClient = new LocationClient(this);
+        LocationClientOption option = new LocationClientOption();
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+        option.setCoorType("bd0911");
+        //option.setScanSpan(2000);
+        option.setIsNeedAddress(true);
+        locationClient.setLocOption(option);
+        locationListener = new BDLocationListener() {
+            @Override
+            public void onReceiveLocation(BDLocation bdLocation) {
+                province = bdLocation.getProvince();
+                addrStr = bdLocation.getCity();
+                authorbdlocation.setText(province+addrStr);
+            }
+        };
+        locationClient.registerLocationListener(locationListener);
+        locationClient.start();
     }
 
     private void initCheckItem() {
@@ -96,11 +159,6 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
         checkItem.add(noteMuying);
     }
 
-    @Override
-    public int getContentViewId() {
-        return R.layout.note_edit_view;
-    }
-
     private void initViewListener() {
         //顶栏
         noteToolBar.setImgListener(this);
@@ -110,6 +168,7 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
         noteContext.setOnClickListener(this);
         noteAddPic.setOnClickListener(this);
 
+        showorhidearea.setOnClickListener(this);
         noteTitle.addTextChangedListener(this);
         noteContext.addTextChangedListener(this);
         //复选框
@@ -145,10 +204,16 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
                 }
                 break;
             case R.id.note_add_pic:
-                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
-                galleryIntent.setType("image/*");//图片
-                startActivityForResult(galleryIntent, 100);
+                ImgSelActivity.startActivity(this, config, REQUEST_CODE);  // 开启图片选择器
+                break;
+            case R.id.showorhidearea:
+                if(isShowArea==true){
+                    isShowArea = false;
+                    showorhidearea.setText("隐藏当前位置");
+                }else {
+                    isShowArea = true;
+                    showorhidearea.setText("显示当前位置");
+                }
                 break;
             case R.id.note_nanren:
             case R.id.note_hufu:
@@ -168,11 +233,12 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //Log.d("tag", "onActivityResult: "+requestCode+":"+resultCode);
-        if(resultCode==0){
-            return;
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            List<String> pathList = data.getStringArrayListExtra(ImgSelActivity.INTENT_RESULT);
+            for (String path : pathList) {
+                addView(path);
+            }
         }
-        getResultPic(data);
     }
 
     private void getResultPic(Intent data) {

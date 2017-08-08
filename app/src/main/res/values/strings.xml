@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">XHS</string>
+    <string name="app_name">仿小红书</string>
     <string name="str_login">社交账号登录</string>
     <string name="login_weixin">微信</string>
     <string name="login_weibo">微博</string>
@@ -11,7 +11,19 @@
     <string name="notetestcontext2">将这个事件传递给外面的调用者而但是这样会破坏代码的逻辑。</string>
     <string name="notetestcontext3">将这个事件传递给外面的。</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="minnum">最少选择一张图片</string>
+    <string name="maxnum">最多选择%1$d张图片</string>
+    <string name="all_images">所有图片</string>
+    <string name="sd_disable">SD卡不可用</string>
+    <string name="image">图片</string>
+    <string name="takephoto">拍照</string>
+    <string name="confirm_format">%1$s(%2$d/%3$d)</string>
+    <string name="confirm">确定</string>
+    <string name="open_camera_failure">打开相机失败</string>
+    <string name="permission_storage_denied">请打开存储空间权限</string>
+    <string name="permission_camera_denied">请打开相机权限</string>
     <string name="large_text">
+
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."

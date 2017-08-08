@@ -18,6 +18,7 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.base.BaseActivity;
+import com.data.UpdateDataBmob;
 
 import butterknife.BindView;
 
@@ -65,6 +66,7 @@ public class MineSettingArea extends BaseActivity implements View.OnClickListene
                 province = bdLocation.getProvince();
                 addrStr = bdLocation.getCity();
                 mycurrentarea.setText(province+addrStr);
+                UpdateDataBmob.UpdataArea(province+addrStr);
             }
         };
         //注册监听事件

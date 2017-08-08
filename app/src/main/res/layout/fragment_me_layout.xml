@@ -92,6 +92,7 @@
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/shoppingfun"
             android:layout_width="350dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
@@ -141,11 +142,13 @@
             app:setRowTitle="个人资料" />
         <View style="@style/mine_setting_showline" />
         <com.apple.xhs.custom_view.InfoSettingRow
+            android:id="@+id/bindyourothers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:setRowTitle="账号绑定" />
         <View style="@style/mine_setting_showline" />
         <com.apple.xhs.custom_view.InfoSettingRow
+            android:id="@+id/mypasswordchange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:setRowTitle="修改密码" />
@@ -164,16 +167,19 @@
                 android:textColor="#000" />
         </LinearLayout>
         <com.apple.xhs.custom_view.InfoSettingRow
+            android:id="@+id/privatesetting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:setRowTitle="隐私设置" />
         <View style="@style/mine_setting_showline" />
         <com.apple.xhs.custom_view.InfoSettingRow
+            android:id="@+id/newmessageset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:setRowTitle="消息通知" />
         <View style="@style/mine_setting_showline" />
         <com.apple.xhs.custom_view.InfoSettingRow
+            android:id="@+id/clearcache"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:setRowTitle="清除缓存" />
@@ -192,11 +198,13 @@
                 android:textColor="#000" />
         </LinearLayout>
         <com.apple.xhs.custom_view.InfoSettingRow
+            android:id="@+id/aboutus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:setRowTitle="关于我们" />
         <View style="@style/mine_setting_showline" />
         <com.apple.xhs.custom_view.InfoSettingRow
+            android:id="@+id/giveadvise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:setRowTitle="意见反馈" />
