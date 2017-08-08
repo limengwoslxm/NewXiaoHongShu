@@ -26,8 +26,6 @@ import cn.bmob.v3.listener.UploadFileListener;
 
 public class UpdateDataBmob {
 
-    public static Handler handler;
-
     //更新头像
     public static void UpdataHead(final BmobFile bmobFile){
         final MyUser user = BmobUser.getCurrentUser(MyUser.class);
@@ -262,5 +260,20 @@ public class UpdateDataBmob {
         });
     }
 
-
+    //密码修改
+    public static void updatePwd(String old,String pwd){
+        MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        user.updateCurrentUserPassword(old, pwd, new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e==null){
+                    Toast.makeText(InitBmob.getContext(), "密码修改成功", Toast.LENGTH_SHORT).show();
+                    Log.i("bmob","密码修改成功");
+                }else {
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
+                    Log.i("bmob","密码修改失败：" + e.getMessage() + e.getErrorCode());
+                }
+            }
+        });
+    }
 }
