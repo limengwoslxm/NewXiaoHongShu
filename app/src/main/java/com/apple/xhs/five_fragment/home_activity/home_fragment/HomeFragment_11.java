@@ -15,12 +15,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.apple.initbmob.InitBmob;
 import com.apple.xhs.R;
 import com.apple.util.MyRecyclerViewAdapter;
 import com.apple.xhs.note.NoteScan;
 import com.bean.Note;
 import com.bean.Style;
+import com.collecter.ErrorCollecter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -142,6 +145,7 @@ public class HomeFragment_11 extends Fragment implements MyRecyclerViewAdapter.O
                     data = notelist;
                     initPagerView();
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob",e + "查询笔记失败");
                 }
             }

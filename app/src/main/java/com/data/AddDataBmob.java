@@ -163,6 +163,7 @@ public class AddDataBmob {
                 if(e==null){
                     Log.i("bmob","标签绑定成功：" + note.getTitle() + "---->" + style.getName());
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","标签绑定失败："+e.getMessage() + e.getErrorCode());
                 }
             }
@@ -229,6 +230,7 @@ public class AddDataBmob {
                 if (e==null){
                     Log.i("bmob","历史搜索添加成功");
                 }else {
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","历史搜索添加失败" + e.getMessage() + e.getErrorCode());
                 }
             }
@@ -253,6 +255,7 @@ public class AddDataBmob {
                                 if (e==null){
                                     Log.i("bmob","热门搜索添加成功");
                                 }else {
+                                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                                     Log.i("bmob","热门搜索添加失败" + e.getMessage() + e.getErrorCode());
                                 }
                             }
@@ -266,12 +269,14 @@ public class AddDataBmob {
                                 if (e==null){
                                     Log.i("bmob","热门搜索更新成功");
                                 }else {
+                                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                                     Log.i("bmob","热门搜索更新失败"  + e.getMessage() + e.getErrorCode());
                                 }
                             }
                         });
                     }
                 }else {
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","热门搜索查询失败" + e.getMessage() + e.getErrorCode());
                 }
             }

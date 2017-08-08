@@ -115,10 +115,10 @@ public class SelectDataBmob {
         });
     }
 
-    //模糊查询
+    //模糊查询(笔记)
     public void selectMore(final String ss){
         BmobQuery<Note> query = new BmobQuery<Note>();
-        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);
+        query.include("author");
         query.findObjects(new FindListener<Note>() {
             @Override
             public void done(List<Note> list, BmobException e) {
@@ -129,6 +129,34 @@ public class SelectDataBmob {
                     for (Note note:list){
                         if (note.getTitle().contains(ss)){
                             newList.add(note);
+                        }
+                    }
+                    Log.i("bmob","结果个数：" + newList.size());
+                    if (newList.size()==0){
+//                        Toast.makeText(InitBmob.getContext(),"结果不存在",Toast.LENGTH_SHORT).show();
+                    }else {
+                        //代码块
+                    }
+                }else {
+                    Log.i("bmob","模糊查询失败" + e.getErrorCode() + e.getMessage());
+                }
+            }
+        });
+    }
+
+    //模糊查询(用户)
+    public void selectUser(final String ss){
+        BmobQuery<MyUser> query = new BmobQuery<MyUser>();
+        query.findObjects(new FindListener<MyUser>() {
+            @Override
+            public void done(List<MyUser> list, BmobException e) {
+                AddDataBmob.addHistory(ss);
+                AddDataBmob.addHot(ss);
+                if (e==null){
+                    List<MyUser> newList = new ArrayList<>();
+                    for (MyUser user:list){
+                        if (user.getNickname().contains(ss)){
+                            newList.add(user);
                         }
                     }
                     Log.i("bmob","结果个数：" + newList.size());
@@ -175,6 +203,25 @@ public class SelectDataBmob {
                     Toast.makeText(InitBmob.getContext(),"查询到" + list.size() + "条评论",Toast.LENGTH_SHORT).show();
                 }else {
                     Log.i("bmob","查询评论失败" + e.getErrorCode() + e.getMessage());
+                }
+            }
+        });
+    }
+
+    //查询自己关注的人的笔记列表
+    public void selectGuanzhu(){
+        MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        BmobQuery<MyUser> queryUser = new BmobQuery<MyUser>();
+        queryUser.addWhereRelatedTo("attention",new BmobPointer(user));
+        BmobQuery<Note> queryNote = new BmobQuery<Note>();
+        queryNote.addWhereMatchesQuery("author","MyUser",queryUser);
+        queryNote.findObjects(new FindListener<Note>() {
+            @Override
+            public void done(List<Note> list, BmobException e) {
+                if (e==null){
+
+                }else {
+
                 }
             }
         });
