@@ -50,6 +50,7 @@ public class UpdateDataBmob {
                         }
                     });
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","头像图片上传失败：" + e.getMessage() + e.getErrorCode());
                 }
             }
@@ -238,6 +239,7 @@ public class UpdateDataBmob {
                 if (e==null){
                     Log.i("bmob","笔记<" + note.getTitle() + ">被收藏次数+1，总次数：" + note.getUp());
                 }else {
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","笔记<" + note.getTitle() + ">被收藏次数增加失败，总次数：" + note.getUp());
                 }
             }
@@ -253,6 +255,7 @@ public class UpdateDataBmob {
                 if (e==null){
                     Log.i("bmob","笔记<" + note.getTitle() + ">被收藏次数-1，总次数：" + note.getUp());
                 }else {
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob","笔记<" + note.getTitle() + ">被收藏次数减少失败，总次数：" + note.getUp());
                 }
             }

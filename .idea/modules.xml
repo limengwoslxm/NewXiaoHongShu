@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/XHS.iml" filepath="$PROJECT_DIR$/XHS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NewXiaoHongShu.iml" filepath="$PROJECT_DIR$/NewXiaoHongShu.iml" />
+      <module fileurl="file://E:\AndroidWORK\NewXiaoHongShu\XHS.iml" filepath="E:\AndroidWORK\NewXiaoHongShu\XHS.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

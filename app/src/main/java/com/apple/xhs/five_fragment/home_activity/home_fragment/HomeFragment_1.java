@@ -15,12 +15,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.apple.initbmob.InitBmob;
 import com.apple.xhs.R;
 import com.apple.util.MyRecyclerViewAdapter;
 import com.apple.xhs.note.NoteScan;
 import com.bean.Note;
 import com.bean.Style;
+import com.collecter.ErrorCollecter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -44,6 +47,7 @@ public class HomeFragment_1 extends Fragment implements MyRecyclerViewAdapter.On
     SwipeRefreshLayout swiperefreshlayout;
     List<Note> data = new ArrayList<>();
     SpacesItemDecoration space;
+    int dataSize = 0;
 
     @Override
     public void onAttach(Context context) {
@@ -137,9 +141,32 @@ public class HomeFragment_1 extends Fragment implements MyRecyclerViewAdapter.On
             @Override
             public void done(List<Note> notelist, BmobException e) {
                 if(e==null){
+                    dataSize = notelist.size();
                     data = notelist;
                     initPagerView();
                 }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
+                    Log.i("bmob",e + "查询笔记失败");
+                }
+            }
+        });
+    }
+
+    public void getNoteNew(){
+        BmobQuery<Note> query = new BmobQuery<Note>();
+        query.order("-up");
+        query.include("author");
+        query.setLimit(20);
+        query.setSkip(dataSize);
+        query.findObjects(new FindListener<Note>() {
+            @Override
+            public void done(List<Note> notelist, BmobException e) {
+                if(e==null){
+                    dataSize += notelist.size();
+                    data = notelist;
+                    initPagerView();
+                }else{
+                    Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e), Toast.LENGTH_SHORT).show();
                     Log.i("bmob",e + "查询笔记失败");
                 }
             }
