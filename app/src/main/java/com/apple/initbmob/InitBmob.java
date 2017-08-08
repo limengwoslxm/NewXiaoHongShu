@@ -3,6 +3,7 @@ package com.apple.initbmob;
 import android.app.Application;
 import android.content.Context;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.bean.Note;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class InitBmob extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        SDKInitializer.initialize(getApplicationContext());
         Bmob.initialize(getApplicationContext(),"fee0209c74bf24304798d10e746fd280");
     }
 

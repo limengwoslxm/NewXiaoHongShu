@@ -19,6 +19,8 @@ import com.base.BaseActivity;
 import com.bean.MyUser;
 import com.data.UpdateDataBmob;
 
+import org.feezu.liuli.timeselector.TimeSelector;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,11 +29,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.QueryListener;
 import me.xiaopan.sketch.SketchImageView;
 import me.xiaopan.sketch.process.CircleImageProcessor;
 import me.xiaopan.sketch.request.DisplayOptions;
@@ -73,6 +72,12 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     boolean sexDialog = false;
     List<Map<Integer,String>> skinData = new ArrayList<>();
     Map<Integer,String> map = new HashMap<>();
+
+    @Override
+    public int getContentViewId() {
+        return R.layout.mine_user_info;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +116,7 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
                 UpdateDataBmob.UpdataID(newid);
                 break;
             case 3:
-                String newArea = data.getStringExtra("area");
+                String newArea = data.getStringExtra("mylocation");
                 if(newArea.equals("")){
                     return;
                 }
@@ -162,11 +167,6 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-
-    @Override
-    public int getContentViewId() {
-        return R.layout.mine_user_info;
     }
 
     private void setViewListener() {
@@ -305,7 +305,15 @@ public class MineUserInfoSetting extends BaseActivity implements View.OnClickLis
     }
 
     private void setBirthday() {
+        TimeSelector timeSelector = new TimeSelector(this, new TimeSelector.ResultHandler() {
+            @Override
+            public void handle(String time) {
 
+            }
+        },"1970-01-01 00:00","2030-12-31 00:00");
+        timeSelector.setTitle("请选择生日");
+        timeSelector.setMode(TimeSelector.MODE.YMD);
+        timeSelector.show();
     }
     //性别选择
     private void sexChoiceDialog() {
