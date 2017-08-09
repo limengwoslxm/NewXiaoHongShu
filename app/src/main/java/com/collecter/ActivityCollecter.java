@@ -25,4 +25,11 @@ public class ActivityCollecter {
             }
         }
     }
+    public static void finishOthers(){
+        for (int i = 0;i < activityList.size() - 1;i++){
+            if (!activityList.get(i).isFinishing()){
+                activityList.get(i).finish();
+            }
+        }
+    }
 }

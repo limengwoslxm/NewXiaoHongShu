@@ -23,7 +23,7 @@ public class InitBmob extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-        SDKInitializer.initialize(getApplicationContext());
+//        SDKInitializer.initialize(getApplicationContext());
         Bmob.initialize(getApplicationContext(),"fee0209c74bf24304798d10e746fd280");
     }
 

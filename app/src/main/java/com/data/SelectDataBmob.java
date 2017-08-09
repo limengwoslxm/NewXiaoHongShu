@@ -227,6 +227,15 @@ public class SelectDataBmob {
         });
     }
 
+    //该用户是否被关注
+    public void isGuanzhu(MyUser other){
+        MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        BmobQuery<MyUser> query1 = new BmobQuery<MyUser>();
+        BmobQuery<MyUser> query2 = new BmobQuery<MyUser>();
+        query1.addWhereRelatedTo("attention",new BmobPointer(user));
+
+    }
+
     public static String getStyleId(String name){
         switch (name){
             case "武汉": return "Nbze4449";

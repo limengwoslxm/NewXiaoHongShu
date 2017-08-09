@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,7 +24,7 @@ import cn.bmob.v3.listener.UpdateListener;
  * Created by limeng on 2017/7/24.
  */
 
-public class ForgetPass extends BaseActivity {
+public class ForgetPass extends BaseActivity implements TextWatcher {
     @BindView(R.id.user_email_toResetP)
     TextView reset;
     @BindView(R.id.bt_toResetP)
@@ -37,6 +39,8 @@ public class ForgetPass extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toReset.setEnabled(false);
+        reset.addTextChangedListener(this);
     }
 
     @Override
@@ -85,7 +89,26 @@ public class ForgetPass extends BaseActivity {
         });
     }
 
+
+
     public void backToLogin(View view) {
         finish();
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        if (reset.getText().toString().matches("[a-zA-Z_0-9]+@(([a-zA-z0-9]-*)+\\.){1,3}[a-zA-z\\-]+")){
+            toReset.setEnabled(true);
+        }
     }
 }
