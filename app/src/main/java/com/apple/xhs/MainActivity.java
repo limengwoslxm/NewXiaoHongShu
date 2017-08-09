@@ -48,6 +48,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        selectAllNote();
+        ActivityCollecter.finishOthers();
         initView();
     }
 
@@ -146,7 +147,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ActivityCollecter.finishAll();
+//        ActivityCollecter.finishAll();
     }
 
 

@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.base.BaseActivity;
+import com.collecter.ActivityCollecter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityCollecter.finishOthers();
         initView();
     }
 

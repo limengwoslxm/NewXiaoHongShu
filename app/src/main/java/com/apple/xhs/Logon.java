@@ -15,8 +15,11 @@ import com.base.BaseActivity;
 import com.collecter.ErrorCollecter;
 import com.data.UpdateDataBmob;
 
+import java.io.File;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -59,8 +62,11 @@ public class Logon extends BaseActivity {
             return;
         }
         MyUser user = new MyUser();
+        BmobFile bmobFile = new BmobFile("ft021l_sm.png","","http://bmob-cdn-13046.b0.upaiyun.com/2017/08/09/6d5a446c40af5dc88025972632129a03.png");
         user.setUsername(name);
         user.setPassword(pass);
+        user.setNickname("用户" + System.currentTimeMillis());
+        user.setHead(bmobFile);
         if (email != null){
             user.setEmail(email);
         }
@@ -80,7 +86,6 @@ public class Logon extends BaseActivity {
 
     @OnClick(R.id.logon_login)
     public void loginOnClick(){
-        startActivity(new Intent(Logon.this,Login.class));
         finish();
     }
 }

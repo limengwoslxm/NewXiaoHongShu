@@ -32,7 +32,6 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
-import static com.data.UpdateDataBmob.handler;
 
 /**
  * Created by limeng on 2017/8/4.
