@@ -109,7 +109,7 @@ public class ImgSelFragment extends Fragment implements View.OnClickListener, Vi
 
         btnAlbumSelected.setText(config.allImagesText);
 
-        rvImageList.setLayoutManager(new GridLayoutManager(rvImageList.getContext(), 3));
+        rvImageList.setLayoutManager(new GridLayoutManager(rvImageList.getContext(), 4));
         rvImageList.addItemDecoration(new DividerGridItemDecoration(rvImageList.getContext()));
         if (config.needCamera)
             imageList.add(new Image());
@@ -252,7 +252,6 @@ public class ImgSelFragment extends Fragment implements View.OnClickListener, Vi
                     if (config.needCamera)
                         imageList.add(new Image());
                     imageList.addAll(tempImageList);
-
 
                     imageListAdapter.notifyDataSetChanged();
 

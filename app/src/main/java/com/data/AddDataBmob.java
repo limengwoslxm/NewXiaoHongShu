@@ -122,7 +122,7 @@ public class AddDataBmob {
                 dir.mkdirs();
             }
             FileOutputStream os = new FileOutputStream(outPath);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, os);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, os);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

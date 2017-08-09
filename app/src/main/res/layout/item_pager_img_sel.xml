@@ -9,18 +9,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_default_image" />
+        android:scaleType="centerCrop" />
 
     <ImageView
         android:id="@+id/ivPhotoCheaked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:contentDescription="@null"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
+        android:padding="5dp"
         android:src="@drawable/ic_select_n" />
 
 </RelativeLayout>

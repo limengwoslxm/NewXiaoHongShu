@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.apple.xhs.Login;
+import com.apple.xhs.LoginOrLogon;
 import com.apple.xhs.R;
 import com.apple.xhs.five_fragment.mine_activity.MineShowGuanzhu;
 import com.apple.xhs.five_fragment.mine_activity.MineUserInfoSetting;
@@ -237,7 +238,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //确定退出
                         BmobUser.logOut();   //清除缓存用户对象
-                        startActivity(new Intent(getActivity(), Login.class));
+                        startActivity(new Intent(getActivity(), LoginOrLogon.class));
                         Toast.makeText(getContext(),"退出",Toast.LENGTH_SHORT).show();
                     }
                 })
