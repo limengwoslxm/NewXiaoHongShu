@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.apple.xhs.R;
@@ -24,11 +26,15 @@ import com.apple.xhs.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.bmob.v3.BmobUser;
+
 /**
  * Created by limeng on 2017/7/26.
  */
 
 public class HomeFragment_2 extends Fragment {
+    RelativeLayout ifnoguanzhu;
+    SwipeRefreshLayout swipeRefreshLayout;
     ImageView bubble1,bubble2,bubble3,bubble4;
     Button button;
     AnimatorSet set;
@@ -41,10 +47,6 @@ public class HomeFragment_2 extends Fragment {
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
     private void initView(View view) {
         bubble1 = view.findViewById(R.id.placeholder_bubble1);
         bubble2 = view.findViewById(R.id.placeholder_bubble2);

@@ -34,15 +34,18 @@ import me.xiaopan.sketch.request.DisplayOptions;
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder> implements View.OnClickListener{
     List<Note> data;
     View view;
+
     public MyRecyclerViewAdapter(List<Note> data){
         this.data = data;
     }
+
     private OnItemClickListener mOnItemClickListener = null;
 
     //定义一个interface
     public static interface OnItemClickListener {
         void onItemClick(View view , int position);
     }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_grid_item,parent,false);
@@ -117,15 +120,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             checkBox = itemView.findViewById(R.id.grid_item_checkbox);
             // 获取img设置
             imgPic = itemView.findViewById(R.id.grid_item_pic);
-//            ViewGroup.LayoutParams params = imgPic.getLayoutParams();
-//            params.height = (int)(200+ Math.random()*600);
-//            imgPic.setLayoutParams(params);
             imgPic.setScaleType(SketchImageView.ScaleType.CENTER_CROP);
             imgPic.setAdjustViewBounds(true);
-            //
             textTitle = itemView.findViewById(R.id.grid_item_textTitle);
             textUserName = itemView.findViewById(R.id.grid_item_user);
-            //
             textUserHead = itemView.findViewById(R.id.grid_item_head);
             DisplayOptions displayOptions = new DisplayOptions();
             displayOptions.setImageProcessor(CircleImageProcessor.getInstance());

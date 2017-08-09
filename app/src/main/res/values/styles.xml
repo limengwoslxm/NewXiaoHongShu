@@ -14,6 +14,14 @@
         <item name="android:windowSoftInputMode">stateHidden</item>
         <item name="android:textCursorDrawable">@drawable/textcursordrawablenull</item>
     </style>
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/xhsColor</item>
+        <item name="colorPrimaryDark">@color/xhsColor</item>
+        <item name="colorAccent">#FF4081</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <!--  Base application theme.  -->
+    <style name="SelTheme" parent="@style/BaseAppTheme"></style>
 
     <style name="Mine_Dialog.Alert" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
         <!--修改AlertDialog按钮的颜色-->

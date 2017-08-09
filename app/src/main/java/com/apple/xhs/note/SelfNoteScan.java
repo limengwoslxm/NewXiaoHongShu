@@ -112,7 +112,7 @@ public class SelfNoteScan extends BaseActivity implements View.OnClickListener {
                         public void onClick(View view) {
                             //跳转到该笔记浏览页面
                             Intent intent = new Intent(SelfNoteScan.this,NoteScan.class);
-                            intent.putExtra("userdata", (Serializable) list);
+                            intent.putExtra("userdata", (Serializable) note);
                             int k = (int) view.getTag();
                             intent.putExtra("id",k);
                             startActivity(intent);

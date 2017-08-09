@@ -2,6 +2,7 @@ package com.apple.xhs.five_fragment.home_activity.home_fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
@@ -79,8 +80,9 @@ public class HomeFragment_1 extends Fragment implements MyRecyclerViewAdapter.On
     private void initView(View view) {
         recyclerView = view.findViewById(R.id.homeFragment1);
         swiperefreshlayout = view.findViewById(R.id.swiperefreshlayout);
-        swiperefreshlayout.setColorSchemeColors(getResources().getColor(R.color.xhsColor));
+        swiperefreshlayout.setColorSchemeResources(R.color.refresh1);
         swiperefreshlayout.setOnRefreshListener(this);
+
     }
     private void initPagerView() {
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));

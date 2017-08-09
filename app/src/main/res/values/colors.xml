@@ -19,4 +19,9 @@
     <color name="black">#000000</color>
     <color name="toolbar">#f24f73</color>
     <color name="hotlable">#ecebeb</color>
+    <color name="refresh1">#e70505</color>
+    <color name="refresh2">#e75151</color>
+    <color name="refresh3">#ea7c7c</color>
+    <color name="refresh4">#ecb3b3</color>
+    <color name="bottom_bg">#aaaaaa</color>
 </resources>

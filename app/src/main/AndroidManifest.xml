@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <application
         android:name="com.apple.initbmob.InitBmob"
         android:allowBackup="true"
@@ -108,9 +109,25 @@
             android:theme="@style/SearchMain"/>
         <activity android:name=".searchwhole.SearchWholeItem"
             android:theme="@style/XHSstatusbar"/>
+        <activity android:name=".five_fragment.mine_activity.ChangePassword"
+            android:theme="@style/XHSstatusbar"/>
+        <activity android:name=".five_fragment.mine_activity.AboutUs"
+            android:theme="@style/XHSstatusbar"/>
+        <activity android:name=".five_fragment.mine_activity.BindYourAcount"
+            android:theme="@style/XHSstatusbar"/>
+        <activity android:name=".five_fragment.mine_activity.PrivateSetting"
+            android:theme="@style/XHSstatusbar"/>
+        <activity android:name=".five_fragment.mine_activity.NewMessage"
+            android:theme="@style/XHSstatusbar"/>
+        <activity android:name=".five_fragment.mine_activity.BackAdvise"
+            android:theme="@style/XHSstatusbar"/>
+        <activity android:name="com.yuyh.library.imgsel.ImgSelActivity" android:theme="@style/XHSstatusbar"/>
+        <meta-data android:name="APP_ID" android:value="${applicationId}"/>
+        <provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.provider" android:exported="false" android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths"/>
+        </provider>
         <service android:name="com.baidu.location.f" android:enabled="true"
             android:process=":remote">
         </service>
     </application>
-
 </manifest>
