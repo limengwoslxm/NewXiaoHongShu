@@ -110,7 +110,6 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
     private void addViewListener() {
         cancel_search.setOnClickListener(this);
         delete.setOnClickListener(this);
-        //getuserinput.setOnKeyListener(this);
         getuserinput.addTextChangedListener(this);
         getuserinput.setOnEditorActionListener(this);
         listView.setVisibility(View.GONE);
@@ -141,8 +140,8 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
         }else {
             historybar.setVisibility(View.GONE);
         }
-
     }
+
     //历史搜素标签
     private void addHistoryLable(List<String> history) {
         int width = 0;
@@ -151,9 +150,9 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
         HotSearchLable lable = null;
         if(history == null){
             historyParent.setVisibility(View.GONE);
-            return;
+        }else {
+            historyParent.setVisibility(View.VISIBLE);
         }
-        historyParent.setVisibility(View.VISIBLE);
         for(int i = history.size() - 1; i >= 0  ; i--){
             if(width == 0){
                 parent = new HotSearchParent(this,null);
@@ -181,6 +180,7 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
             lableAddListener(lable);
         }
     }
+
     //热门搜索标签
     private void addHotLable(List<String> hotlable) {
         int width = 0;
@@ -324,3 +324,7 @@ public class SearchMain extends BaseActivity implements View.OnClickListener, Te
         });
     }
 }
+/**
+ *
+ *
+ */

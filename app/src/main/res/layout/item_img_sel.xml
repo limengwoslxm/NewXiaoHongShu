@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.yuyh.library.imgsel.widget.SquareRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="1dp">
 
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_default_image" />
+        android:scaleType="centerCrop" />
 
     <ImageView
         android:id="@+id/ivPhotoCheaked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:contentDescription="@null"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
+        android:padding="5dp"
         android:src="@drawable/ic_select_n" />
 
 </com.yuyh.library.imgsel.widget.SquareRelativeLayout>

@@ -84,13 +84,12 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
     List<String> getCheckData = new ArrayList<>();
     List<CheckBox> checkItem = new ArrayList<>();
     String[] strings = {"男人","护肤","居家","时尚","美食","运动","旅行","彩妆","母婴"};
-    List<String> picData = new ArrayList<>();
     LinearLayout linearLayout;
     String addrStr,province;
     LocationClient locationClient;
     BDLocationListener locationListener;
     boolean isShowArea = false;
-    private ArrayList<String> path = new ArrayList<>();
+    private List<String> pathList = new ArrayList<>();
     ImgSelConfig config;
     private static final int REQUEST_CODE = 0;
 
@@ -121,7 +120,7 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
         config = new ImgSelConfig.Builder(this, loader)
                 .multiSelect(true)
                 // 是否记住上次选中记录
-                .rememberSelected(true)
+                .rememberSelected(false)
                 // 使用沉浸式状态栏
                 .statusBarColor(Color.parseColor("#E1282D"))
                 .build();
@@ -196,14 +195,15 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
                 context = noteContext.getText().toString();
                 addCheckData();
                 //addCheckData();//返回数据到 getCheckData；
-                if (picData.size()==0){
+                if (pathList.size()==0){
                     Toast.makeText(this,"请至少添加一张照片",Toast.LENGTH_SHORT).show();
                 }else {
-                    AddDataBmob.addDataToNote(title,context,picData,getCheckData);
+                    AddDataBmob.addDataToNote(title,context,pathList,getCheckData);
                     finish();
                 }
                 break;
             case R.id.note_add_pic:
+                pathList.clear();
                 ImgSelActivity.startActivity(this, config, REQUEST_CODE);  // 开启图片选择器
                 break;
             case R.id.showorhidearea:
@@ -234,27 +234,13 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            List<String> pathList = data.getStringArrayListExtra(ImgSelActivity.INTENT_RESULT);
+            pathList = data.getStringArrayListExtra(ImgSelActivity.INTENT_RESULT);
             for (String path : pathList) {
                 addView(path);
             }
         }
     }
 
-    private void getResultPic(Intent data) {
-        Uri originalUri=data.getData();
-        String []imgs1={MediaStore.Images.Media.DATA};//将图片URI转换成存储路径
-        Cursor cursor=this.managedQuery(originalUri, imgs1, null, null, null);
-        int index=cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        String img_url=cursor.getString(index);
-        if(picData.size()>9){
-            Toast.makeText(this,"最多添加9张图片",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        picData.add(img_url);
-        addView(img_url);
-    }
     private void addView(final String s) {
         linearLayout = findViewById(R.id.linearlayout);
         final SketchImageView img = new SketchImageView(this);
@@ -277,19 +263,20 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
         img.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                popDeleteDialog(view);
+                popDeleteDialog(view,s);
                 return true;
             }
         });
     }
 
-    private void popDeleteDialog(final View view) {
+    private void popDeleteDialog(final View view, final String s) {
         new AlertDialog.Builder(this)
                 .setTitle("确定删除此图片吗？")
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         linearLayout.removeView(view);
+                        pathList.remove(s);
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -328,7 +315,7 @@ public class NoteEditView extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void afterTextChanged(Editable editable) {
-        limit.setHint((20-noteTitle.getText().toString().length())+"");
+        limit.setHint((30-noteTitle.getText().toString().length())+"");
     }
     public void checkLimit(){
         //感觉逻辑写的不好

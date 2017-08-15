@@ -54,6 +54,10 @@ public class Login extends BaseActivity implements View.OnClickListener {
             case R.id.bt_login:
                 name = userName.getText().toString().trim();
                 pass = userPass.getText().toString().trim();
+                if(name.equals("")||pass.equals("")){
+                    Toast.makeText(getApplicationContext(),"账号或密码为空",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 final MyUser user = new MyUser();
                 user.setUsername(name);
                 user.setPassword(pass);
@@ -61,10 +65,12 @@ public class Login extends BaseActivity implements View.OnClickListener {
                     @Override
                     public void done(MyUser myUser, BmobException e) {
                         if(e==null){
+                            login.setText("正在登录");
                             Toast.makeText(getApplicationContext(),"登录成功",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Login.this,MainActivity.class));
                             finish();
                         }else {
+                            login.setText("重新登录");
                             Toast.makeText(getApplicationContext(), ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
                         }
                     }

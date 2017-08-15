@@ -139,9 +139,8 @@ public class LoginOrLogon extends BaseActivity implements ViewPager.OnPageChange
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-//            super.destroyItem(container, position, object);
-//            container.removeView(data.get(position));
-            //不销毁
+            super.destroyItem(container, position, object);
+            container.removeView(data.get(position));
         }
 
         @Override
