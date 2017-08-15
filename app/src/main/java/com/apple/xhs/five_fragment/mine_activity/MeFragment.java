@@ -111,10 +111,10 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         if(myUser.getNickname() != null){
             nickname.setText(myUser.getNickname());
         }
-        guanzhu.setText(InitBmob.getGuanzhu());
-        fans.setText(InitBmob.getFans());
-        mynotes.setText(InitBmob.getFabu());
-        mylikes.setText(InitBmob.getShoucang());
+        guanzhu.setText(InitBmob.getGuanzhu() + "");
+        fans.setText(InitBmob.getFans() + "");
+        mynotes.setText(InitBmob.getFabu() + "");
+        mylikes.setText(InitBmob.getShoucang() + "");
     }
 
     @Override

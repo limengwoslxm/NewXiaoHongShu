@@ -18,7 +18,10 @@ import cn.bmob.v3.Bmob;
 public class InitBmob extends Application {
     private static Context context;
     private static List<Note> list;
-    private static int guanzhu,fans,fabu,shoucang;
+    private static int guanzhu = 0;
+    private static int fans = 0;
+    private static int fabu = 0;
+    private static int shoucang = 0;
 
     @Override
     public void onCreate() {
