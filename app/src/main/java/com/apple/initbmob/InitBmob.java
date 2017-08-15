@@ -18,6 +18,7 @@ import cn.bmob.v3.Bmob;
 public class InitBmob extends Application {
     private static Context context;
     private static List<Note> list;
+    private static int guanzhu,fans,fabu,shoucang;
 
     @Override
     public void onCreate() {
@@ -37,5 +38,37 @@ public class InitBmob extends Application {
 
     public static void setList(List<Note> list) {
         InitBmob.list = list;
+    }
+
+    public static int getGuanzhu() {
+        return guanzhu;
+    }
+
+    public static void setGuanzhu(int guanzhu) {
+        InitBmob.guanzhu = guanzhu;
+    }
+
+    public static int getFans() {
+        return fans;
+    }
+
+    public static void setFans(int fans) {
+        InitBmob.fans = fans;
+    }
+
+    public static int getFabu() {
+        return fabu;
+    }
+
+    public static void setFabu(int fabu) {
+        InitBmob.fabu = fabu;
+    }
+
+    public static int getShoucang() {
+        return shoucang;
+    }
+
+    public static void setShoucang(int shoucang) {
+        InitBmob.shoucang = shoucang;
     }
 }

@@ -79,6 +79,7 @@ public class AddDataBmob {
                                 public void done(String objectId, BmobException e) {
                                     if(e==null){
                                         Log.i("bmob","笔记添加成功:" + note.getTitle());
+                                        InitBmob.setFabu(InitBmob.getFabu()+1);
                                         if (styles.size()!=0){
                                             for (String s:styles ) {
                                                 String style = SelectDataBmob.getStyleId(s);
@@ -187,6 +188,7 @@ public class AddDataBmob {
             public void done(Object o, BmobException e) {
                 if (e==null){
                     Toast.makeText(InitBmob.getContext(),o.toString(),Toast.LENGTH_SHORT).show();
+                    InitBmob.setGuanzhu(InitBmob.getGuanzhu()+1);
                     Log.i("bmob","执行云端关注方法成功，返回：" + o.toString());
                 }else {
                     Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
@@ -208,6 +210,7 @@ public class AddDataBmob {
                 if(e==null){
                     UpdateDataBmob.clickUp(note);
                     Toast.makeText(InitBmob.getContext(),"收藏成功",Toast.LENGTH_SHORT).show();
+                    InitBmob.setShoucang(InitBmob.getShoucang()+1);
                     Log.i("bmob","收藏成功：" + "用户<" + my.getNickname() + ">收藏了笔记<" + note.getTitle() + ">");
                 }else{
                     Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();

@@ -58,7 +58,16 @@ public class Logon extends BaseActivity {
         passAga = userPassAga.getText().toString().trim();
         email = userEmail.getText().toString().trim();
         if (!passAga.equals(pass)){
-            Toast.makeText(getApplicationContext(),"密码不一致",Toast.LENGTH_SHORT).show();
+            userPassAga.setError("密码不一致");
+            return;
+        }else if (!name.matches("[a-zA-Z0-9_]{1,12}")){
+            userName.setError("用户名只能由字母数字下划线组成，长度不能超过12位");
+            return;
+        }else if (!pass.matches("[a-zA-Z0-9]{1,16}")){
+            userPass.setError("密码含有非法字符，或长度超过16位");
+            return;
+        }else if (!email.matches("[a-zA-Z_0-9]+@(([a-zA-z0-9]-*)+\\.){1,3}[a-zA-z\\-]+")){
+            userEmail.setError("邮箱格式错误");
             return;
         }
         MyUser user = new MyUser();

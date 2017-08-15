@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.apple.initbmob.InitBmob;
 import com.apple.xhs.Login;
 import com.apple.xhs.LoginOrLogon;
 import com.apple.xhs.R;
@@ -59,6 +60,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_me_layout,container,false);
         initView(view);
         setViewListener(view);
+        selectFour();
         return view;
     }
 
@@ -109,7 +111,10 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         if(myUser.getNickname() != null){
             nickname.setText(myUser.getNickname());
         }
-        selectFour();
+        guanzhu.setText(InitBmob.getGuanzhu());
+        fans.setText(InitBmob.getFans());
+        mynotes.setText(InitBmob.getFabu());
+        mylikes.setText(InitBmob.getShoucang());
     }
 
     @Override
@@ -263,6 +268,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 if (e==null){
                     Log.i("bmob","查询关注列表成功，数目为：" + list.size());
                     if (list!=null){
+                        InitBmob.setGuanzhu(list.size());
                         guanzhu.setText(list.size() + "");
                     }
                 }else {
@@ -279,6 +285,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 if (e==null){
                     Log.i("bmob","查询粉丝列表成功，数目为：" + list.size());
                     if (list!=null){
+                        InitBmob.setFans(list.size());
                         fans.setText(list.size() + "");
                     }
                 }else {
@@ -295,6 +302,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 if(e==null){
                     Log.i("bmob","查询个人笔记列表成功，数目为：" + list.size());
                     if(list!=null){
+                        InitBmob.setFabu(list.size());
                         mynotes.setText(list.size() + "");
                     }
                 }else{
@@ -311,6 +319,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 if (e==null){
                     Log.i("bmob","查询收藏列表成功，数目为：" + list.size());
                     if (list!=null){
+                        InitBmob.setShoucang(list.size());
                         mylikes.setText(list.size() + "");
                     }
                 }else {

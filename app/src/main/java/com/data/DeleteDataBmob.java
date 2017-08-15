@@ -38,6 +38,7 @@ public class DeleteDataBmob {
                 if(e==null){
                     UpdateDataBmob.delUp(note);
                     Toast.makeText(InitBmob.getContext(),"取消收藏成功",Toast.LENGTH_SHORT).show();
+                    InitBmob.setShoucang(InitBmob.getShoucang()-1);
                     Log.i("bmob","取消收藏成功：" + "用户<" + my.getNickname() + ">取消收藏了笔记<" + note.getTitle() + ">");
                 }else{
                     Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
@@ -64,6 +65,7 @@ public class DeleteDataBmob {
             public void done(Object o, BmobException e) {
                 if (e==null){
                     Toast.makeText(InitBmob.getContext(),o.toString(),Toast.LENGTH_SHORT).show();
+                    InitBmob.setGuanzhu(InitBmob.getGuanzhu()-1);
                     Log.i("bmob","执行云端取消关注方法成功，返回：" + o.toString());
                 }else {
                     Toast.makeText(InitBmob.getContext(), ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
@@ -80,6 +82,7 @@ public class DeleteDataBmob {
             public void done(BmobException e) {
                 if (e==null){
                     Toast.makeText(InitBmob.getContext(),"删除笔记成功",Toast.LENGTH_SHORT).show();
+                    InitBmob.setFabu(InitBmob.getFabu()-1);
                     Log.i("bmob","删除笔记成功：" + note.getTitle());
                 }else {
                     Toast.makeText(InitBmob.getContext(),ErrorCollecter.errorCode(e),Toast.LENGTH_SHORT).show();
